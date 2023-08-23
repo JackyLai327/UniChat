@@ -14,19 +14,15 @@ struct NotificationsView: View {
     var body: some View {
         NavigationView {
             VStack (spacing: 0) {
-                Text("Notifications")
-                    .font(.largeTitle.bold())
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(UniChatColor.headerYellow)
-                    .foregroundColor(UniChatColor.brown)
+                heading
                 List (datas.notifications) { notification in
                     ZStack {
-                        NavigationLink (destination: PostView(discussion: notification.discussion)) {
+                        NavigationLink (destination: DiscussionView(discussionID: notification.discussion)) {
                             EmptyView()
                         }
                         .opacity(0.0)
                         .buttonStyle(PlainButtonStyle())
+                        
                         HStack {
                             if notification.type == "like" {
                                 Image(systemName: "heart.fill")
@@ -72,6 +68,15 @@ struct NotificationsView: View {
         
     }
     .scrollContentBackground(.hidden)
+    }
+    
+    var heading: some View {
+        Text("Notifications")
+            .font(.largeTitle.bold())
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(UniChatColor.headerYellow)
+            .foregroundColor(UniChatColor.brown)
     }
 }
 struct NotificationsView_Previews: PreviewProvider {

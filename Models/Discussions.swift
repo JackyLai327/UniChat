@@ -1,16 +1,16 @@
 //
-//  Posts.swift
+//  Discussions.swift
 //  UniChat
 //
 //  Created by Jacky Lai on 2023/8/23.
 //
 
 import Foundation
-import UIKit
 
-struct Post: Codable, Identifiable {
+struct Discussion: Codable {
     
     enum CodingKeys: CodingKey {
+        case discussion
         case user
         case target
         case content
@@ -21,7 +21,7 @@ struct Post: Codable, Identifiable {
         case images
     }
     
-    var id = UUID()
+    var discussion: String
     var user: String
     var target: String
     var content: String
@@ -29,25 +29,25 @@ struct Post: Codable, Identifiable {
     var numReplies: Int
     var numShares: Int
     var replies: [String]
-    var images: [UIImage]
+    var images: String
 }
 
-class ReadPosts: ObservableObject {
-    @Published var notifications = [Notification]()
+class ReadDiscussions: ObservableObject {
+    @Published var discussions = [Discussion]()
     
     init() {
-        loadPosts()
+        loadDiscussions()
     }
     
-    func loadPosts() {
-        guard let url = Bundle.main.url(forResource: "PostsData", withExtension: "json")
+    func loadDiscussions() {
+        guard let url = Bundle.main.url(forResource: "DiscussionsData", withExtension: "json")
             else {
                 print("JSON file not fuond")
                 return
             }
-        
+    
         let data = try? Data(contentsOf: url)
-        let notifications = try? JSONDecoder().decode([Notification].self, from: data!)
-        self.notifications = notifications!
+        let discussions = try? JSONDecoder().decode([Discussion].self, from: data!)
+        self.discussions = discussions!
     }
 }
