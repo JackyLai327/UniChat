@@ -1,0 +1,24 @@
+
+[
+    {
+        "sender": "ilovejava",
+        "receiver": "unichat",
+        "type": "like",
+        "discussion": "A0001",
+        "timestamp": "2023-08-23T12:13:14+1000"
+    },
+    {
+        "sender": "ilovejava",
+        "receiver": "unichat",
+        "type": "reply",
+        "discussion": "A0001",
+        "timestamp": "2023-08-08T12:13:20+1000"
+    },
+    {
+        "sender": "ilovejava",
+        "receiver": "unichat",
+        "type": "share",
+        "discussion": "A0001",
+        "timestamp": "2023-08-08T12:14:00+1000"
+    }
+]

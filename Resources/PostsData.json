@@ -1,0 +1,17 @@
+
+[
+    {
+        "user": "ilikeuni",
+        "target": "RMIT University"
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "numLikes": 420
+        "numReplies": 3
+        "numShares": 42
+        "replies": [
+                "bro why",
+                "lol i've done that too",
+                "excuse me what??"
+        ]
+        "images": null
+    }
+]
