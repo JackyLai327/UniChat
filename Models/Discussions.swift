@@ -19,6 +19,7 @@ struct Discussion: Codable {
         case numShares
         case replies
         case images
+        case timestamp
     }
     
     var discussion: String
@@ -29,7 +30,8 @@ struct Discussion: Codable {
     var numReplies: Int
     var numShares: Int
     var replies: [String]
-    var images: String
+    var images: [String]
+    var timestamp: Date
 }
 
 class ReadDiscussions: ObservableObject {
@@ -47,7 +49,9 @@ class ReadDiscussions: ObservableObject {
             }
     
         let data = try? Data(contentsOf: url)
-        let discussions = try? JSONDecoder().decode([Discussion].self, from: data!)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let discussions = try? decoder.decode([Discussion].self, from: data!)
         self.discussions = discussions!
     }
 }

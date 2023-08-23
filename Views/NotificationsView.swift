@@ -14,7 +14,7 @@ struct NotificationsView: View {
     var body: some View {
         NavigationView {
             VStack (spacing: 0) {
-                heading
+                HeadingView(title: "Notifications")
                 List (datas.notifications) { notification in
                     ZStack {
                         NavigationLink (destination: DiscussionView(discussionID: notification.discussion)) {
@@ -28,38 +28,43 @@ struct NotificationsView: View {
                                 Image(systemName: "heart.fill")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 30)
+                                    .frame(width: 20)
                                     .padding(5)
                                     .foregroundColor(UniChatColor.brightYellow)
                                 
                                 Text("\(notification.sender) liked your discussion.")
+                                    .font(.caption)
                             }
                             
                             if notification.type == "reply" {
                                 Image(systemName: "ellipsis.bubble.fill")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 30)
+                                    .frame(width: 20)
                                     .padding(5)
                                     .foregroundColor(UniChatColor.brightYellow)
                                 
                                 Text("\(notification.sender) replied to your discussion.")
+                                    .font(.caption)
                             }
                             
                             if notification.type == "share" {
                                 Image(systemName: "arrowshape.turn.up.right.fill")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 30)
+                                    .frame(width: 20)
                                     .padding(5)
                                     .foregroundColor(UniChatColor.brightYellow)
                                 
                                 Text("someone shared your discussion.")
+                                    .font(.caption)
                             }
                             
                             Spacer()
                             
                             Text(notification.timestamp, style: .offset)
+                                .font(.caption2)
+                                .foregroundColor(.secondary)
                         }
                     }
                 }
@@ -68,15 +73,6 @@ struct NotificationsView: View {
         
     }
     .scrollContentBackground(.hidden)
-    }
-    
-    var heading: some View {
-        Text("Notifications")
-            .font(.largeTitle.bold())
-            .padding()
-            .frame(maxWidth: .infinity)
-            .background(UniChatColor.headerYellow)
-            .foregroundColor(UniChatColor.brown)
     }
 }
 struct NotificationsView_Previews: PreviewProvider {

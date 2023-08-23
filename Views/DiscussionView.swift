@@ -17,8 +17,9 @@ struct DiscussionView: View {
     
     var body: some View {
         VStack (spacing: 0) {
-            heading
+            HeadingView(title: "Discussion")
             contentArea
+            repliesSection
         }
             .navigationBarBackButtonHidden(true)
             .toolbar{
@@ -32,49 +33,82 @@ struct DiscussionView: View {
             }
     }
     
-    var heading: some View {
-        VStack (spacing: 0) {
-            Text("Discussion")
-                .font(.largeTitle.bold())
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(UniChatColor.headerYellow)
-                .foregroundColor(UniChatColor.brown)
-            Divider()
-                .frame(width: .infinity, height: 1)
-                .overlay(UniChatColor.brown)
-        }
-    }
-    
     var contentArea: some View {
         VStack {
-            VStack {
+            ScrollView {
                 if let discussion = datas.discussions.first(where: {$0.discussion == discussionID}) {
-                    Text("🗣️ \(discussion.user)")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.title2)
-                        .foregroundColor(UniChatColor.brown)
-                        .padding(.horizontal, 30)
-                        .padding(.top, 50)
-                    Text("🎓 \(discussion.target)")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.title3)
-                        .foregroundColor(UniChatColor.brown)
-                        .padding(.horizontal, 30)
-                } else {
-                    Text("This discussion is devoured by trolls...")
-                        .multilineTextAlignment(.center)
+                    HStack {
+                        VStack {
+                            Text("🗣️ \(discussion.user)")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .font(.headline)
+                                .foregroundColor(UniChatColor.brown)
+                                
+                            Text("🎓 \(discussion.target)")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .font(.headline)
+                                .foregroundColor(UniChatColor.brown)
+                        }
+                        
+                        Spacer()
+                        
+                        Text(discussion.timestamp, style: .date)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 30)
+                    .padding(.top, 30)
+                  
+                    Text(discussion.content)
                         .frame(maxWidth: .infinity, alignment: .center)
-                        .font(.title.bold())
-                        .foregroundColor(UniChatColor.brown)
-                        .padding(.top, 100)
-                        .padding(.bottom, 50)
-                    Text("🧌")
-                        .font(.custom("Troll", size: 200))
-                    
+                        .padding(.horizontal, 40)
+                        .padding(.vertical, 10)
+                    Text(discussion.images[0])
+                        .frame(width: 150, height: 150)
+                        .border(.black)
+                        .padding(.bottom, 20)
+                    VStack (spacing: 0) {
+                        Divider()
+                            .frame(height: 1)
+                            .overlay(UniChatColor.brown)
+                        HStack {
+                            
+                            HStack {
+                                Image(systemName: "heart.fill")
+                                    .foregroundColor(UniChatColor.brightYellow)
+                                Text("\(discussion.numLikes)")
+                            }
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(.vertical, 5)
+                            
+                            Divider()
+                                .frame(width: 1)
+                                .overlay(UniChatColor.brown)
+                            
+                            HStack {
+                                Image(systemName: "arrowshape.turn.up.right.fill")
+                                    .foregroundColor(UniChatColor.brightYellow)
+                                Text("\(discussion.numShares)")
+                            }
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(.vertical, 5)
+                        }
+                        Divider()
+                            .frame(height: 1)
+                            .overlay(UniChatColor.brown)
+                    }
+                } else {
+                    discussionNotFound
                     Spacer()
                 }
             }
+        }
+    }
+    
+    var repliesSection: some View {
+        VStack {
+            
         }
     }
     
@@ -83,10 +117,23 @@ struct DiscussionView: View {
             .font(.title.bold())
             .foregroundColor(UniChatColor.brightYellow)
     }
+    
+    var discussionNotFound: some View {
+        VStack {
+            Text("This discussion is devoured by trolls...")
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .font(.title.bold())
+                .foregroundColor(UniChatColor.brown)
+                .padding(.top, 200)
+            Text("🧌")
+                .font(.custom("Troll", size: 200))
+        }
+    }
 }
 
 struct DiscussionView_Previews: PreviewProvider {
     static var previews: some View {
-        DiscussionView(discussionID: "A000")
+        DiscussionView(discussionID: "A0001")
     }
 }

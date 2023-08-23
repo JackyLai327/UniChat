@@ -11,20 +11,11 @@ struct SettingsView: View {
     var body: some View {
         NavigationView(){
             VStack(spacing: 0) {
-                heading
+                HeadingView(title: "Settings")
                 listOfSettingsOptions
             }
         }
         .scrollContentBackground(.hidden)
-    }
-    
-    var heading: some View {
-        Text("Settings")
-            .font(.largeTitle.bold())
-            .padding()
-            .frame(maxWidth: .infinity)
-            .background(UniChatColor.headerYellow)
-            .foregroundColor(UniChatColor.brown)
     }
     
     var listOfSettingsOptions: some View {
