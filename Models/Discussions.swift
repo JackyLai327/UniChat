@@ -17,7 +17,6 @@ struct Discussion: Codable {
         case numLikes
         case numReplies
         case numShares
-        case replies
         case images
         case timestamp
     }
@@ -29,7 +28,6 @@ struct Discussion: Codable {
     var numLikes: Int
     var numReplies: Int
     var numShares: Int
-    var replies: [String]
     var images: [String]
     var timestamp: Date
 }

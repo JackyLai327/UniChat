@@ -20,7 +20,6 @@ struct HeadingView: View {
                 .background(UniChatColor.headerYellow)
                 .foregroundColor(UniChatColor.brown)
             Divider()
-                .frame(width: .infinity, height: 1)
                 .overlay(UniChatColor.brown)
         }
     }

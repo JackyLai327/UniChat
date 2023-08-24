@@ -8,11 +8,6 @@
         "numLikes": 420,
         "numReplies": 3,
         "numShares": 42,
-        "replies": [
-                "bro why",
-                "lol i've done that too",
-                "excuse me what??"
-        ],
         "images": ["some images"],
         "timestamp": "2023-08-08T12:13:20+1000"
     }

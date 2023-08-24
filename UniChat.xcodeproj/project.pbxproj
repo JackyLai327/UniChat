@@ -30,6 +30,8 @@
 		D3F4B1922A95F259009106A2 /* DiscussionsData.json in Resources */ = {isa = PBXBuildFile; fileRef = D3F4B1912A95F259009106A2 /* DiscussionsData.json */; };
 		D3F4B1942A95F445009106A2 /* Discussions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B1932A95F445009106A2 /* Discussions.swift */; };
 		D3F4B1962A9631B1009106A2 /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B1952A9631B1009106A2 /* HeadingView.swift */; };
+		D3F4B1982A971878009106A2 /* RepliesData.json in Resources */ = {isa = PBXBuildFile; fileRef = D3F4B1972A971878009106A2 /* RepliesData.json */; };
+		D3F4B19A2A9719B2009106A2 /* Replies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B1992A9719B2009106A2 /* Replies.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		D3F4B1912A95F259009106A2 /* DiscussionsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DiscussionsData.json; sourceTree = "<group>"; };
 		D3F4B1932A95F445009106A2 /* Discussions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discussions.swift; sourceTree = "<group>"; };
 		D3F4B1952A9631B1009106A2 /* HeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
+		D3F4B1972A971878009106A2 /* RepliesData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RepliesData.json; sourceTree = "<group>"; };
+		D3F4B1992A9719B2009106A2 /* Replies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Replies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				D3F4B1552A94816D009106A2 /* UniChatApp.swift */,
+				D3F4B1992A9719B2009106A2 /* Replies.swift */,
 				D3F4B1672A9487F4009106A2 /* UniChatColor.swift */,
 				D3F4B1822A95C6B6009106A2 /* Notifications.swift */,
 				D3F4B1932A95F445009106A2 /* Discussions.swift */,
@@ -143,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				D3F4B1892A95D273009106A2 /* NotificationsData.json */,
+				D3F4B1972A971878009106A2 /* RepliesData.json */,
 				D3F4B1912A95F259009106A2 /* DiscussionsData.json */,
 			);
 			path = Resources;
@@ -206,6 +212,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3F4B1982A971878009106A2 /* RepliesData.json in Resources */,
 				D3F4B15D2A94816F009106A2 /* Preview Assets.xcassets in Resources */,
 				D3F4B18A2A95D273009106A2 /* NotificationsData.json in Resources */,
 				D3F4B15A2A94816F009106A2 /* Assets.xcassets in Resources */,
@@ -228,6 +235,7 @@
 				D3F4B17E2A94D8FA009106A2 /* ReportAProblemView.swift in Sources */,
 				D3F4B17A2A94D7B0009106A2 /* VerificationView.swift in Sources */,
 				D3F4B1942A95F445009106A2 /* Discussions.swift in Sources */,
+				D3F4B19A2A9719B2009106A2 /* Replies.swift in Sources */,
 				D3F4B1642A948625009106A2 /* FeatureTabView.swift in Sources */,
 				D3F4B1782A94D747009106A2 /* UsernameAndPasswordView.swift in Sources */,
 				D3F4B1742A94D70B009106A2 /* MyDiscussionsView.swift in Sources */,
