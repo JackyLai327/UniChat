@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct DiscussionView: View {
-    // to hid navigation bar title space
-    @State var isNavigationBarHidden: Bool = true
     // for dismiss action
     @Environment(\.dismiss) private var dismiss
     // load data from discussions and replies
@@ -21,7 +19,7 @@ struct DiscussionView: View {
     
     var body: some View {
         VStack (spacing: 0) {
-            HeadingView(title: "Discussion")
+            HeadingView(title: "")
             ScrollView {
                 contentArea
                 repliesSection
@@ -29,10 +27,6 @@ struct DiscussionView: View {
             joinDiscussionField
         }
         .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(self.isNavigationBarHidden)
-            .onAppear {
-                self.isNavigationBarHidden = true
-            }
         .toolbar{
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
@@ -41,6 +35,14 @@ struct DiscussionView: View {
                     customBackButton
                 }
             }
+            
+            ToolbarItem(placement: .principal) {
+                Text("Disussion")
+                    .font(.title.bold())
+                    .background(UniChatColor.headerYellow)
+                    .foregroundColor(UniChatColor.brown)
+            }
+            
         }
     }
     
@@ -84,26 +86,35 @@ struct DiscussionView: View {
                         .frame(height: 1)
                         .overlay(UniChatColor.brown)
                     HStack {
-                        
-                        HStack {
-                            Image(systemName: "heart.fill")
-                                .foregroundColor(UniChatColor.brightYellow)
-                            Text("\(discussion.numLikes)")
+                        Button {
+                            print("like +1")
+                        } label: {
+                            HStack {
+                                Image(systemName: "heart.fill")
+                                    .foregroundColor(UniChatColor.brightYellow)
+                                Text("\(discussion.numLikes)")
+                                    .foregroundColor(UniChatColor.brown)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(.vertical, 5)
                         }
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.vertical, 5)
                         
                         Divider()
                             .frame(width: 1)
                             .overlay(UniChatColor.brown)
                         
-                        HStack {
-                            Image(systemName: "arrowshape.turn.up.right.fill")
-                                .foregroundColor(UniChatColor.brightYellow)
-                            Text("\(discussion.numShares)")
+                        Button {
+                            print("share +1")
+                        } label: {
+                            HStack {
+                                Image(systemName: "arrowshape.turn.up.right.fill")
+                                    .foregroundColor(UniChatColor.brightYellow)
+                                Text("\(discussion.numShares)")
+                                    .foregroundColor(UniChatColor.brown)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(.vertical, 5)
                         }
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.vertical, 5)
                     }
                     Divider()
                         .frame(height: 1)
@@ -143,21 +154,23 @@ struct DiscussionView: View {
                         
                         Spacer()
                         
-                        VStack {
-                            Image(systemName: "hand.point.up.fill")
-                                .foregroundColor(UniChatColor.brightYellow)
-                                .scaleEffect(1.2)
-                            Text("\(reply.numUps)")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                            Text("up this")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
+                        Button {
+                            print("up by 1")
+                        } label: {
+                            VStack {
+                                Image(systemName: "hand.point.up.fill")
+                                    .foregroundColor(UniChatColor.brightYellow)
+                                    .scaleEffect(1.2)
+                                Text("\(reply.numUps)")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                Text("up this")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                            .padding(.trailing, 20)
+                            .offset(y: 5)
                         }
-                        .padding(.trailing, 20)
-                        .offset(y: 5)
-                        
-                        
                     }
                     Divider()
                         .overlay(UniChatColor.brown)
@@ -209,10 +222,10 @@ struct DiscussionView: View {
     
     var noRepliesFound: some View {
         VStack {
-            Text("no one joined this discussion yet,")
-            Text("🌵")
+            Text("no one joined this discussion yet ,")
+            Text("🦘")
                 .font(.custom("cactus", size: 100))
-            Text("care to be the first?")
+            Text("care to be the first ?")
         }
         .foregroundColor(UniChatColor.brown)
         .padding(.vertical, 20)

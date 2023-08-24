@@ -13,12 +13,20 @@ struct HeadingView: View {
     
     var body: some View {
         VStack (spacing: 0) {
-            Text(title)
-                .font(.title.bold())
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(UniChatColor.headerYellow)
-                .foregroundColor(UniChatColor.brown)
+            if title == "" {
+                HStack {}
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(UniChatColor.headerYellow)
+                    .foregroundColor(UniChatColor.brown)
+            } else {
+                Text(title)
+                    .font(.title.bold())
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(UniChatColor.headerYellow)
+                    .foregroundColor(UniChatColor.brown)
+            }
             Divider()
                 .overlay(UniChatColor.brown)
         }
