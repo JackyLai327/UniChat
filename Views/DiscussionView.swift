@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DiscussionView: View {
+    // to hid navigation bar title space
+    @State var isNavigationBarHidden: Bool = true
     // for dismiss action
     @Environment(\.dismiss) private var dismiss
     // load data from discussions and replies
@@ -27,6 +29,10 @@ struct DiscussionView: View {
             joinDiscussionField
         }
         .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(self.isNavigationBarHidden)
+            .onAppear {
+                self.isNavigationBarHidden = true
+            }
         .toolbar{
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
@@ -65,6 +71,7 @@ struct DiscussionView: View {
                 .padding(.top, 30)
               
                 Text(discussion.content)
+                    .font(.custom("discussion", size: 15))
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.horizontal, 40)
                     .padding(.vertical, 10)
