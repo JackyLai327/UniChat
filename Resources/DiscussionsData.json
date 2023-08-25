@@ -6,6 +6,7 @@
         "target": "RMIT University",
         "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "numLikes": 420,
+        "usersLiked": ["uniChat"],
         "numReplies": 3,
         "numShares": 42,
         "images": ["some images"],

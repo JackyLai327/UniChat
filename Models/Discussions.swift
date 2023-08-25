@@ -15,6 +15,7 @@ struct Discussion: Codable {
         case target
         case content
         case numLikes
+        case usersLiked
         case numReplies
         case numShares
         case images
@@ -26,6 +27,7 @@ struct Discussion: Codable {
     var target: String
     var content: String
     var numLikes: Int
+    var usersLiked: [String]
     var numReplies: Int
     var numShares: Int
     var images: [String]

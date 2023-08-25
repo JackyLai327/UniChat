@@ -15,6 +15,8 @@ struct DiscussionView: View {
     @ObservedObject var repliesDatas = ReadReplies()
     // to load the correct discussion
     var discussionID: String
+    // for user to write a new reply
+    @State var newReply: String = ""
     
     
     var body: some View {
@@ -192,9 +194,8 @@ struct DiscussionView: View {
                     .padding(.horizontal, 20)
                     .padding(.vertical, 10)
                     .frame(maxHeight: 50)
-                Text("join this discussion ...")
+                TextField("join this discussion ...", text: $newReply)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundColor(UniChatColor.brown)
                     .padding(.horizontal, 40)
                     .padding(.vertical, 15)
             }

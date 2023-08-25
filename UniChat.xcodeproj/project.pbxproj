@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D306C82C2A98878800E6A958 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D306C82B2A98878800E6A958 /* SignUpView.swift */; };
 		D3F4B1562A94816D009106A2 /* UniChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B1552A94816D009106A2 /* UniChatApp.swift */; };
 		D3F4B1582A94816D009106A2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B1572A94816D009106A2 /* ContentView.swift */; };
 		D3F4B15A2A94816F009106A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3F4B1592A94816F009106A2 /* Assets.xcassets */; };
@@ -32,9 +33,11 @@
 		D3F4B1962A9631B1009106A2 /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B1952A9631B1009106A2 /* HeadingView.swift */; };
 		D3F4B1982A971878009106A2 /* RepliesData.json in Resources */ = {isa = PBXBuildFile; fileRef = D3F4B1972A971878009106A2 /* RepliesData.json */; };
 		D3F4B19A2A9719B2009106A2 /* Replies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B1992A9719B2009106A2 /* Replies.swift */; };
+		D3F4B19C2A9877ED009106A2 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B19B2A9877ED009106A2 /* LogInView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D306C82B2A98878800E6A958 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		D3F4B1522A94816D009106A2 /* UniChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F4B1552A94816D009106A2 /* UniChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniChatApp.swift; sourceTree = "<group>"; };
 		D3F4B1572A94816D009106A2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +64,7 @@
 		D3F4B1952A9631B1009106A2 /* HeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
 		D3F4B1972A971878009106A2 /* RepliesData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RepliesData.json; sourceTree = "<group>"; };
 		D3F4B1992A9719B2009106A2 /* Replies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Replies.swift; sourceTree = "<group>"; };
+		D3F4B19B2A9877ED009106A2 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,8 @@
 				D3F4B1772A94D747009106A2 /* UsernameAndPasswordView.swift */,
 				D3F4B1792A94D7B0009106A2 /* VerificationView.swift */,
 				D3F4B16D2A94CC77009106A2 /* WritePostView.swift */,
+				D3F4B19B2A9877ED009106A2 /* LogInView.swift */,
+				D306C82B2A98878800E6A958 /* SignUpView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -242,6 +248,8 @@
 				D3F4B18C2A95E8BF009106A2 /* DiscussionView.swift in Sources */,
 				D3F4B16A2A948917009106A2 /* TrendingDiscussionsView.swift in Sources */,
 				D3F4B16C2A94CC5F009106A2 /* ProfileView.swift in Sources */,
+				D3F4B19C2A9877ED009106A2 /* LogInView.swift in Sources */,
+				D306C82C2A98878800E6A958 /* SignUpView.swift in Sources */,
 				D3F4B1962A9631B1009106A2 /* HeadingView.swift in Sources */,
 				D3F4B1562A94816D009106A2 /* UniChatApp.swift in Sources */,
 				D3F4B16E2A94CC77009106A2 /* WritePostView.swift in Sources */,
