@@ -28,11 +28,19 @@ struct Reply: Codable, Identifiable, Hashable {
 class ReadReplies: ObservableObject {
     @Published var replies = [Reply]()
     
+    // load all replies on init
     init() {
         loadReplies()
     }
     
+    /* Load Replies
+     * Read from json file and transfer json strings into objects
+     * @param: no params
+     * @return: no returns
+     */
     func loadReplies() {
+        
+        // Try to read from specified file name, otherwise print JSON not found
         guard let url = Bundle.main.url(forResource: "RepliesData", withExtension: "json")
             else {
                 print("JSON file not fuond")
@@ -40,8 +48,12 @@ class ReadReplies: ObservableObject {
             }
         
         let data = try? Data(contentsOf: url)
+        
+        // Set up docoder to unwrap iso.8601 datetime format properly
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
+        
+        // Convert JSON objects into swift objects
         let notifications = try? decoder.decode([Reply].self, from: data!)
         self.replies = notifications!
     }
