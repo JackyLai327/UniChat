@@ -10,23 +10,47 @@ import SwiftUI
 struct DiscussionView: View {
     // for dismiss action
     @Environment(\.dismiss) private var dismiss
-    // load data from discussions and replies
-    @ObservedObject var datas = ReadDiscussions()
-    @ObservedObject var repliesDatas = ReadReplies()
+    // to use the context provided by core data
+    @Environment(\.managedObjectContext) var context
+    // fetching discussions in a descending order by timestamp
+    @FetchRequest(
+        entity: Discussion.entity(),
+        sortDescriptors: [ NSSortDescriptor(keyPath: \Discussion.timestamp, ascending: false) ])
+    var discussions: FetchedResults<Discussion>
     // to load the correct discussion
     var discussionID: String
     // for user to write a new reply
     @State var newReply: String = ""
     
+    // fetching replies in a descending order by numUps
+    @FetchRequest(
+        entity: Reply.entity(),
+        sortDescriptors: [ NSSortDescriptor(keyPath: \Reply.timestamp, ascending: false) ])
+    var replies: FetchedResults<Reply>
+    
     
     var body: some View {
         VStack (spacing: 0) {
             HeadingView(title: "")
-            ScrollView {
-                contentArea
-                repliesSection
+            
+            if let discussion = discussions.first(where: {"\($0.id)" == discussionID}) {
+                if discussion.numReplies > 0 {
+                    ScrollView {
+                        contentArea
+                        repliesSection
+                    }
+                    joinDiscussionField
+                } else {
+                    ScrollView {
+                        contentArea
+                        noRepliesFound
+                    }
+                    joinDiscussionField
+                }
+            } else {
+                discussionNotFound
+                Spacer()
             }
-            joinDiscussionField
         }
         .navigationBarBackButtonHidden(true)
         .toolbar{
@@ -50,10 +74,10 @@ struct DiscussionView: View {
     
     var contentArea: some View {
         VStack {
-            if let discussion = datas.discussions.first(where: {$0.discussion == discussionID}) {
+            if let discussion = discussions.first(where: {"\($0.id)" == discussionID}) {
                 HStack {
                     VStack {
-                        Text("🗣️ \(discussion.user)")
+                        Text("🗣️ \(discussion.username)")
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.headline)
                             .foregroundColor(UniChatColor.brown)
@@ -79,10 +103,10 @@ struct DiscussionView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.horizontal, 40)
                     .padding(.vertical, 10)
-                Text(discussion.images[0])
-                    .frame(width: 150, height: 150)
-                    .border(.black)
-                    .padding(.bottom, 20)
+//                Image(uiImage: discussion.images)
+//                    .frame(width: 150, height: 150)
+//                    .border(.black)
+//                    .padding(.bottom, 20)
                 VStack (spacing: 0) {
                     Divider()
                         .frame(height: 1)
@@ -122,23 +146,20 @@ struct DiscussionView: View {
                         .frame(height: 1)
                         .overlay(UniChatColor.brown)
                 }
-            } else {
-                discussionNotFound
-                Spacer()
             }
         }
     }
     
     var repliesSection: some View {
         VStack {
-            let replies = repliesDatas.replies.filter({$0.discussion == discussionID}).sorted(by: {$0.numUps > $1.numUps})
+            let replies = replies.filter({$0.discussion == discussionID}).sorted(by: {$0.numUps > $1.numUps})
             
             if replies.count > 0 {
                 ForEach(replies, id:\.self) { reply in
                     HStack {
                         VStack {
                             HStack {
-                                Text("\(reply.user)")
+                                Text("\(reply.username)")
                                     .frame(alignment: .leading)
                                     .font(.custom("reply", size: 15).bold())
                                     .foregroundColor(UniChatColor.brown)
