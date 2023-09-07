@@ -26,8 +26,7 @@ struct WritePostView: View {
     
     var characterLimit = 500
     
-    @State var showContentLengthAlert = false
-    @State var showNoTargetAlert = false
+    @State var showAlert = false
     
     
     var body: some View {
@@ -81,12 +80,9 @@ struct WritePostView: View {
                         // reset the content and target
                         content = ""
                         target = ""
-                    } else if target == listOfUni[0] || content.count >= characterLimit {
-                        showContentLengthAlert = true
-                    } else if target == "" {
-                        showNoTargetAlert = true
+                    } else {
+                        showAlert = true
                     }
-                    
                 } label: {
                     Image(systemName: "square.and.arrow.up")
                         .resizable()
@@ -96,11 +92,8 @@ struct WritePostView: View {
                         .padding(30)
                         .frame(maxWidth: .infinity, alignment: .trailing)
                 }
-                .alert(isPresented: $showContentLengthAlert) {
-                    contentLengthAlert as! Alert
-                }
-                .alert(isPresented: $showNoTargetAlert) {
-                    noTargetSelectedAlert as! Alert
+                .alert(isPresented: $showAlert) {
+                    discussionCreationAlert as! Alert
                 }
             }
         }
@@ -124,20 +117,10 @@ struct WritePostView: View {
         }
     }
     
-    var contentLengthAlert: Any {
+    var discussionCreationAlert: Any {
         Alert(
             title: Text("Sorry Mate"),
-            message: Text("the length of content must be between 0 to 500 characters . "),
-            dismissButton: .default(
-                Text("Alright")
-            )
-        )
-    }
-    
-    var noTargetSelectedAlert: Any {
-        Alert(
-            title: Text("Sorry Mate"),
-            message: Text("please choose a uni / lecturer to write about before you start a discussion . "),
+            message: Text("please choose a uni / lecturer to write about before you start a discussion and the length of content must be between 0 and 500 characters . "),
             dismissButton: .default(
                 Text("Alright")
             )

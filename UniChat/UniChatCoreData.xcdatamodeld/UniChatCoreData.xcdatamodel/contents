@@ -9,19 +9,31 @@
         <attribute name="target" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="username" optional="YES" attributeType="String"/>
+        <relationship name="belongsTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="has" inverseEntity="User"/>
         <relationship name="has" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Like"/>
-        <relationship name="includes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DiscussionImage"/>
+        <relationship name="includes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DiscussionImage" inverseName="belongsTo" inverseEntity="DiscussionImage"/>
     </entity>
     <entity name="DiscussionImage" representedClassName=".DiscussionImage" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="belongsTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Discussion" inverseName="includes" inverseEntity="Discussion"/>
+    </entity>
+    <entity name="Lecturer" representedClassName=".Lecturer" syncable="YES">
+        <attribute name="fun" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="overview" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="strictness" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="workload" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="worksFor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Uni" inverseName="has" inverseEntity="Uni"/>
     </entity>
     <entity name="Like" representedClassName=".Like" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="receiver" optional="YES" attributeType="String"/>
         <attribute name="sender" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="belongsTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Discussion"/>
     </entity>
     <entity name="Notification" representedClassName=".Notification" syncable="YES">
         <attribute name="discussion" optional="YES" attributeType="String"/>
@@ -39,9 +51,19 @@
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="username" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Uni" representedClassName=".Uni" syncable="YES">
+        <attribute name="city" optional="YES" attributeType="String"/>
+        <attribute name="food" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="friendliness" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="overview" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="practicality" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="has" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lecturer" inverseName="worksFor" inverseEntity="Lecturer"/>
+    </entity>
     <entity name="User" representedClassName=".Entity" syncable="YES">
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="username" optional="YES" attributeType="String"/>
-        <relationship name="has" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Discussion"/>
+        <relationship name="has" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Discussion" inverseName="belongsTo" inverseEntity="Discussion"/>
     </entity>
 </model>

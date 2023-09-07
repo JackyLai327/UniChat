@@ -22,6 +22,7 @@ struct NotificationsView: View {
         NavigationView {
             VStack (spacing: 0) {
                 HeadingView(title: "Notifications")
+                Text(String(notifications.count))
                 
                 List {
                     ForEach (notifications) {notification in

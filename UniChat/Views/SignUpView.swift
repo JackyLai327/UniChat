@@ -11,10 +11,25 @@ struct SignUpView: View {
     // for custom back button dismiss action
     @Environment(\.dismiss) private var dismiss
     
+    // geting context from core data to create account
+    @Environment(\.managedObjectContext) var context
+    
+    // read from user entity
+    @FetchRequest(
+        entity: User.entity(),
+        sortDescriptors: [ NSSortDescriptor(keyPath: \User.username, ascending: true) ])
+    var users: FetchedResults<User>
+    
     // user credentials
     @State var username: String = ""
     @State var password: String = ""
     @State var confirmPassword: String = ""
+    
+    // for alert
+    @State var showAlert = false
+    @State var fieldNotFilled = false
+    @State var passwordsDoNotMatch = false
+    @State var usernameExisted = false
     
     var body: some View {
         VStack {
@@ -87,7 +102,21 @@ struct SignUpView: View {
             .padding(.top, 20)
             
             Button("Sign up") {
-                print("Signing up")
+                ForEach (users) { user in
+                    if user.username == username {
+                        usernameExisted = true
+                    }
+                }
+                if username != "" && password != "" && confirmPassword == password {
+                    // create account if detials are filled and passwords match
+                    createUser(username: username, password: password)
+                    // reset all textfields after account creation
+                    username = ""
+                    password = ""
+                    confirmPassword = ""
+                } else {
+                    showAlert = true
+                }
             }
             .font(.title2.bold())
             .padding(.horizontal, 40)
@@ -96,6 +125,9 @@ struct SignUpView: View {
             .foregroundColor(.white)
             .clipShape(Capsule())
             .padding(.vertical, 40)
+            .alert(isPresented: $showAlert) {
+                userCreationAlert as! Alert
+            }
             
             Image("logo")
                 .padding(.vertical, 40)
@@ -130,6 +162,28 @@ struct SignUpView: View {
         Image(systemName: "chevron.left")
             .font(.title.bold())
             .foregroundColor(UniChatColor.brightYellow)
+    }
+    
+    func createUser(username: String, password: String) {
+        let user = User(context: context)
+        user.username = username
+        user.password = password
+        
+        do {
+            try context.save()
+        } catch {
+            print(error)
+        }
+    }
+    
+    var userCreationAlert: Any {
+        Alert(
+            title: Text("Sorry Mate"),
+            message: Text("this legend username is already taken 😢 ..."),
+            dismissButton: .default(
+                Text("pick a new one")
+            )
+        )
     }
 }
     
