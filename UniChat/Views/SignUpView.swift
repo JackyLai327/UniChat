@@ -30,6 +30,10 @@ struct SignUpView: View {
     @State var fieldNotFilled = false
     @State var passwordsDoNotMatch = false
     @State var usernameExisted = false
+    @State var passwordNotSecure = false
+    
+    // password regex
+    let passwordRegex = try! Regex("(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).+")
     
     var body: some View {
         VStack {
@@ -54,11 +58,12 @@ struct SignUpView: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 30)
                         .stroke(UniChatColor.brightYellow, lineWidth: 3)
-                        .background(.white)
                         .frame(maxHeight: 35)
                     TextField("Username", text: $username)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 15)
+                        .foregroundColor(UniChatColor
+                            .lightBrown)
                 }
                 .padding(.horizontal, 40)
             }
@@ -72,11 +77,12 @@ struct SignUpView: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 30)
                         .stroke(UniChatColor.brightYellow, lineWidth: 3)
-                        .background(.white)
                         .frame(maxHeight: 35)
-                    TextField("Password", text: $password)
+                    SecureField("Password", text: $password)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 15)
+                        .foregroundColor(UniChatColor
+                            .lightBrown)
                 }
                 .padding(.horizontal, 40)
             }
@@ -91,32 +97,56 @@ struct SignUpView: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 30)
                         .stroke(UniChatColor.brightYellow, lineWidth: 3)
-                        .background(.white)
                         .frame(maxHeight: 35)
-                    TextField("Confirm Password", text: $password)
+                    SecureField("Confirm Password", text: $confirmPassword)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 15)
+                        .foregroundColor(UniChatColor
+                            .lightBrown)
                 }
                 .padding(.horizontal, 40)
             }
             .padding(.top, 20)
             
             Button("Sign up") {
-                ForEach (users) { user in
-                    if user.username == username {
-                        usernameExisted = true
-                    }
+                
+                // check if username has been taken
+                if users.first(where: {$0.username == username}) != nil {
+                    usernameExisted = true
                 }
-                if username != "" && password != "" && confirmPassword == password {
+                
+                // check if all fields are filled in
+                if username == "" || password == "" || confirmPassword == "" {
+                    fieldNotFilled = true
+                }
+                
+                // check if passwords match
+                if password != confirmPassword {
+                    passwordsDoNotMatch = true
+                }
+                
+                // check if password is secure
+                if (password.firstMatch(of: passwordRegex) == nil) || password.count < 8 {
+                    passwordNotSecure = true
+                    print("password not right")
+                }
+                
+                // if all flags are off, create user
+                if !usernameExisted && !fieldNotFilled && !passwordsDoNotMatch && !passwordNotSecure {
                     // create account if detials are filled and passwords match
                     createUser(username: username, password: password)
                     // reset all textfields after account creation
                     username = ""
                     password = ""
                     confirmPassword = ""
+                // if any is not right show error
                 } else {
                     showAlert = true
                 }
+                usernameExisted = false
+                fieldNotFilled = false
+                passwordNotSecure = false
+                passwordsDoNotMatch = false
             }
             .font(.title2.bold())
             .padding(.horizontal, 40)
@@ -150,7 +180,7 @@ struct SignUpView: View {
             }
             
             ToolbarItem(placement: .principal) {
-                Text("Disussion")
+                Text("Sign Up")
                     .font(.title.bold())
                     .background(UniChatColor.headerYellow)
                     .foregroundColor(UniChatColor.brown)
@@ -177,13 +207,18 @@ struct SignUpView: View {
     }
     
     var userCreationAlert: Any {
-        Alert(
-            title: Text("Sorry Mate"),
-            message: Text("this legend username is already taken 😢 ..."),
-            dismissButton: .default(
-                Text("pick a new one")
-            )
-        )
+        if usernameExisted {
+            return Alert(title: Text("Sorry Mate"), message: Text("This username is already taken 😢, first come first serve!"), dismissButton: .default(Text("Pick a new one")))
+
+        } else if passwordsDoNotMatch {
+            return Alert(title: Text("Sorry Mate"), message: Text("Your passwords don't match ❌, wanna try again?"), dismissButton: .default(Text("Let's try again")))
+        } else if fieldNotFilled {
+            return Alert(title: Text("Sorry Mate"), message: Text("All fields must be filled out to create an account (c'mon don't be lazy 😩)."), dismissButton: .default(Text("Alright boss...")))
+        } else if passwordNotSecure {
+            return Alert(title: Text("Sorry Mate"), message: Text("Password must:\n💬contain at least 8 characters\n💬contain a capital letter\n💬contain a lowercase letter\n💬contain a digit"), dismissButton: .default(Text("Alright boss...")))
+        } else {
+            return Alert(title: Text("Sorry Mate"), message: Text("Something went wrong, please try again in a bit..."), dismissButton: .default(Text("Alright")))
+        }
     }
 }
     

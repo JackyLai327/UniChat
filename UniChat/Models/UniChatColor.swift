@@ -14,4 +14,5 @@ struct UniChatColor {
     static let dimmedYellow = Color("DimmedYellow")
     static let headerYellow = Color("HeaderYellow")
     static let lightBrown = Color("LightBrown")
+    static let babyblue = Color("Babyblue")
 }

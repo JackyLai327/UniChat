@@ -61,7 +61,7 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="has" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lecturer" inverseName="worksFor" inverseEntity="Lecturer"/>
     </entity>
-    <entity name="User" representedClassName=".Entity" syncable="YES">
+    <entity name="User" representedClassName=".User" syncable="YES">
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="username" optional="YES" attributeType="String"/>
         <relationship name="has" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Discussion" inverseName="belongsTo" inverseEntity="Discussion"/>
