@@ -21,14 +21,13 @@ struct HeadingView: View {
                     .foregroundColor(UniChatColor.brown)
             } else {
                 Text(title)
-                    .font(.title.bold())
+                    .font(.title2.bold())
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(UniChatColor.headerYellow)
                     .foregroundColor(UniChatColor.brown)
             }
             Divider()
-                .overlay(UniChatColor.brown)
         }
     }
 }

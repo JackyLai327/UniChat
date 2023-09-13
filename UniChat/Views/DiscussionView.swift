@@ -100,7 +100,7 @@ struct DiscussionView: View {
               
                 Text(discussion.content)
                     .font(.custom("discussion", size: 15))
-                    .frame(maxWidth: .infinity, alignment: .center)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 40)
                     .padding(.vertical, 10)
 //                Image(uiImage: discussion.images)

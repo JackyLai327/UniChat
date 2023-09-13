@@ -30,7 +30,7 @@ struct WritePostView: View {
     
     
     var body: some View {
-        VStack {
+        VStack(spacing:0) {
             HeadingView(title: "Start a Discussion")
             Picker("select a uni / lecturer to write about ...", selection: $target) {
                 Text("select a uni / lecturer to write about ...").tag("")
@@ -41,6 +41,7 @@ struct WritePostView: View {
             .pickerStyle(.menu)
             .accentColor(.secondary)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.vertical, 10)
             
             ScrollView {
                 HStack {
@@ -58,8 +59,6 @@ struct WritePostView: View {
             }
             .padding(.horizontal, 20)
             
-            Spacer()
-            
             HStack {
                 Button {
                     
@@ -74,7 +73,7 @@ struct WritePostView: View {
                 }
                 
                 Button {
-                    if target != "" && target != listOfUni[0] && content.count <= characterLimit {
+                    if target != "" && content.count <= characterLimit {
                         // if no problem create a discussion
                         createDiscussion(content: content, target: target, user: user)
                         // reset the content and target
@@ -97,6 +96,7 @@ struct WritePostView: View {
                 }
             }
         }
+        .background(UniChatColor.dimmedYellow)
     }
     
     func createDiscussion(content: String, target: String, user: String) {

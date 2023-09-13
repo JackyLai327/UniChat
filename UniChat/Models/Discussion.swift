@@ -18,4 +18,5 @@ public class Discussion: NSManagedObject, Identifiable {
     @NSManaged public var target: String
     @NSManaged public var timestamp: Date
     @NSManaged public var username: String
+    @NSManaged public var targetType: String
 }

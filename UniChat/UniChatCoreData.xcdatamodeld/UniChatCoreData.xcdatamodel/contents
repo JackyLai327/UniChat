@@ -7,13 +7,15 @@
         <attribute name="numReplies" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="numShares" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="target" optional="YES" attributeType="String"/>
+        <attribute name="targetType" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="username" optional="YES" attributeType="String"/>
         <relationship name="belongsTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="has" inverseEntity="User"/>
-        <relationship name="has" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Like"/>
+        <relationship name="has" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Like" inverseName="belongsTo" inverseEntity="Like"/>
         <relationship name="includes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DiscussionImage" inverseName="belongsTo" inverseEntity="DiscussionImage"/>
     </entity>
     <entity name="DiscussionImage" representedClassName=".DiscussionImage" syncable="YES">
+        <attribute name="discussion" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -33,7 +35,7 @@
         <attribute name="receiver" optional="YES" attributeType="String"/>
         <attribute name="sender" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="belongsTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Discussion"/>
+        <relationship name="belongsTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Discussion" inverseName="has" inverseEntity="Discussion"/>
     </entity>
     <entity name="Notification" representedClassName=".Notification" syncable="YES">
         <attribute name="discussion" optional="YES" attributeType="String"/>

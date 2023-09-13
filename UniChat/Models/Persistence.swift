@@ -19,7 +19,8 @@ struct PersistenceController {
         
         // temprary data for testing only
         let discussion01 = Discussion(context: viewContext)
-        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 
         discussion01.id = UUID()
         discussion01.content = "my hot lecturer said she was free after 6pm tomorrow... what do i do... 🧐"
@@ -27,15 +28,16 @@ struct PersistenceController {
         discussion01.numReplies = 3
         discussion01.numShares = 42
         discussion01.target = "RMIT University"
-        discussion01.timestamp = DateFormatter().date(from: "2023-08-08T12:13:20+1000")!
+        discussion01.timestamp = dateFormatter.date(from: "2023-08-08T12:13:20+1000")!
         discussion01.username = "ilikeuni"
+        discussion01.targetType = "uni"
         
         let notification01 = Notification(context: viewContext)
         notification01.id = UUID()
         notification01.discussion = "\(discussion01.id)"
         notification01.receiver = "unichat"
         notification01.sender = "ilovejava"
-        notification01.timestamp = DateFormatter().date(from: "2023-08-08T12:13:20+1000")!
+        notification01.timestamp = dateFormatter.date(from: "2023-08-08T12:13:20+1000")!
         notification01.notificationType = .like
         
         let reply01 = Reply(context: viewContext)
@@ -43,7 +45,7 @@ struct PersistenceController {
         reply01.content = "bro be capping for life"
         reply01.discussion = "\(discussion01.id)"
         reply01.numUps = 420
-        reply01.timestamp = DateFormatter().date(from: "2022-08-23T12:19:14+1000")!
+        reply01.timestamp = dateFormatter.date(from: "2022-08-23T12:19:14+1000")!
         reply01.username = "420forthewin"
         
         do {

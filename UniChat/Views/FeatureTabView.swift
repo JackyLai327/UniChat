@@ -47,21 +47,8 @@ struct FeatureTabView: View {
                 .toolbarBackground(.visible, for: .tabBar)
         }
         .accentColor(UniChatColor.brightYellow)
-        .toolbar{
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    dismiss()
-                } label: {
-                }
-            }
-            
-            ToolbarItem(placement: .principal) {
-                Text("")
-                    .font(.title.bold())
-                    .background(UniChatColor.headerYellow)
-                    .foregroundColor(UniChatColor.brown)
-            }
-        }
+        .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden)
         
     }
 }
