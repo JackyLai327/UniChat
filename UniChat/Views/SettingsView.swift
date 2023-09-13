@@ -8,14 +8,30 @@
 import SwiftUI
 
 struct SettingsView: View {
+    // for custom back button dismiss action
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
-        NavigationView(){
-            VStack(spacing: 0) {
-                HeadingView(title: "Settings")
-                listOfSettingsOptions
-            }
+        VStack(spacing: 0) {
+            HeadingView(title: "Settings")
+            listOfSettingsOptions
         }
         .scrollContentBackground(.hidden)
+        .toolbar{
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                }
+            }
+            
+            ToolbarItem(placement: .principal) {
+                Text("Settings")
+                    .font(.title.bold())
+                    .background(UniChatColor.headerYellow)
+                    .foregroundColor(UniChatColor.brown)
+            }
+        }
     }
     
     var listOfSettingsOptions: some View {

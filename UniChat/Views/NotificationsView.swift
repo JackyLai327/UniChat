@@ -18,12 +18,10 @@ struct NotificationsView: View {
     var notifications: FetchedResults<Notification>
     
     var body: some View {
-        
-        NavigationView {
-            VStack (spacing: 0) {
-                HeadingView(title: "Notifications")
-                Text(String(notifications.count))
-                
+        VStack (spacing: 0) {
+            HeadingView(title: "Notifications")
+            
+            ScrollView {
                 List {
                     ForEach (notifications) {notification in
                         Text("\(notifications.count)")
@@ -82,11 +80,9 @@ struct NotificationsView: View {
                         
                     
                 }
-                .background(UniChatColor.dimmedYellow)
+            }
+            .background(UniChatColor.dimmedYellow)
         }
-        
-    }
-    .scrollContentBackground(.hidden)
     }
 }
 

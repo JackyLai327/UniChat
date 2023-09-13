@@ -20,6 +20,10 @@ struct SignUpView: View {
         sortDescriptors: [ NSSortDescriptor(keyPath: \User.username, ascending: true) ])
     var users: FetchedResults<User>
     
+    // key chian manager
+    let keychain = KeychainManager()
+    @State var userLoggedIn = false
+    
     // user credentials
     @State var username: String = ""
     @State var password: String = ""
@@ -31,6 +35,10 @@ struct SignUpView: View {
     @State var passwordsDoNotMatch = false
     @State var usernameExisted = false
     @State var passwordNotSecure = false
+    
+    // error messages
+    @State var usernameTakenErrorMessage = ""
+    @State var passwordsDoNotMatchErrorMessage = ""
     
     // password regex
     let passwordRegex = try! Regex("(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).+")
@@ -66,6 +74,9 @@ struct SignUpView: View {
                             .lightBrown)
                 }
                 .padding(.horizontal, 40)
+                if usernameTakenErrorMessage != "" {
+                    Text(usernameTakenErrorMessage)
+                }
             }
             
             VStack (spacing: 2) {
@@ -105,8 +116,15 @@ struct SignUpView: View {
                             .lightBrown)
                 }
                 .padding(.horizontal, 40)
+                if passwordsDoNotMatchErrorMessage != "" {
+                    Text(passwordsDoNotMatchErrorMessage)
+                }
             }
             .padding(.top, 20)
+            
+            NavigationLink(destination: FeatureTabView(), isActive: $userLoggedIn) {
+                Text("")
+            }
             
             Button("Sign up") {
                 
@@ -135,10 +153,20 @@ struct SignUpView: View {
                 if !usernameExisted && !fieldNotFilled && !passwordsDoNotMatch && !passwordNotSecure {
                     // create account if detials are filled and passwords match
                     createUser(username: username, password: password)
+                    
+                    // store the credential in keychain
+                    do {
+                        try keychain.addCredential(credential: Credentials(username: username, password: password))
+                        userLoggedIn = true
+                    } catch {
+                        print(error)
+                    }
+                    
                     // reset all textfields after account creation
                     username = ""
                     password = ""
                     confirmPassword = ""
+                    
                 // if any is not right show error
                 } else {
                     showAlert = true
@@ -163,6 +191,20 @@ struct SignUpView: View {
                 .padding(.vertical, 40)
         }
         .padding()
+        .onChange(of: username, perform: { newVal in
+            if users.first(where: {$0.username == username}) != nil {
+                usernameTakenErrorMessage = "This username is taken... 😭"
+            } else {
+                usernameTakenErrorMessage = ""
+            }
+        })
+        .onChange(of: confirmPassword, perform: {newVal in
+            if confirmPassword != password {
+                passwordsDoNotMatchErrorMessage = "Bro your passwords don't match..."
+            } else {
+                passwordsDoNotMatchErrorMessage = ""
+            }
+        })
         .background(UniChatColor.headerYellow)
         .navigationBarBackButtonHidden(true)
         .toolbar{
@@ -227,4 +269,5 @@ struct SignUpView_Previews: PreviewProvider {
         SignUpView()
     }
 }
+
 

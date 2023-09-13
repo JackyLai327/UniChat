@@ -19,6 +19,8 @@ struct PersistenceController {
         
         // temprary data for testing only
         let discussion01 = Discussion(context: viewContext)
+        
+
         discussion01.id = UUID()
         discussion01.content = "my hot lecturer said she was free after 6pm tomorrow... what do i do... 🧐"
         discussion01.numLikes = 420

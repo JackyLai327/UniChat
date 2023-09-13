@@ -12,20 +12,44 @@ struct SplashScreenView: View {
     // for splsh wait time
     @State var timeElapsed = false
     
+    // keychain manager
+    let keychain = KeychainManager()
+    @State var storedCredentials = Credentials(username: "", password: "")
+    @State var userLoggedIn = true
+    
+    // context for log in authentication
+    @Environment(\.managedObjectContext) var context
+    
+    // read from user entity
+    @FetchRequest(
+        entity: User.entity(),
+        sortDescriptors: [ NSSortDescriptor(keyPath: \User.username, ascending: true) ])
+    var users: FetchedResults<User>
+    
     var body: some View {
-        NavigationView {
-            VStack {
-                if !timeElapsed {
-                    logoSplash
+        VStack {
+            if !timeElapsed {
+                logoSplash
+            } else {
+                if users.first(where: {$0.username == storedCredentials.username && $0.password == storedCredentials.password}) != nil {
+                    NavigationLink (destination: FeatureTabView(), isActive: $userLoggedIn) {
+                        Text("")
+                    }
                 } else {
                     intro
                 }
             }
-            .onAppear {
-                Task { @MainActor in
-                    try await Task.sleep(for: .seconds(0))
-                    timeElapsed = true
-                }
+        }
+        .onAppear {
+            do {
+                storedCredentials = try keychain.retrieveCredentials()
+                print(storedCredentials)
+            } catch {
+                print(error)
+            }
+            Task { @MainActor in
+                try await Task.sleep(for: .seconds(2))
+                timeElapsed = true
             }
         }
     }
@@ -141,7 +165,7 @@ struct SplashScreenView: View {
             .background(UniChatColor.babyblue)
             .cornerRadius(20)
             .shadow(radius: 5)
-            .padding(.bottom, 40)
+            .padding(.bottom,30)
             
             
             
@@ -154,16 +178,11 @@ struct SplashScreenView: View {
                     .foregroundColor(.white)
                     .clipShape(Capsule())
             }
-            .padding(.bottom, 80)
+            .padding(.bottom, 40)
             
             Image("logoBrown")
         }
         .padding(.bottom, 60)
-    }
-    
-    private func splashDelay() async {
-        try? await Task.sleep(nanoseconds: 7_500_000_000)
-        timeElapsed = true
     }
     
     func setupAppearance() {

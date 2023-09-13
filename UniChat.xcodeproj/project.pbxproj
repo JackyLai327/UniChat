@@ -37,6 +37,7 @@
 		D3A8C25F2AA99F3E0024F989 /* Uni.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C25E2AA99F3E0024F989 /* Uni.swift */; };
 		D3A8C2612AA99FBD0024F989 /* Lecturer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C2602AA99FBD0024F989 /* Lecturer.swift */; };
 		D3A8C2632AADE48B0024F989 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C2622AADE48B0024F989 /* SplashScreenView.swift */; };
+		D3A8C2AB2AB18F270024F989 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C2AA2AB18F270024F989 /* KeychainManager.swift */; };
 		D3C2BC3E2AA7227D00F9A747 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D3C2BC3D2AA7227D00F9A747 /* README.md */; };
 		D3F4B15A2A94816F009106A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3F4B1592A94816F009106A2 /* Assets.xcassets */; };
 		D3F4B15D2A94816F009106A2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3F4B15C2A94816F009106A2 /* Preview Assets.xcassets */; };
@@ -54,6 +55,7 @@
 		D3A8C25E2AA99F3E0024F989 /* Uni.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uni.swift; sourceTree = "<group>"; };
 		D3A8C2602AA99FBD0024F989 /* Lecturer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lecturer.swift; sourceTree = "<group>"; };
 		D3A8C2622AADE48B0024F989 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		D3A8C2AA2AB18F270024F989 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		D3C2BC3D2AA7227D00F9A747 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D3C2BC3F2AA722D800F9A747 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		D3F4B1522A94816D009106A2 /* UniChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +122,7 @@
 				D3F4B1662A9487C9009106A2 /* Models */,
 				D3F4B1652A9487C4009106A2 /* Views */,
 				D3F4B1552A94816D009106A2 /* UniChatApp.swift */,
+				D3A8C2AA2AB18F270024F989 /* KeychainManager.swift */,
 				D3F4B1592A94816F009106A2 /* Assets.xcassets */,
 				D3F4B15B2A94816F009106A2 /* Preview Content */,
 				D30811762AA8650D00D4751B /* UniChatCoreData.xcdatamodeld */,
@@ -283,6 +286,7 @@
 				D30811182AA85AD600D4751B /* WritePostView.swift in Sources */,
 				D30811192AA85AD600D4751B /* LogInView.swift in Sources */,
 				D308111A2AA85AD600D4751B /* SignUpView.swift in Sources */,
+				D3A8C2AB2AB18F270024F989 /* KeychainManager.swift in Sources */,
 				D3A8C25F2AA99F3E0024F989 /* Uni.swift in Sources */,
 				D308117C2AA876F900D4751B /* DiscussionImage.swift in Sources */,
 				D308110C2AA85ABB00D4751B /* HeadingView.swift in Sources */,

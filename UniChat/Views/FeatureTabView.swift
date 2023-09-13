@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FeatureTabView: View {
+    // for custom back button dismiss action
+    @Environment(\.dismiss) private var dismiss
     
     @State private var selectedTab = 0
     
@@ -45,6 +47,21 @@ struct FeatureTabView: View {
                 .toolbarBackground(.visible, for: .tabBar)
         }
         .accentColor(UniChatColor.brightYellow)
+        .toolbar{
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                }
+            }
+            
+            ToolbarItem(placement: .principal) {
+                Text("")
+                    .font(.title.bold())
+                    .background(UniChatColor.headerYellow)
+                    .foregroundColor(UniChatColor.brown)
+            }
+        }
         
     }
 }
