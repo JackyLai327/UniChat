@@ -29,6 +29,9 @@ struct TrendingDiscussionsView: View {
     // for tab selection
     @State var uniTabSelected = true
     
+    // to limit the number of characters shown on preview
+    let contentPrevCharaters: Int = 100
+    
     var body: some View {
         VStack(spacing: 0) {
             
@@ -137,7 +140,7 @@ struct TrendingDiscussionsView: View {
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.leading)
                     
-                Text(content)
+                Text(String(content.prefix(contentPrevCharaters)) + "... view more")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .multilineTextAlignment(.leading)
                     .font(.custom("discusison content", size: 15))
