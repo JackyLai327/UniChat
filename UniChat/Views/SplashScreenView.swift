@@ -17,9 +17,6 @@ struct SplashScreenView: View {
     @State var storedCredentials = Credentials(username: "", password: "")
     @State var userLoggedIn = true
     
-    // context for log in authentication
-    @Environment(\.managedObjectContext) var context
-    
     // read from user entity
     @FetchRequest(
         entity: User.entity(),

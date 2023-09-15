@@ -15,14 +15,8 @@ struct LogInView: View {
     @State var username: String = ""
     @State var password: String = ""
     
-    // geting context from core data to create account
-    @Environment(\.managedObjectContext) var context
-    
     // read from user entity
-    @FetchRequest(
-        entity: User.entity(),
-        sortDescriptors: [ NSSortDescriptor(keyPath: \User.username, ascending: true) ])
-    var users: FetchedResults<User>
+    var users = CoreDataModelView.fetchUsersUsernameAscending()
     
     // keychain manager
     let keychain = KeychainManager()

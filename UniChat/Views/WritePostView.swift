@@ -17,9 +17,13 @@ struct WritePostView: View {
     
     // state variable for selecting a target
     @State private var target = ""
+    @State private var targetType = ""
     
     // temporary list of unis
     var listOfUni = ["RMIT University", "Melbourne University"]
+    
+    // temporary list of lecturers
+    var listOfLecturer = ["Shekhar Kalra"]
     
     // temporary logged in user
     var user = "uniChat"
@@ -33,9 +37,15 @@ struct WritePostView: View {
         VStack(spacing:0) {
             HeadingView(title: "Start a Discussion")
             Picker("select a uni / lecturer to write about ...", selection: $target) {
-                Text("select a uni / lecturer to write about ...").tag("")
-                ForEach(listOfUni, id: \.self) {
-                    Text($0)
+                Section(header: Text("select a uni to write about ...")) {
+                    ForEach(listOfUni, id: \.self) {
+                        Text($0)
+                    }
+                }
+                Section(header: Text("select a lecturer to write about ...")) {
+                    ForEach(listOfLecturer, id: \.self) {
+                        Text($0)
+                    }
                 }
             }
             .pickerStyle(.menu)
@@ -73,9 +83,16 @@ struct WritePostView: View {
                 }
                 
                 Button {
-                    if target != "" && content.count <= characterLimit {
+                    // determine the target type first
+                    if listOfUni.contains(target) {
+                        targetType = "uni"
+                    } else if listOfLecturer.contains(target) {
+                        targetType = "lecturer"
+                    }
+                    
+                    if target != "" && targetType != "" && content.count <= characterLimit {
                         // if no problem create a discussion
-                        createDiscussion(content: content, target: target, user: user)
+                        createDiscussion(content: content, target: target, user: user, targetType: targetType)
                         // reset the content and target
                         content = ""
                         target = ""
@@ -99,7 +116,7 @@ struct WritePostView: View {
         .background(UniChatColor.dimmedYellow)
     }
     
-    func createDiscussion(content: String, target: String, user: String) {
+    func createDiscussion(content: String, target: String, user: String, targetType: String) {
         let discussion = Discussion(context: context)
         discussion.id = UUID()
         discussion.content = content
@@ -109,6 +126,7 @@ struct WritePostView: View {
         discussion.target = target
         discussion.timestamp = Date()
         discussion.username = user
+        discussion.targetType = targetType
         
         do {
             try context.save()

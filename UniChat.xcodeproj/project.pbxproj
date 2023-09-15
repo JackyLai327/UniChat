@@ -33,6 +33,7 @@
 		D30811782AA8650D00D4751B /* UniChatCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D30811762AA8650D00D4751B /* UniChatCoreData.xcdatamodeld */; };
 		D308117A2AA876AC00D4751B /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30811792AA876AC00D4751B /* Like.swift */; };
 		D308117C2AA876F900D4751B /* DiscussionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D308117B2AA876F900D4751B /* DiscussionImage.swift */; };
+		D30A30312AB434820022C988 /* CoreDataModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A30302AB434820022C988 /* CoreDataModelView.swift */; };
 		D3A8C25D2AA88A6E0024F989 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C25C2AA88A6E0024F989 /* User.swift */; };
 		D3A8C25F2AA99F3E0024F989 /* Uni.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C25E2AA99F3E0024F989 /* Uni.swift */; };
 		D3A8C2612AA99FBD0024F989 /* Lecturer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C2602AA99FBD0024F989 /* Lecturer.swift */; };
@@ -51,6 +52,7 @@
 		D30811772AA8650D00D4751B /* UniChatCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UniChatCoreData.xcdatamodel; sourceTree = "<group>"; };
 		D30811792AA876AC00D4751B /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
 		D308117B2AA876F900D4751B /* DiscussionImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionImage.swift; sourceTree = "<group>"; };
+		D30A30302AB434820022C988 /* CoreDataModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModelView.swift; sourceTree = "<group>"; };
 		D3A8C25C2AA88A6E0024F989 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D3A8C25E2AA99F3E0024F989 /* Uni.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uni.swift; sourceTree = "<group>"; };
 		D3A8C2602AA99FBD0024F989 /* Lecturer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lecturer.swift; sourceTree = "<group>"; };
@@ -98,6 +100,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D30A302F2AB434500022C988 /* ModelView */ = {
+			isa = PBXGroup;
+			children = (
+				D30A30302AB434820022C988 /* CoreDataModelView.swift */,
+			);
+			path = ModelView;
+			sourceTree = "<group>";
+		};
 		D3F4B1492A94816D009106A2 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +128,7 @@
 		D3F4B1542A94816D009106A2 /* UniChat */ = {
 			isa = PBXGroup;
 			children = (
+				D30A302F2AB434500022C988 /* ModelView */,
 				D3F4B1802A95C40F009106A2 /* Resources */,
 				D3F4B1662A9487C9009106A2 /* Models */,
 				D3F4B1652A9487C4009106A2 /* Views */,
@@ -265,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D308111D2AA85B1D00D4751B /* Discussion.swift in Sources */,
+				D30A30312AB434820022C988 /* CoreDataModelView.swift in Sources */,
 				D308111C2AA85B1A00D4751B /* UniChatColor.swift in Sources */,
 				D308111B2AA85ADB00D4751B /* UniChatApp.swift in Sources */,
 				D30811782AA8650D00D4751B /* UniChatCoreData.xcdatamodeld in Sources */,

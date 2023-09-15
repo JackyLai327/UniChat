@@ -15,19 +15,14 @@ struct TrendingDiscussionsView: View {
     @Environment(\.managedObjectContext) var context
     
     // fetch discussions from core data
-    @FetchRequest(
-        entity: Discussion.entity(),
-        sortDescriptors: [ NSSortDescriptor(keyPath: \Discussion.timestamp, ascending: false) ])
-    var discussions: FetchedResults<Discussion>
+    var discussions = CoreDataModelView.fetchDiscussionsNumLikesDescend()
     
     // fetch images from core data
-//    @FetchRequest(
-//        entity: DiscussionImage.entity(),
-//        sortDescriptors: [ NSSortDescriptor(keyPath: \DiscussionImage.timestamp, ascending: false) ])
-//    var images: FetchRequest<DiscussionImage>
+    var images = CoreDataModelView.fetchImagesTimeStampDescend()
     
     // for tab selection
     @State var uniTabSelected = true
+    @State var lecturerTabSelected = false
     
     // to limit the number of characters shown on preview
     let contentPrevCharaters: Int = 100
@@ -46,16 +41,18 @@ struct TrendingDiscussionsView: View {
                 }
                 .onTapGesture {
                     uniTabSelected = true
+                    lecturerTabSelected = false
                 }
                 
                 VStack(spacing: 0)  {
                     Text("Lecturers")
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding()
-                    !uniTabSelected ? Divider().frame(height: 2).overlay(UniChatColor.brown) : nil
+                    lecturerTabSelected ? Divider().frame(height: 2).overlay(UniChatColor.brown) : nil
                 }
                 .onTapGesture {
                     uniTabSelected = false
+                    lecturerTabSelected = true
                 }
             }
             .font(.title3 .bold())
@@ -64,20 +61,8 @@ struct TrendingDiscussionsView: View {
             
             ScrollView{
                 
-                ForEach (discussions, id:\.self) {discussion in
-                    NavigationLink (destination: DiscussionView(discussionID: String("\(discussion.id)"))) {
-                        discussionCard(
-                            username: discussion.username,
-                            target: discussion.target,
-                            content: discussion.content,
-                            numLikes: Int(discussion.numLikes),
-                            numReplies: Int(discussion.numReplies),
-                            numShares: Int(discussion.numShares),
-                            timestamp: discussion.timestamp)
-                    }
-                }
-                
-//                if uniTabSelected {
+                // uni tab
+                if uniTabSelected {
                     ForEach (discussions.filter {$0.targetType == "uni"}, id:\.self) {discussion in
                         NavigationLink (destination: DiscussionView(discussionID: String("\(discussion.id)"))) {
                             discussionCard(
@@ -90,20 +75,23 @@ struct TrendingDiscussionsView: View {
                                 timestamp: discussion.timestamp)
                         }
                     }
-//                } else {
-//                    ForEach (discussions.filter {$0.targetType == "lecturer"}, id:\.self) {discussion in
-//                        NavigationLink (destination: DiscussionView(discussionID: String(discussion.id))) {
-//                            discussionCard(
-//                                username: discussion.username,
-//                                target: discussion.target,
-//                                content: discussion.content,
-//                                numLikes: Int(discussion.numLikes),
-//                                numReplies: Int(discussion.numReplies),
-//                                numShares: Int(discussion.numShares),
-//                                timestamp: discussion.timestamp)
-//                        }
-//                    }
-//                }
+                }
+                
+                // lecturer tab
+                if lecturerTabSelected {
+                    ForEach (discussions.filter {$0.targetType == "lecturer"}, id:\.self) {discussion in
+                        NavigationLink (destination: DiscussionView(discussionID: String("\(discussion.id)"))) {
+                            discussionCard(
+                                username: discussion.username,
+                                target: discussion.target,
+                                content: discussion.content,
+                                numLikes: Int(discussion.numLikes),
+                                numReplies: Int(discussion.numReplies),
+                                numShares: Int(discussion.numShares),
+                                timestamp: discussion.timestamp)
+                        }
+                    }
+                }
             }
             .frame(maxWidth: .infinity)
             .background(UniChatColor.dimmedYellow)

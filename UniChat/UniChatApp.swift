@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-
 @main
 struct UniChatApp: App {
     let persistenceController = PersistenceController.shared

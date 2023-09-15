@@ -10,13 +10,13 @@ import SwiftUI
 struct DiscussionView: View {
     // for dismiss action
     @Environment(\.dismiss) private var dismiss
+    
     // to use the context provided by core data
     @Environment(\.managedObjectContext) var context
-    // fetching discussions in a descending order by timestamp
-    @FetchRequest(
-        entity: Discussion.entity(),
-        sortDescriptors: [ NSSortDescriptor(keyPath: \Discussion.timestamp, ascending: false) ])
-    var discussions: FetchedResults<Discussion>
+    
+    // fetch discussions from core data
+    var discussions = CoreDataModelView.fetchDiscussionsTimestampDescend()
+    
     // to load the correct discussion
     var discussionID: String
     // for user to write a new reply
