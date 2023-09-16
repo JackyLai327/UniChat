@@ -16,7 +16,10 @@ struct LogInView: View {
     @State var password: String = ""
     
     // read from user entity
-    var users = CoreDataModelView.fetchUsersUsernameAscending()
+    @FetchRequest(
+        entity: User.entity(),
+        sortDescriptors: [ NSSortDescriptor(keyPath: \User.username, ascending: true) ])
+    var users: FetchedResults<User>
     
     // keychain manager
     let keychain = KeychainManager()

@@ -40,7 +40,6 @@ struct SplashScreenView: View {
         .onAppear {
             do {
                 storedCredentials = try keychain.retrieveCredentials()
-                print(storedCredentials)
             } catch {
                 print(error)
             }

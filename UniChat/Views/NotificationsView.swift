@@ -12,7 +12,10 @@ struct NotificationsView: View {
     @Environment(\.managedObjectContext) var context
     
     // fetch notifications from core data
-    var notifications = CoreDataModelView.fetchNotificationsTimestampDescend()
+    @FetchRequest(
+        entity: Notification.entity(),
+        sortDescriptors: [ NSSortDescriptor(keyPath: \Notification.timestamp, ascending: false) ])
+    var notifications: FetchedResults<Notification>
     
     var body: some View {
         VStack (spacing: 0) {

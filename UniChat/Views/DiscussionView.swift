@@ -15,7 +15,10 @@ struct DiscussionView: View {
     @Environment(\.managedObjectContext) var context
     
     // fetch discussions from core data
-    var discussions = CoreDataModelView.fetchDiscussionsTimestampDescend()
+    @FetchRequest(
+        entity: Discussion.entity(),
+        sortDescriptors: [ NSSortDescriptor(keyPath: \Discussion.timestamp, ascending: false) ])
+    var discussions: FetchedResults<Discussion>
     
     // to load the correct discussion
     var discussionID: String

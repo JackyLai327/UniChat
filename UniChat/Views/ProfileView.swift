@@ -8,8 +8,31 @@
 import SwiftUI
 
 struct ProfileView: View {
+    
+    @State var unis = [UniversityData]()
+    
     var body: some View {
-        Text("Profiles")
+        VStack() {
+            Text("omg")
+        }
+        .task {
+            try! await searchUnis()
+        }
+    }
+    
+    // fetch list of australian university
+    func searchUnis() async throws {
+        let url = URL(string: "http://universities.hipolabs.com/search?country=Australia")!
+
+        let (data, URLResponse) = try await URLSession.shared.data(from: url)
+        print(URLResponse)
+
+        let decoder = JSONDecoder()
+
+        let unisResult = try decoder.decode([UniversityDataSearchResult].self, from: data)
+
+//        self.unis = unisResult.results
+
     }
 }
 

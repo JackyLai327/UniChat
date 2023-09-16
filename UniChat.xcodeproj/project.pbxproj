@@ -34,6 +34,8 @@
 		D308117A2AA876AC00D4751B /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30811792AA876AC00D4751B /* Like.swift */; };
 		D308117C2AA876F900D4751B /* DiscussionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D308117B2AA876F900D4751B /* DiscussionImage.swift */; };
 		D30A30312AB434820022C988 /* CoreDataModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A30302AB434820022C988 /* CoreDataModelView.swift */; };
+		D30A30332AB5AED40022C988 /* UniversityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A30322AB5AED40022C988 /* UniversityData.swift */; };
+		D30A30352AB5B0350022C988 /* UniversityDataSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A30342AB5B0350022C988 /* UniversityDataSearchResult.swift */; };
 		D3A8C25D2AA88A6E0024F989 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C25C2AA88A6E0024F989 /* User.swift */; };
 		D3A8C25F2AA99F3E0024F989 /* Uni.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C25E2AA99F3E0024F989 /* Uni.swift */; };
 		D3A8C2612AA99FBD0024F989 /* Lecturer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C2602AA99FBD0024F989 /* Lecturer.swift */; };
@@ -53,6 +55,8 @@
 		D30811792AA876AC00D4751B /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
 		D308117B2AA876F900D4751B /* DiscussionImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionImage.swift; sourceTree = "<group>"; };
 		D30A30302AB434820022C988 /* CoreDataModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModelView.swift; sourceTree = "<group>"; };
+		D30A30322AB5AED40022C988 /* UniversityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityData.swift; sourceTree = "<group>"; };
+		D30A30342AB5B0350022C988 /* UniversityDataSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDataSearchResult.swift; sourceTree = "<group>"; };
 		D3A8C25C2AA88A6E0024F989 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D3A8C25E2AA99F3E0024F989 /* Uni.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uni.swift; sourceTree = "<group>"; };
 		D3A8C2602AA99FBD0024F989 /* Lecturer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lecturer.swift; sourceTree = "<group>"; };
@@ -187,6 +191,8 @@
 				D3A8C25C2AA88A6E0024F989 /* User.swift */,
 				D3A8C25E2AA99F3E0024F989 /* Uni.swift */,
 				D3A8C2602AA99FBD0024F989 /* Lecturer.swift */,
+				D30A30322AB5AED40022C988 /* UniversityData.swift */,
+				D30A30342AB5B0350022C988 /* UniversityDataSearchResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -295,12 +301,14 @@
 				D30811172AA85AD600D4751B /* VerificationView.swift in Sources */,
 				D3A8C2632AADE48B0024F989 /* SplashScreenView.swift in Sources */,
 				D3A8C2612AA99FBD0024F989 /* Lecturer.swift in Sources */,
+				D30A30352AB5B0350022C988 /* UniversityDataSearchResult.swift in Sources */,
 				D30811182AA85AD600D4751B /* WritePostView.swift in Sources */,
 				D30811192AA85AD600D4751B /* LogInView.swift in Sources */,
 				D308111A2AA85AD600D4751B /* SignUpView.swift in Sources */,
 				D3A8C2AB2AB18F270024F989 /* KeychainManager.swift in Sources */,
 				D3A8C25F2AA99F3E0024F989 /* Uni.swift in Sources */,
 				D308117C2AA876F900D4751B /* DiscussionImage.swift in Sources */,
+				D30A30332AB5AED40022C988 /* UniversityData.swift in Sources */,
 				D308110C2AA85ABB00D4751B /* HeadingView.swift in Sources */,
 				D308110B2AA85AB700D4751B /* DiscussionView.swift in Sources */,
 				D308110A2AA85AB400D4751B /* CardView.swift in Sources */,
@@ -437,6 +445,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"UniChat/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UniChat/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -465,6 +474,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"UniChat/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UniChat/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

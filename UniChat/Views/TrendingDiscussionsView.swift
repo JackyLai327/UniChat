@@ -14,11 +14,19 @@ struct TrendingDiscussionsView: View {
     // get context from core data
     @Environment(\.managedObjectContext) var context
     
+    @FetchRequest(
+        entity: Discussion.entity(),
+        sortDescriptors: [ NSSortDescriptor(keyPath: \Discussion.numLikes, ascending: false) ])
+    var discussions: FetchedResults<Discussion>
+    
     // fetch discussions from core data
-    var discussions = CoreDataModelView.fetchDiscussionsNumLikesDescend()
+//    var discussions = CoreDataModelView.fetchDiscussionsNumLikesDescend()
     
     // fetch images from core data
-    var images = CoreDataModelView.fetchImagesTimeStampDescend()
+    @FetchRequest(
+        entity: DiscussionImage.entity(),
+        sortDescriptors: [ NSSortDescriptor(keyPath: \DiscussionImage.timestamp, ascending: false) ])
+    var images: FetchedResults<DiscussionImage>
     
     // for tab selection
     @State var uniTabSelected = true

@@ -15,7 +15,10 @@ struct SignUpView: View {
     @Environment(\.managedObjectContext) var context
     
     // read from user entity
-    var users = CoreDataModelView.fetchUsersUsernameAscending()
+    @FetchRequest(
+        entity: User.entity(),
+        sortDescriptors: [ NSSortDescriptor(keyPath: \User.username, ascending: true) ])
+    var users: FetchedResults<User>
     
     // key chian manager
     let keychain = KeychainManager()
