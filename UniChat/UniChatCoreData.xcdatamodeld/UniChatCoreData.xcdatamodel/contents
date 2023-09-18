@@ -10,16 +10,17 @@
         <attribute name="targetType" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="username" optional="YES" attributeType="String"/>
-        <relationship name="belongsTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="has" inverseEntity="User"/>
-        <relationship name="has" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Like" inverseName="belongsTo" inverseEntity="Like"/>
-        <relationship name="includes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DiscussionImage" inverseName="belongsTo" inverseEntity="DiscussionImage"/>
+        <relationship name="hasImages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DiscussionImage" inverseName="belongsToDiscussion" inverseEntity="DiscussionImage"/>
+        <relationship name="hasReplies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Reply" inverseName="belongsToDiscussion" inverseEntity="Reply"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="hasDiscussions" inverseEntity="User"/>
+        <relationship name="usersLiked" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LikedUser" inverseName="belongsToDiscussion" inverseEntity="LikedUser"/>
     </entity>
     <entity name="DiscussionImage" representedClassName=".DiscussionImage" syncable="YES">
         <attribute name="discussion" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="belongsTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Discussion" inverseName="includes" inverseEntity="Discussion"/>
+        <relationship name="belongsToDiscussion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Discussion" inverseName="hasImages" inverseEntity="Discussion"/>
     </entity>
     <entity name="Lecturer" representedClassName=".Lecturer" syncable="YES">
         <attribute name="fun" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -28,14 +29,14 @@
         <attribute name="overview" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="strictness" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="workload" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="worksFor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Uni" inverseName="has" inverseEntity="Uni"/>
+        <relationship name="uni" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Uni" inverseName="lecturers" inverseEntity="Uni"/>
     </entity>
-    <entity name="Like" representedClassName=".Like" syncable="YES">
+    <entity name="LikedUser" representedClassName=".Like" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="receiver" optional="YES" attributeType="String"/>
         <attribute name="sender" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="belongsTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Discussion" inverseName="has" inverseEntity="Discussion"/>
+        <relationship name="belongsToDiscussion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Discussion" inverseName="usersLiked" inverseEntity="Discussion"/>
     </entity>
     <entity name="Notification" representedClassName=".Notification" syncable="YES">
         <attribute name="discussion" optional="YES" attributeType="String"/>
@@ -52,6 +53,7 @@
         <attribute name="numUps" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="username" optional="YES" attributeType="String"/>
+        <relationship name="belongsToDiscussion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Discussion" inverseName="hasReplies" inverseEntity="Discussion"/>
     </entity>
     <entity name="Uni" representedClassName=".Uni" syncable="YES">
         <attribute name="city" optional="YES" attributeType="String"/>
@@ -61,11 +63,11 @@
         <attribute name="overview" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="practicality" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="has" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lecturer" inverseName="worksFor" inverseEntity="Lecturer"/>
+        <relationship name="lecturers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lecturer" inverseName="uni" inverseEntity="Lecturer"/>
     </entity>
     <entity name="User" representedClassName=".User" syncable="YES">
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="username" optional="YES" attributeType="String"/>
-        <relationship name="has" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Discussion" inverseName="belongsTo" inverseEntity="Discussion"/>
+        <relationship name="hasDiscussions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Discussion" inverseName="user" inverseEntity="Discussion"/>
     </entity>
 </model>

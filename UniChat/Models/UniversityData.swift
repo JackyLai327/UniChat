@@ -8,8 +8,14 @@
 import Foundation
 
 struct UniversityData: Codable, Hashable {
-    var state: String
+    var state: String?
     var name: String
-    var webPages: String
+    var webPages: [String]
+    
+    enum CodingKeys: String, CodingKey {
+        case state = "state-province"
+        case name
+        case webPages = "web_pages"
+    }
 }
 

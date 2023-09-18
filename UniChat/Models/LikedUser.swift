@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-public class Like: NSManagedObject, Identifiable {
+public class LikedUser: NSManagedObject, Identifiable {
     @NSManaged public var sender: String
     @NSManaged public var receiver: String
     @NSManaged public var id: UUID

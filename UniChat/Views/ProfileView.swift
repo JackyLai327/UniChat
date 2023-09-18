@@ -12,8 +12,10 @@ struct ProfileView: View {
     @State var unis = [UniversityData]()
     
     var body: some View {
-        VStack() {
-            Text("omg")
+        ScrollView() {
+            ForEach(unis, id:\.self) { uni in
+                /*@START_MENU_TOKEN@*/Text(uni.name)/*@END_MENU_TOKEN@*/
+            }
         }
         .task {
             try! await searchUnis()
@@ -29,9 +31,9 @@ struct ProfileView: View {
 
         let decoder = JSONDecoder()
 
-        let unisResult = try decoder.decode([UniversityDataSearchResult].self, from: data)
+        let unisResult = try decoder.decode([UniversityData].self, from: data)
 
-//        self.unis = unisResult.results
+        self.unis = unisResult
 
     }
 }

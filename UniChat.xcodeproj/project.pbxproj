@@ -31,11 +31,11 @@
 		D308111C2AA85B1A00D4751B /* UniChatColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B1672A9487F4009106A2 /* UniChatColor.swift */; };
 		D308111D2AA85B1D00D4751B /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B1932A95F445009106A2 /* Discussion.swift */; };
 		D30811782AA8650D00D4751B /* UniChatCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D30811762AA8650D00D4751B /* UniChatCoreData.xcdatamodeld */; };
-		D308117A2AA876AC00D4751B /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30811792AA876AC00D4751B /* Like.swift */; };
+		D308117A2AA876AC00D4751B /* LikedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30811792AA876AC00D4751B /* LikedUser.swift */; };
 		D308117C2AA876F900D4751B /* DiscussionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D308117B2AA876F900D4751B /* DiscussionImage.swift */; };
 		D30A30312AB434820022C988 /* CoreDataModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A30302AB434820022C988 /* CoreDataModelView.swift */; };
 		D30A30332AB5AED40022C988 /* UniversityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A30322AB5AED40022C988 /* UniversityData.swift */; };
-		D30A30352AB5B0350022C988 /* UniversityDataSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A30342AB5B0350022C988 /* UniversityDataSearchResult.swift */; };
+		D30A30A52AB854D50022C988 /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = D30A30A42AB854D50022C988 /* Auth0 */; };
 		D3A8C25D2AA88A6E0024F989 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C25C2AA88A6E0024F989 /* User.swift */; };
 		D3A8C25F2AA99F3E0024F989 /* Uni.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C25E2AA99F3E0024F989 /* Uni.swift */; };
 		D3A8C2612AA99FBD0024F989 /* Lecturer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C2602AA99FBD0024F989 /* Lecturer.swift */; };
@@ -52,11 +52,10 @@
 /* Begin PBXFileReference section */
 		D306C82B2A98878800E6A958 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		D30811772AA8650D00D4751B /* UniChatCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UniChatCoreData.xcdatamodel; sourceTree = "<group>"; };
-		D30811792AA876AC00D4751B /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
+		D30811792AA876AC00D4751B /* LikedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUser.swift; sourceTree = "<group>"; };
 		D308117B2AA876F900D4751B /* DiscussionImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionImage.swift; sourceTree = "<group>"; };
 		D30A30302AB434820022C988 /* CoreDataModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModelView.swift; sourceTree = "<group>"; };
 		D30A30322AB5AED40022C988 /* UniversityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityData.swift; sourceTree = "<group>"; };
-		D30A30342AB5B0350022C988 /* UniversityDataSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDataSearchResult.swift; sourceTree = "<group>"; };
 		D3A8C25C2AA88A6E0024F989 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D3A8C25E2AA99F3E0024F989 /* Uni.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uni.swift; sourceTree = "<group>"; };
 		D3A8C2602AA99FBD0024F989 /* Lecturer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lecturer.swift; sourceTree = "<group>"; };
@@ -98,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D30A30A52AB854D50022C988 /* Auth0 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,13 +186,12 @@
 				D3F4B1822A95C6B6009106A2 /* Notification.swift */,
 				D3F4B1932A95F445009106A2 /* Discussion.swift */,
 				D3C2BC3F2AA722D800F9A747 /* Persistence.swift */,
-				D30811792AA876AC00D4751B /* Like.swift */,
+				D30811792AA876AC00D4751B /* LikedUser.swift */,
 				D308117B2AA876F900D4751B /* DiscussionImage.swift */,
 				D3A8C25C2AA88A6E0024F989 /* User.swift */,
 				D3A8C25E2AA99F3E0024F989 /* Uni.swift */,
 				D3A8C2602AA99FBD0024F989 /* Lecturer.swift */,
 				D30A30322AB5AED40022C988 /* UniversityData.swift */,
-				D30A30342AB5B0350022C988 /* UniversityDataSearchResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -223,6 +222,9 @@
 			dependencies = (
 			);
 			name = UniChat;
+			packageProductDependencies = (
+				D30A30A42AB854D50022C988 /* Auth0 */,
+			);
 			productName = UniChat;
 			productReference = D3F4B1522A94816D009106A2 /* UniChat.app */;
 			productType = "com.apple.product-type.application";
@@ -251,6 +253,9 @@
 				Base,
 			);
 			mainGroup = D3F4B1492A94816D009106A2;
+			packageReferences = (
+				D30A30A32AB854D50022C988 /* XCRemoteSwiftPackageReference "Auth0" */,
+			);
 			productRefGroup = D3F4B1532A94816D009106A2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -286,7 +291,7 @@
 				D308111C2AA85B1A00D4751B /* UniChatColor.swift in Sources */,
 				D308111B2AA85ADB00D4751B /* UniChatApp.swift in Sources */,
 				D30811782AA8650D00D4751B /* UniChatCoreData.xcdatamodeld in Sources */,
-				D308117A2AA876AC00D4751B /* Like.swift in Sources */,
+				D308117A2AA876AC00D4751B /* LikedUser.swift in Sources */,
 				D3A8C25D2AA88A6E0024F989 /* User.swift in Sources */,
 				D308110D2AA85AD600D4751B /* ContentView.swift in Sources */,
 				D308110E2AA85AD600D4751B /* FeatureTabView.swift in Sources */,
@@ -301,7 +306,6 @@
 				D30811172AA85AD600D4751B /* VerificationView.swift in Sources */,
 				D3A8C2632AADE48B0024F989 /* SplashScreenView.swift in Sources */,
 				D3A8C2612AA99FBD0024F989 /* Lecturer.swift in Sources */,
-				D30A30352AB5B0350022C988 /* UniversityDataSearchResult.swift in Sources */,
 				D30811182AA85AD600D4751B /* WritePostView.swift in Sources */,
 				D30811192AA85AD600D4751B /* LogInView.swift in Sources */,
 				D308111A2AA85AD600D4751B /* SignUpView.swift in Sources */,
@@ -515,6 +519,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D30A30A32AB854D50022C988 /* XCRemoteSwiftPackageReference "Auth0" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/Auth0.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D30A30A42AB854D50022C988 /* Auth0 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D30A30A32AB854D50022C988 /* XCRemoteSwiftPackageReference "Auth0" */;
+			productName = Auth0;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		D30811762AA8650D00D4751B /* UniChatCoreData.xcdatamodeld */ = {

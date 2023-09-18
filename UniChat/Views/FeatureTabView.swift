@@ -18,20 +18,23 @@ struct FeatureTabView: View {
             TrendingDiscussionsView()
                 .tabItem{
                     Label("", systemImage: "flame")}
-                .toolbarBackground(.white, for: .tabBar)
+                .toolbarBackground(UniChatColor.headerYellow, for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
+                .tag(0)
 
             ProfileView()
                 .tabItem{
                     Label("", systemImage: "studentdesk")}
                 .toolbarBackground(.white, for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
+                .tag(1)
             
             WritePostView()
                 .tabItem{
                     Label("", systemImage: "pencil.line")}
                 .toolbarBackground(.white, for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
+                .tag(2)
             
             NotificationsView()
                 .tabItem{
@@ -39,12 +42,14 @@ struct FeatureTabView: View {
                 }
                 .toolbarBackground(.white, for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
+                .tag(3)
             
             SettingsView()
                 .tabItem{
                     Label("", systemImage: "gear")}
                 .toolbarBackground(.white, for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
+                .tag(4)
         }
         .accentColor(UniChatColor.brightYellow)
         .navigationBarBackButtonHidden(true)
