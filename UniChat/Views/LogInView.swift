@@ -105,8 +105,7 @@ struct LogInView: View {
                 if !fieldNotFilled && !userNotFound && !incorrectPassword {
                     
                     // store user in user defaults
-                    let user = users.first(where: {$0.username == username})
-                    defaults.set(user, forKey: "user")
+                    defaults.set(username, forKey: "currentUsername")
                     
                     // redirect user to trending discussion
                     userLoggedIn = true

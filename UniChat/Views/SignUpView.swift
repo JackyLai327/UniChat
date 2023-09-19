@@ -158,8 +158,7 @@ struct SignUpView: View {
                     createUser(username: username, password: password)
                     
                     // store user in user defaults
-                    let user = users.first(where: {$0.username == username})
-                    defaults.set(user, forKey: "user")
+                    defaults.set(username, forKey: "currentUsername")
                     
                     // store the credential in keychain
                     do {

@@ -20,6 +20,12 @@ struct DiscussionView: View {
         sortDescriptors: [ NSSortDescriptor(keyPath: \Discussion.timestamp, ascending: false) ])
     var discussions: FetchedResults<Discussion>
     
+    // fetch users from core data
+    @FetchRequest(
+        entity: User.entity(),
+        sortDescriptors: [ NSSortDescriptor(keyPath: \User.username, ascending: true) ])
+    var users: FetchedResults<User>
+    
     // to load the correct discussion
     var discussionID: String
     
@@ -40,7 +46,6 @@ struct DiscussionView: View {
         VStack (spacing: 0) {
             
             HeadingView(title: "")
-            joinDiscussionField
             
             if let discussion = discussions.first(where: {"\($0.id)" == discussionID}) {
                 if discussion.numReplies > 0 {
@@ -60,10 +65,6 @@ struct DiscussionView: View {
                 discussionNotFound
                 Spacer()
             }
-        }
-        .onAppear {
-            let defaultUser = defaults.object(forKey: "user")
-            print("\(defaultUser)")
         }
         .navigationBarBackButtonHidden(true)
         .toolbar{
@@ -126,6 +127,7 @@ struct DiscussionView: View {
                         .overlay(UniChatColor.brown)
                     HStack {
                         Button {
+                            // FIXME: like mechanism needs help
                             print("like +1")
                         } label: {
                             HStack {
@@ -143,6 +145,7 @@ struct DiscussionView: View {
                             .overlay(UniChatColor.brown)
                         
                         Button {
+                            // FIXME: share mechanism needs to be implemented
                             print("share +1")
                         } label: {
                             HStack {
@@ -165,7 +168,7 @@ struct DiscussionView: View {
     
     var repliesSection: some View {
         VStack {
-            let replies = replies.filter({$0.discussion == discussionID}).sorted(by: {$0.numUps > $1.numUps})
+            let replies = replies.filter({$0.discussion == discussionID}).sorted(by: {$0.numUps >= $1.numUps})
             
             if replies.count > 0 {
                 ForEach(replies, id:\.self) { reply in
@@ -191,7 +194,14 @@ struct DiscussionView: View {
                         Spacer()
                         
                         Button {
-                            print("up by 1")
+                            // FIXME: up mechanism needs help
+//                            let currentUsername = UserDefaults.standard.string(forKey: "currentUsername")!
+//                            let user = users.first(where: {$0.username == currentUsername})!
+//                            if !reply.upUserArray.contains(user) {
+//                                pressUp(reply: reply, user: user, operation: 1)
+//                            } else {
+//                                pressUp(reply: reply, user: user, operation: -1)
+//                            }
                         } label: {
                             VStack {
                                 Image(systemName: "hand.point.up.fill")
@@ -233,7 +243,12 @@ struct DiscussionView: View {
                     .padding(.horizontal, 40)
                     .padding(.vertical, 15)
                 Button {
-//                    createReply(content: newReply, discussion: discussionID, user: defaults.object(forKey: "user").username as! String)
+                    if newReply.count > 0 {
+                        let currentUsername = UserDefaults.standard.string(forKey: "currentUsername")
+                        let discussion = discussions.first(where: {"\($0.id)" == discussionID})
+                        createReply(content: newReply, discussion: discussion!, user: currentUsername!)
+                        newReply = ""
+                    }
                 } label: {
                     Image(systemName: "paperplane")
                         .padding(.trailing, 30)
@@ -275,14 +290,36 @@ struct DiscussionView: View {
         .padding(.vertical, 20)
     }
     
-    func createReply(content: String, discussion: String, user: String) {
+    // creates a new reply for the dedicated discussion
+    func createReply(content: String, discussion: Discussion, user: String) {
         let reply = Reply(context: context)
         reply.id = UUID()
         reply.content = content
-        reply.discussion = discussion
+        reply.discussion = "\(discussion.id)"
         reply.numUps = 0
         reply.timestamp = Date()
         reply.username = user
+
+        discussion.numReplies += 1
+        
+        do {
+            try context.save()
+        } catch {
+            print(error)
+        }
+    }
+    
+    // adds the user to the upUser array of the dedicated reply (or remove)
+    // if operation = 1 => add
+    // if operation = -1 => remove
+    func pressUp(reply: Reply, user: User, operation: Int32) {
+        if operation == 1 {
+            reply.addToUpUser(user)
+        }
+        if operation == -1 {
+            reply.removeFromUpUser(user)
+        }
+        reply.numUps += operation
         
         do {
             try context.save()
@@ -294,6 +331,6 @@ struct DiscussionView: View {
 
 struct DiscussionView_Previews: PreviewProvider {
     static var previews: some View {
-        DiscussionView(discussionID: "A0001")
+        DiscussionView(discussionID: "ACA005C5-64C8-43E2-BC72-8898400994AE")
     }
 }

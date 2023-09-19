@@ -25,14 +25,14 @@ struct FeatureTabView: View {
             ProfileView()
                 .tabItem{
                     Label("", systemImage: "studentdesk")}
-                .toolbarBackground(.white, for: .tabBar)
+                .toolbarBackground(UniChatColor.headerYellow, for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
                 .tag(1)
             
             WritePostView()
                 .tabItem{
                     Label("", systemImage: "pencil.line")}
-                .toolbarBackground(.white, for: .tabBar)
+                .toolbarBackground(UniChatColor.headerYellow, for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
                 .tag(2)
             
@@ -40,14 +40,14 @@ struct FeatureTabView: View {
                 .tabItem{
                     Label("", systemImage: "bell.fill")
                 }
-                .toolbarBackground(.white, for: .tabBar)
+                .toolbarBackground(UniChatColor.headerYellow, for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
                 .tag(3)
             
             SettingsView()
                 .tabItem{
                     Label("", systemImage: "gear")}
-                .toolbarBackground(.white, for: .tabBar)
+                .toolbarBackground(UniChatColor.headerYellow, for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
                 .tag(4)
         }

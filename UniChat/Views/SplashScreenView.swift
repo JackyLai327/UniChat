@@ -47,9 +47,7 @@ struct SplashScreenView: View {
             do {
                 storedCredentials = try keychain.retrieveCredentials()
                 // store user to user defaults
-                if let user = users.first(where: {$0.username == storedCredentials.username && $0.password == storedCredentials.password}) {
-                    defaults.set(user, forKey: "user")
-                }
+                defaults.set(storedCredentials.username, forKey: "currentUsername")
             } catch {
                 print(error)
             }
