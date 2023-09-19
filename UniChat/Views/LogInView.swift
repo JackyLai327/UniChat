@@ -15,6 +15,10 @@ struct LogInView: View {
     @State var username: String = ""
     @State var password: String = ""
     
+    // user defaults to store user details
+    let defaults = UserDefaults.standard
+    
+    
     // read from user entity
     @FetchRequest(
         entity: User.entity(),
@@ -99,6 +103,12 @@ struct LogInView: View {
                 }
                 
                 if !fieldNotFilled && !userNotFound && !incorrectPassword {
+                    
+                    // store user in user defaults
+                    let user = users.first(where: {$0.username == username})
+                    defaults.set(user, forKey: "user")
+                    
+                    // redirect user to trending discussion
                     userLoggedIn = true
                 } else {
                     showAlert = true

@@ -17,6 +17,9 @@ struct SplashScreenView: View {
     @State var storedCredentials = Credentials(username: "", password: "")
     @State var userLoggedIn = true
     
+    // user defaults
+    let defaults = UserDefaults.standard
+    
     // read from user entity
     @FetchRequest(
         entity: User.entity(),
@@ -24,12 +27,15 @@ struct SplashScreenView: View {
     var users: FetchedResults<User>
     
     var body: some View {
-        VStack {
+        return VStack {
             if !timeElapsed {
                 logoSplash
             } else {
-                if users.first(where: {$0.username == storedCredentials.username && $0.password == storedCredentials.password}) != nil {
+                if let user = users.first(where: {$0.username == storedCredentials.username && $0.password == storedCredentials.password}) {
+                    
+                    // redirect user to trending discussion
                     NavigationLink (destination: FeatureTabView(), isActive: $userLoggedIn) {
+                        
                         Text("")
                     }
                 } else {
@@ -40,6 +46,10 @@ struct SplashScreenView: View {
         .onAppear {
             do {
                 storedCredentials = try keychain.retrieveCredentials()
+                // store user to user defaults
+                if let user = users.first(where: {$0.username == storedCredentials.username && $0.password == storedCredentials.password}) {
+                    defaults.set(user, forKey: "user")
+                }
             } catch {
                 print(error)
             }

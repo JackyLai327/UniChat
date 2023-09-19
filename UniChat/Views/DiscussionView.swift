@@ -22,8 +22,12 @@ struct DiscussionView: View {
     
     // to load the correct discussion
     var discussionID: String
+    
     // for user to write a new reply
     @State var newReply: String = ""
+    
+    // user defaults
+    let defaults = UserDefaults.standard
     
     // fetching replies in a descending order by numUps
     @FetchRequest(
@@ -34,7 +38,9 @@ struct DiscussionView: View {
     
     var body: some View {
         VStack (spacing: 0) {
+            
             HeadingView(title: "")
+            joinDiscussionField
             
             if let discussion = discussions.first(where: {"\($0.id)" == discussionID}) {
                 if discussion.numReplies > 0 {
@@ -55,6 +61,10 @@ struct DiscussionView: View {
                 Spacer()
             }
         }
+        .onAppear {
+            let defaultUser = defaults.object(forKey: "user")
+            print("\(defaultUser)")
+        }
         .navigationBarBackButtonHidden(true)
         .toolbar{
             ToolbarItem(placement: .navigationBarLeading) {
@@ -66,8 +76,8 @@ struct DiscussionView: View {
             }
             
             ToolbarItem(placement: .principal) {
-                Text("Disussion")
-                    .font(.title.bold())
+                Text("Discussion")
+                    .font(.title2.bold())
                     .background(UniChatColor.headerYellow)
                     .foregroundColor(UniChatColor.brown)
             }
@@ -222,6 +232,15 @@ struct DiscussionView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 40)
                     .padding(.vertical, 15)
+                Button {
+//                    createReply(content: newReply, discussion: discussionID, user: defaults.object(forKey: "user").username as! String)
+                } label: {
+                    Image(systemName: "paperplane")
+                        .padding(.trailing, 30)
+                        .foregroundColor(UniChatColor.brown)
+                }
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .padding(.trailing, 5)
             }
         }
     }
@@ -254,6 +273,22 @@ struct DiscussionView: View {
         }
         .foregroundColor(UniChatColor.brown)
         .padding(.vertical, 20)
+    }
+    
+    func createReply(content: String, discussion: String, user: String) {
+        let reply = Reply(context: context)
+        reply.id = UUID()
+        reply.content = content
+        reply.discussion = discussion
+        reply.numUps = 0
+        reply.timestamp = Date()
+        reply.username = user
+        
+        do {
+            try context.save()
+        } catch {
+            print(error)
+        }
     }
 }
 

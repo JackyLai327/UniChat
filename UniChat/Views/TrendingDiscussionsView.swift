@@ -18,9 +18,7 @@ struct TrendingDiscussionsView: View {
         entity: Discussion.entity(),
         sortDescriptors: [ NSSortDescriptor(keyPath: \Discussion.numLikes, ascending: false) ])
     var discussions: FetchedResults<Discussion>
-    
-    // fetch discussions from core data
-//    var discussions = CoreDataModelView.fetchDiscussionsNumLikesDescend()
+
     
     // fetch images from core data
     @FetchRequest(

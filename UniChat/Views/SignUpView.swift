@@ -29,6 +29,9 @@ struct SignUpView: View {
     @State var password: String = ""
     @State var confirmPassword: String = ""
     
+    // user defaults
+    let defaults = UserDefaults.standard
+    
     // for alert
     @State var showAlert = false
     @State var fieldNotFilled = false
@@ -154,10 +157,13 @@ struct SignUpView: View {
                     // create account if detials are filled and passwords match
                     createUser(username: username, password: password)
                     
+                    // store user in user defaults
+                    let user = users.first(where: {$0.username == username})
+                    defaults.set(user, forKey: "user")
+                    
                     // store the credential in keychain
                     do {
                         try keychain.addCredential(credential: Credentials(username: username, password: password))
-                        userLoggedIn = true
                     } catch {
                         print(error)
                     }
@@ -166,6 +172,9 @@ struct SignUpView: View {
                     username = ""
                     password = ""
                     confirmPassword = ""
+                    
+                    // redirect user to trending discussions
+                    userLoggedIn = true
                     
                 // if any is not right show error
                 } else {
