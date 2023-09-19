@@ -7,8 +7,10 @@
 
 import SwiftUI
 
+// the heading for each page
 struct HeadingView: View {
     
+    // displayed at the top
     var title: String
     
     var body: some View {

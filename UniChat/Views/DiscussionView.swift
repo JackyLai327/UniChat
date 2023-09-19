@@ -48,12 +48,16 @@ struct DiscussionView: View {
             HeadingView(title: "")
             
             if let discussion = discussions.first(where: {"\($0.id)" == discussionID}) {
+                
+                // if discussion has replies, display content + replies
                 if discussion.numReplies > 0 {
                     ScrollView {
                         contentArea
                         repliesSection
                     }
                     joinDiscussionField
+                    
+                // if discussion has no replies but content, display content
                 } else {
                     ScrollView {
                         contentArea
@@ -61,11 +65,14 @@ struct DiscussionView: View {
                     }
                     joinDiscussionField
                 }
+                
+            // if discussion is not found, display discussion not found view
             } else {
                 discussionNotFound
                 Spacer()
             }
         }
+        // custom navigation back button
         .navigationBarBackButtonHidden(true)
         .toolbar{
             ToolbarItem(placement: .navigationBarLeading) {
@@ -86,6 +93,7 @@ struct DiscussionView: View {
         }
     }
     
+    // how the discussion is laid out
     var contentArea: some View {
         VStack {
             if let discussion = discussions.first(where: {"\($0.id)" == discussionID}) {
@@ -117,6 +125,7 @@ struct DiscussionView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 40)
                     .padding(.vertical, 10)
+                // FIXME: add image stuff in here
 //                Image(uiImage: discussion.images)
 //                    .frame(width: 150, height: 150)
 //                    .border(.black)
@@ -166,6 +175,7 @@ struct DiscussionView: View {
         }
     }
     
+    // contains all the replies for this dedicated discussion
     var repliesSection: some View {
         VStack {
             let replies = replies.filter({$0.discussion == discussionID}).sorted(by: {$0.numUps >= $1.numUps})
@@ -227,6 +237,7 @@ struct DiscussionView: View {
         }
     }
     
+    // the input field where people join a discussion (add comments)
     var joinDiscussionField: some View {
         VStack (spacing: 0) {
             Divider()
@@ -260,12 +271,14 @@ struct DiscussionView: View {
         }
     }
     
+    // customised back button for application
     var customBackButton: some View {
         Image(systemName: "chevron.left")
             .font(.title.bold())
             .foregroundColor(UniChatColor.brightYellow)
     }
     
+    // displayed when discussion ID is not stored in core data
     var discussionNotFound: some View {
         VStack {
             Text("This discussion is devoured by trolls...")
@@ -279,6 +292,7 @@ struct DiscussionView: View {
         }
     }
     
+    // displayed when this discussion has no replies 
     var noRepliesFound: some View {
         VStack {
             Text("no one joined this discussion yet ,")

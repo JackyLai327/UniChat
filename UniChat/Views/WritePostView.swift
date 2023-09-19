@@ -28,14 +28,17 @@ struct WritePostView: View {
     // temporary logged in user
     var user = "uniChat"
     
+    // maximum allowed number of characters in discussion content
     var characterLimit = 500
     
+    // alert will be shown when true
     @State var showAlert = false
     
     
     var body: some View {
         VStack(spacing:0) {
             HeadingView(title: "Start a Discussion")
+            // select uni or lecturer
             Picker("select a uni / lecturer to write about ...", selection: $target) {
                 Section(header: Text("select a uni to write about ...")) {
                     ForEach(listOfUni, id: \.self) {
@@ -71,7 +74,7 @@ struct WritePostView: View {
             
             HStack {
                 Button {
-                    
+                    // TODO: add this functionality for uplaoding images
                 } label: {
                     Image(systemName: "photo.on.rectangle.angled")
                         .resizable()
@@ -82,6 +85,7 @@ struct WritePostView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 
+                // upload discussion button
                 Button {
                     // determine the target type first
                     if listOfUni.contains(target) {
@@ -116,6 +120,7 @@ struct WritePostView: View {
         .background(UniChatColor.dimmedYellow)
     }
     
+    // create a new Discussion object and store it in core data
     func createDiscussion(content: String, target: String, user: String, targetType: String) {
         let discussion = Discussion(context: context)
         discussion.id = UUID()
@@ -135,6 +140,7 @@ struct WritePostView: View {
         }
     }
     
+    // alert message
     var discussionCreationAlert: Any {
         Alert(
             title: Text("Sorry Mate"),
@@ -146,6 +152,7 @@ struct WritePostView: View {
     }
 }
 
+// preview
 struct WritePostView_Previews: PreviewProvider {
     static var previews: some View {
         WritePostView()

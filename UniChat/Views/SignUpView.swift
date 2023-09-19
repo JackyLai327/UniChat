@@ -125,6 +125,7 @@ struct SignUpView: View {
             }
             .padding(.top, 20)
             
+            // user will be redirected once logged in
             NavigationLink(destination: FeatureTabView(), isActive: $userLoggedIn) {
                 Text("")
             }
@@ -238,12 +239,14 @@ struct SignUpView: View {
         }
     }
     
+    // customised back button
     var customBackButton: some View {
         Image(systemName: "chevron.left")
             .font(.title.bold())
             .foregroundColor(UniChatColor.brightYellow)
     }
     
+    // create a user object and save it in core data
     func createUser(username: String, password: String) {
         let user = User(context: context)
         user.username = username
@@ -256,6 +259,7 @@ struct SignUpView: View {
         }
     }
     
+    // show differet alerts based on differet error flags
     var userCreationAlert: Any {
         if usernameExisted {
             return Alert(title: Text("Sorry Mate"), message: Text("This username is already taken 😢, first come first serve!"), dismissButton: .default(Text("Pick a new one")))
@@ -272,6 +276,7 @@ struct SignUpView: View {
     }
 }
     
+// preview
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         SignUpView()

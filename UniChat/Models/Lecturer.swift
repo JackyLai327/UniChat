@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 
+// lecturer object from core data
 public class Lecturer: NSManagedObject, Identifiable {
     @NSManaged public var id: UUID
     @NSManaged public var name: String

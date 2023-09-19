@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 
+// uni object from core data
 public class Uni: NSManagedObject, Identifiable {
     @NSManaged public var id: UUID
     @NSManaged public var title: String

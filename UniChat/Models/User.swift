@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 
+// user object from core data
 public class User: NSManagedObject {
     @NSManaged public var username: String
     @NSManaged public var password: String

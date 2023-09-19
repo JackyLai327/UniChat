@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     
+    // fetched data is stored in an array of University Data object
     @State var unis = [UniversityData]()
     
     var body: some View {

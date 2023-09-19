@@ -84,6 +84,7 @@ struct LogInView: View {
             }
             .padding(.top, 20)
             
+            // once user is logged in, this navigation link is activated
             NavigationLink(destination: FeatureTabView(), isActive: $userLoggedIn) {
                 Text("")
             }
@@ -162,6 +163,7 @@ struct LogInView: View {
         
     }
     
+    // show alerts based on different error flags
     var displayAlert: Alert {
         if fieldNotFilled {
             return Alert(title: Text("Sorry Mate"), message: Text("All fields need to be filled out... (there are only 2...)"), dismissButton: .default(Text("Alright...")))
@@ -174,6 +176,7 @@ struct LogInView: View {
         }
     }
     
+    // customised back button
     var customBackButton: some View {
         Image(systemName: "chevron.left")
             .font(.title.bold())
@@ -181,6 +184,7 @@ struct LogInView: View {
     }
 }
 
+// preview
 struct LogInView_Previews: PreviewProvider {
     static var previews: some View {
         LogInView()

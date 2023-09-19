@@ -22,6 +22,8 @@ struct NotificationsView: View {
             HeadingView(title: "Notifications")
             
             ScrollView {
+                // display all notifications sent to the current user
+                // TODO: finish this functionality
                 List {
                     ForEach (notifications) {notification in
                         Text("\(notifications.count)")
@@ -33,6 +35,7 @@ struct NotificationsView: View {
                             .buttonStyle(PlainButtonStyle())
                             
                             HStack {
+                                // like type notifications layout
                                 if notification.notificationType == .like {
                                     Image(systemName: "heart.fill")
                                         .resizable()
@@ -45,6 +48,7 @@ struct NotificationsView: View {
                                         .font(.caption)
                                 }
                                 
+                                // reply type notification layout
                                 if notification.notificationType == .reply {
                                     Image(systemName: "ellipsis.bubble.fill")
                                         .resizable()
@@ -57,6 +61,7 @@ struct NotificationsView: View {
                                         .font(.caption)
                                 }
                                 
+                                // share type notification layout
                                 if notification.notificationType == .share {
                                     Image(systemName: "arrowshape.turn.up.right.fill")
                                         .resizable()
@@ -71,6 +76,7 @@ struct NotificationsView: View {
                                 
                                 Spacer()
                                 
+                                // how long this notification has been posted
                                 Text(notification.timestamp, style: .offset)
                                     .font(.caption2)
                                     .foregroundColor(.secondary)

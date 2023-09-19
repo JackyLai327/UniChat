@@ -14,6 +14,7 @@ struct TrendingDiscussionsView: View {
     // get context from core data
     @Environment(\.managedObjectContext) var context
     
+    // fetch discussions from core data
     @FetchRequest(
         entity: Discussion.entity(),
         sortDescriptors: [ NSSortDescriptor(keyPath: \Discussion.numLikes, ascending: false) ])
@@ -39,6 +40,7 @@ struct TrendingDiscussionsView: View {
             HeadingView(title: "Trending Discussions")
             
             HStack {
+                // tab Unis
                 VStack(spacing: 0)  {
                     Text("Unis")
                         .frame(maxWidth: .infinity, alignment: .center)
@@ -50,6 +52,7 @@ struct TrendingDiscussionsView: View {
                     lecturerTabSelected = false
                 }
                 
+                // tab Lecturers
                 VStack(spacing: 0)  {
                     Text("Lecturers")
                         .frame(maxWidth: .infinity, alignment: .center)
@@ -101,6 +104,7 @@ struct TrendingDiscussionsView: View {
             }
             .frame(maxWidth: .infinity)
             .background(UniChatColor.dimmedYellow)
+            // custom back button
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
@@ -119,6 +123,7 @@ struct TrendingDiscussionsView: View {
         }
     }
     
+    // display the each discussion is a preview card mode
     private func discussionCard(username: String, target: String, content: String, numLikes: Int, numReplies: Int, numShares: Int, timestamp: Date) -> some View {
         return HStack {
             VStack {
@@ -185,6 +190,7 @@ struct TrendingDiscussionsView: View {
     }
 }
 
+// preview
 struct TrendingDiscussionsView_Previews: PreviewProvider {
     static var previews: some View {
         TrendingDiscussionsView()

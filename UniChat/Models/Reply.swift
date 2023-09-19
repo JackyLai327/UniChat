@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 
+// Reply object from core data
 public class Reply: NSManagedObject, Identifiable {
     @NSManaged public var content: String
     @NSManaged public var discussion: String
@@ -17,12 +18,14 @@ public class Reply: NSManagedObject, Identifiable {
     @NSManaged public var username: String
     @NSManaged public var upUser: NSSet?
     
+    // users that have up'ed this reply will be stored in this upUserArray
     public var upUserArray: [User] {
         let set = upUser as? Set<User> ?? []
         return set.sorted {$0.username < $1.username}
     }
 }
 
+// methods of editing the upUserArray
 extension Reply {
 
     @objc(addUserObject:)

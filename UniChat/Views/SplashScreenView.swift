@@ -14,6 +14,8 @@ struct SplashScreenView: View {
     
     // keychain manager
     let keychain = KeychainManager()
+    
+    // fetch user credentials from key chain
     @State var storedCredentials = Credentials(username: "", password: "")
     @State var userLoggedIn = true
     
@@ -31,6 +33,7 @@ struct SplashScreenView: View {
             if !timeElapsed {
                 logoSplash
             } else {
+                // if user's crendential matches the entries in core data, redirect user
                 if let user = users.first(where: {$0.username == storedCredentials.username && $0.password == storedCredentials.password}) {
                     
                     // redirect user to trending discussion
@@ -44,6 +47,7 @@ struct SplashScreenView: View {
             }
         }
         .onAppear {
+            // when appear, fetch credentials from keychain
             do {
                 storedCredentials = try keychain.retrieveCredentials()
                 // store user to user defaults
@@ -195,6 +199,7 @@ struct SplashScreenView: View {
     }
 }
 
+// preview
 struct SplashScreenView_Previews: PreviewProvider {
     static var previews: some View {
         SplashScreenView()

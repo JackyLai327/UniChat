@@ -16,6 +16,7 @@ struct SettingsView: View {
             HeadingView(title: "Settings")
             listOfSettingsOptions
         }
+        // custom back button
         .scrollContentBackground(.hidden)
         .toolbar{
             ToolbarItem(placement: .navigationBarLeading) {
@@ -34,6 +35,7 @@ struct SettingsView: View {
         }
     }
     
+    // all setting options 
     var listOfSettingsOptions: some View {
         List(){
             NavigationLink("my discussions", destination: MyDiscussionsView())

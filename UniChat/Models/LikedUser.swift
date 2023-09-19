@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 
+// FIXME: do i really need  this class ?
 public class LikedUser: NSManagedObject, Identifiable {
     @NSManaged public var sender: String
     @NSManaged public var receiver: String

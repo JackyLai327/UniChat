@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 import UIKit
 
+// discussion object from core data
 public class Discussion: NSManagedObject, Identifiable {
     @NSManaged public var content: String
     @NSManaged public var id: UUID
