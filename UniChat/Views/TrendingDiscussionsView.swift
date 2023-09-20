@@ -41,27 +41,29 @@ struct TrendingDiscussionsView: View {
             
             HStack {
                 // tab Unis
-                VStack(spacing: 0)  {
-                    Text("Unis")
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding()
-                    uniTabSelected ? Divider().frame(height: 2).overlay(UniChatColor.brown) : nil
-                }
-                .onTapGesture {
+                Button {
                     uniTabSelected = true
                     lecturerTabSelected = false
+                } label: {
+                    VStack (spacing: 0) {
+                        Text("Unis")
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding()
+                        uniTabSelected ? Divider().frame(height: 2).overlay(UniChatColor.brown) : nil
+                    }
                 }
                 
                 // tab Lecturers
-                VStack(spacing: 0)  {
-                    Text("Lecturers")
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding()
-                    lecturerTabSelected ? Divider().frame(height: 2).overlay(UniChatColor.brown) : nil
-                }
-                .onTapGesture {
+                Button {
                     uniTabSelected = false
                     lecturerTabSelected = true
+                } label: {
+                    VStack (spacing: 0){
+                        Text("Lecturers")
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding()
+                        lecturerTabSelected ? Divider().frame(height: 2).overlay(UniChatColor.brown) : nil
+                    }
                 }
             }
             .font(.title3 .bold())

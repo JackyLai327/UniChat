@@ -12,7 +12,7 @@ import CoreData
 public class Uni: NSManagedObject, Identifiable {
     @NSManaged public var id: UUID
     @NSManaged public var title: String
-    @NSManaged public var city: String
+    @NSManaged public var state: String
     @NSManaged public var overview: Double
     @NSManaged public var practicalty: Double
     @NSManaged public var food: Double

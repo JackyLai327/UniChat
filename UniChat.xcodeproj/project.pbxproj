@@ -37,6 +37,7 @@
 		D30A30332AB5AED40022C988 /* UniversityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A30322AB5AED40022C988 /* UniversityData.swift */; };
 		D30A30A52AB854D50022C988 /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = D30A30A42AB854D50022C988 /* Auth0 */; };
 		D3107C6F2AB9B4D10063E7BC /* ProfileDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3107C6E2AB9B4D10063E7BC /* ProfileDetailsView.swift */; };
+		D38B48BE2ABAE8B1002E1333 /* FaviconFinder in Frameworks */ = {isa = PBXBuildFile; productRef = D38B48BD2ABAE8B1002E1333 /* FaviconFinder */; };
 		D3A8C25D2AA88A6E0024F989 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C25C2AA88A6E0024F989 /* User.swift */; };
 		D3A8C25F2AA99F3E0024F989 /* Uni.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C25E2AA99F3E0024F989 /* Uni.swift */; };
 		D3A8C2612AA99FBD0024F989 /* Lecturer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C2602AA99FBD0024F989 /* Lecturer.swift */; };
@@ -100,6 +101,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D30A30A52AB854D50022C988 /* Auth0 in Frameworks */,
+				D38B48BE2ABAE8B1002E1333 /* FaviconFinder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +229,7 @@
 			name = UniChat;
 			packageProductDependencies = (
 				D30A30A42AB854D50022C988 /* Auth0 */,
+				D38B48BD2ABAE8B1002E1333 /* FaviconFinder */,
 			);
 			productName = UniChat;
 			productReference = D3F4B1522A94816D009106A2 /* UniChat.app */;
@@ -258,6 +261,7 @@
 			mainGroup = D3F4B1492A94816D009106A2;
 			packageReferences = (
 				D30A30A32AB854D50022C988 /* XCRemoteSwiftPackageReference "Auth0" */,
+				D38B48BC2ABAE8B1002E1333 /* XCRemoteSwiftPackageReference "FaviconFinder" */,
 			);
 			productRefGroup = D3F4B1532A94816D009106A2 /* Products */;
 			projectDirPath = "";
@@ -533,6 +537,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		D38B48BC2ABAE8B1002E1333 /* XCRemoteSwiftPackageReference "FaviconFinder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/will-lumley/FaviconFinder";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -540,6 +552,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D30A30A32AB854D50022C988 /* XCRemoteSwiftPackageReference "Auth0" */;
 			productName = Auth0;
+		};
+		D38B48BD2ABAE8B1002E1333 /* FaviconFinder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D38B48BC2ABAE8B1002E1333 /* XCRemoteSwiftPackageReference "FaviconFinder" */;
+			productName = FaviconFinder;
 		};
 /* End XCSwiftPackageProductDependency section */
 
