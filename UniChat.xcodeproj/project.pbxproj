@@ -116,6 +116,40 @@
 			path = ModelView;
 			sourceTree = "<group>";
 		};
+		D38B48BF2ABC1869002E1333 /* CoreDataStack */ = {
+			isa = PBXGroup;
+			children = (
+				D3C2BC3F2AA722D800F9A747 /* Persistence.swift */,
+			);
+			path = CoreDataStack;
+			sourceTree = "<group>";
+		};
+		D38B48C02ABC1948002E1333 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D3F4B1672A9487F4009106A2 /* UniChatColor.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		D38B48C12ABC1964002E1333 /* UserCredentialsViews */ = {
+			isa = PBXGroup;
+			children = (
+				D3A8C2622AADE48B0024F989 /* SplashScreenView.swift */,
+				D306C82B2A98878800E6A958 /* SignUpView.swift */,
+				D3F4B19B2A9877ED009106A2 /* LogInView.swift */,
+			);
+			path = UserCredentialsViews;
+			sourceTree = "<group>";
+		};
+		D38B48C22ABC197C002E1333 /* KeyChain */ = {
+			isa = PBXGroup;
+			children = (
+				D3A8C2AA2AB18F270024F989 /* KeychainManager.swift */,
+			);
+			path = KeyChain;
+			sourceTree = "<group>";
+		};
 		D3F4B1492A94816D009106A2 = {
 			isa = PBXGroup;
 			children = (
@@ -136,12 +170,14 @@
 		D3F4B1542A94816D009106A2 /* UniChat */ = {
 			isa = PBXGroup;
 			children = (
+				D38B48C22ABC197C002E1333 /* KeyChain */,
+				D38B48C02ABC1948002E1333 /* Utils */,
+				D38B48BF2ABC1869002E1333 /* CoreDataStack */,
 				D30A302F2AB434500022C988 /* ModelView */,
 				D3F4B1802A95C40F009106A2 /* Resources */,
 				D3F4B1662A9487C9009106A2 /* Models */,
 				D3F4B1652A9487C4009106A2 /* Views */,
 				D3F4B1552A94816D009106A2 /* UniChatApp.swift */,
-				D3A8C2AA2AB18F270024F989 /* KeychainManager.swift */,
 				D3F4B1592A94816F009106A2 /* Assets.xcassets */,
 				D3F4B15B2A94816F009106A2 /* Preview Content */,
 				D30811762AA8650D00D4751B /* UniChatCoreData.xcdatamodeld */,
@@ -160,6 +196,7 @@
 		D3F4B1652A9487C4009106A2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D38B48C12ABC1964002E1333 /* UserCredentialsViews */,
 				D3F4B18D2A95F18D009106A2 /* CardView.swift */,
 				D3F4B1572A94816D009106A2 /* ContentView.swift */,
 				D3F4B18B2A95E8BF009106A2 /* DiscussionView.swift */,
@@ -176,9 +213,6 @@
 				D3F4B1772A94D747009106A2 /* UsernameAndPasswordView.swift */,
 				D3F4B1792A94D7B0009106A2 /* VerificationView.swift */,
 				D3F4B16D2A94CC77009106A2 /* WritePostView.swift */,
-				D3F4B19B2A9877ED009106A2 /* LogInView.swift */,
-				D306C82B2A98878800E6A958 /* SignUpView.swift */,
-				D3A8C2622AADE48B0024F989 /* SplashScreenView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,10 +221,8 @@
 			isa = PBXGroup;
 			children = (
 				D3F4B1992A9719B2009106A2 /* Reply.swift */,
-				D3F4B1672A9487F4009106A2 /* UniChatColor.swift */,
 				D3F4B1822A95C6B6009106A2 /* Notification.swift */,
 				D3F4B1932A95F445009106A2 /* Discussion.swift */,
-				D3C2BC3F2AA722D800F9A747 /* Persistence.swift */,
 				D30811792AA876AC00D4751B /* LikedUser.swift */,
 				D308117B2AA876F900D4751B /* DiscussionImage.swift */,
 				D3A8C25C2AA88A6E0024F989 /* User.swift */,

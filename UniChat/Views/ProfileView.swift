@@ -10,8 +10,23 @@ import FaviconFinder
 
 struct ProfileView: View {
     
+    // to use the context provided by core data
+    @Environment(\.managedObjectContext) var context
+    
+    // fetch unis from core data
+    @FetchRequest(
+        entity: Uni.entity(),
+        sortDescriptors: [ NSSortDescriptor(keyPath: \Uni.title, ascending: true) ])
+    var unis: FetchedResults<Uni>
+    
+    // fetch lecturers from core data
+    @FetchRequest(
+        entity: Lecturer.entity(),
+        sortDescriptors: [ NSSortDescriptor(keyPath: \Lecturer.name, ascending: true) ])
+    var lecturers: FetchedResults<Lecturer>
+    
     // fetched data is stored in an array of University Data object
-    @State var unis = [UniversityData]()
+    @State var apiUnis = [UniversityData]()
     
     // fetched images will be stored into this dictionary
     @State var uniImages: [String: URL] = [:]
@@ -58,6 +73,7 @@ struct ProfileView: View {
             .background(UniChatColor.headerYellow)
             .foregroundColor(UniChatColor.brown)
             
+            // search bar
             HStack {
                 Image(systemName: "magnifyingglass")
                 .foregroundColor(UniChatColor.brown)
@@ -70,7 +86,7 @@ struct ProfileView: View {
                         .foregroundColor(UniChatColor.lightBrown)
                         .onChange(of: searchKey) { newValue in
                             Task {
-                                try! await searchUnis(query: searchKey)
+//                                unis = unis.filter({$0.title.contains(searchKey)})
                             }
                         }
                 }
@@ -82,15 +98,16 @@ struct ProfileView: View {
                         .foregroundColor(UniChatColor.lightBrown)
                         .onChange(of: searchKey) { newValue in
                             Task {
-                                try! await searchUnis(query: searchKey)
+//                                try! await searchUnis(query: searchKey)
                             }
                         }
                 }
                 
+                // uni and lecturer tabs
                 Button {
                     searchKey = ""
                 } label: {
-                    Image(systemName: "x.circle.fill")
+                    Image(systemName: "x.circle")
                 }
                 .foregroundColor(UniChatColor.brown)
                 .padding(.trailing, 5)
@@ -105,26 +122,25 @@ struct ProfileView: View {
             .padding(5)
             .background(UniChatColor.headerYellow)
     
+            // list of unis
             if uniTabSelected {
                 ScrollView() {
-                    ForEach(unis, id:\.self) { uni in
-                        NavigationLink (destination: ProfileDetailsView()) {
+                    ForEach(unis, id:\.self) {uni in
+                        NavigationLink(destination: ProfileDetailsView(profileID: "\(uni.id)")) {
                             HStack {
                                 VStack (spacing: 0) {
-                                    Text(uni.name)
+                                    Text(uni.title)
                                         .multilineTextAlignment(.leading)
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                         .padding(.bottom, 5)
                                         .padding(.horizontal, 10)
                                         .foregroundColor(.black)
-                                    
-                                    Text(uni.webPages[0])
+                                    Text(uni.url ?? "")
                                         .multilineTextAlignment(.leading)
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                         .padding(.bottom, 15)
                                         .padding(.horizontal, 10)
                                         .foregroundColor(.black)
-                                    
                                     Text("📍\(uni.state ?? "---")")
                                         .multilineTextAlignment(.leading)
                                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -135,14 +151,12 @@ struct ProfileView: View {
                                 
                                 Spacer()
                                 
-                                ForEach(uni.webPages, id: \.self) { webPage in
-                                    AsyncImage(url: uniImages[webPage])l
+                                AsyncImage(url: uniImages[uni.url ?? ""])
                                         .scaledToFill()
                                         .frame(width: 60, height: 60)
                                         .clipped()
                                         .cornerRadius(10)
                                         .padding(.trailing, 10)
-                                }
                             }
                             .padding(10)
                             .frame(maxWidth: .infinity)
@@ -156,23 +170,50 @@ struct ProfileView: View {
                 }
                 .background(UniChatColor.dimmedYellow)
                 .task {
-                    try! await searchUnis(query: searchKey)
+                    if unis.count == 0 {
+
+                        try! await searchUnis(query: "")
+                
+                        // save api data into core data
+                        for apiUni in apiUnis {
+                            let uni = Uni(context: context)
+                            uni.id = UUID()
+                            uni.state = apiUni.state
+                            uni.title = apiUni.name
+                            uni.url = apiUni.webPages[0]
+                            uni.overview = 0
+                            uni.practicalty = 0
+                            uni.friendliness = 0
+                            uni.food = 0
+                            
+                            do {
+                                try context.save()
+                            } catch {
+                                print(error)
+                            }
+                        }
+                    }
+                    
+                    // fetch favicons from each uni website
                     for uni in unis {
-                        await fetchUniImage(dictionary: &uniImages, urlString: uni.webPages[0] )
+                        await fetchUniImage(dictionary: &uniImages, urlString: uni.url ?? "" )
                     }
                 }
             }
             
+            // display list of lecture profiles
             if lecturerTabSelected {
                 ScrollView {
-                    
+                    ForEach(lecturers, id:\.self) { lecturer in
+                        
+                    }
                 }
             }
         }
     }
     
     // fetch list of australian university
-    func searchUnis(query: String = "") async throws {
+    func searchUnis(query: String) async throws {
         let url = URL(string: "http://universities.hipolabs.com/search?country=Australia&name=\(query)")!
 
         let (data, URLResponse) = try await URLSession.shared.data(from: url)
@@ -182,7 +223,7 @@ struct ProfileView: View {
 
         let unisResult = try decoder.decode([UniversityData].self, from: data)
 
-        self.unis = unisResult
+        self.apiUnis = unisResult
 
     }
     
