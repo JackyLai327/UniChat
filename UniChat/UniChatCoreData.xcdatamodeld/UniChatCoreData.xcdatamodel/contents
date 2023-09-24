@@ -57,6 +57,7 @@
         <relationship name="upUser" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="up" inverseEntity="User"/>
     </entity>
     <entity name="Uni" representedClassName=".Uni" syncable="YES">
+        <attribute name="favicon" optional="YES" attributeType="String"/>
         <attribute name="food" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="friendliness" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>

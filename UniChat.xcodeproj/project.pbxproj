@@ -10,7 +10,6 @@
 		D30811062AA85AAB00D4751B /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B1992A9719B2009106A2 /* Reply.swift */; };
 		D30811072AA85AAD00D4751B /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B1822A95C6B6009106A2 /* Notification.swift */; };
 		D30811082AA85AAF00D4751B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C2BC3F2AA722D800F9A747 /* Persistence.swift */; };
-		D308110A2AA85AB400D4751B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B18D2A95F18D009106A2 /* CardView.swift */; };
 		D308110B2AA85AB700D4751B /* DiscussionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B18B2A95E8BF009106A2 /* DiscussionView.swift */; };
 		D308110C2AA85ABB00D4751B /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B1952A9631B1009106A2 /* HeadingView.swift */; };
 		D308110D2AA85AD600D4751B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B1572A94816D009106A2 /* ContentView.swift */; };
@@ -86,7 +85,6 @@
 		D3F4B1822A95C6B6009106A2 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		D3F4B1892A95D273009106A2 /* NotificationsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NotificationsData.json; sourceTree = "<group>"; };
 		D3F4B18B2A95E8BF009106A2 /* DiscussionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionView.swift; sourceTree = "<group>"; };
-		D3F4B18D2A95F18D009106A2 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		D3F4B1912A95F259009106A2 /* DiscussionsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DiscussionsData.json; sourceTree = "<group>"; };
 		D3F4B1932A95F445009106A2 /* Discussion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discussion.swift; sourceTree = "<group>"; };
 		D3F4B1952A9631B1009106A2 /* HeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
@@ -114,6 +112,47 @@
 				D30A30302AB434820022C988 /* CoreDataModelView.swift */,
 			);
 			path = ModelView;
+			sourceTree = "<group>";
+		};
+		D32898B92ABFD68700051A43 /* DiscussionViews */ = {
+			isa = PBXGroup;
+			children = (
+				D3F4B18B2A95E8BF009106A2 /* DiscussionView.swift */,
+				D3F4B1732A94D70B009106A2 /* MyDiscussionsView.swift */,
+				D3F4B1692A948917009106A2 /* TrendingDiscussionsView.swift */,
+				D3F4B16D2A94CC77009106A2 /* WritePostView.swift */,
+			);
+			path = DiscussionViews;
+			sourceTree = "<group>";
+		};
+		D32898BA2ABFD6C100051A43 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D3F4B1632A948625009106A2 /* FeatureTabView.swift */,
+				D3F4B1952A9631B1009106A2 /* HeadingView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		D32898BB2ABFDD6D00051A43 /* ProfileViews */ = {
+			isa = PBXGroup;
+			children = (
+				D3F4B16B2A94CC5F009106A2 /* ProfileView.swift */,
+				D3107C6E2AB9B4D10063E7BC /* ProfileDetailsView.swift */,
+			);
+			path = ProfileViews;
+			sourceTree = "<group>";
+		};
+		D32898BC2ABFDD8200051A43 /* SettingsViews */ = {
+			isa = PBXGroup;
+			children = (
+				D3F4B16F2A94CC8C009106A2 /* SettingsView.swift */,
+				D3F4B17B2A94D8DF009106A2 /* PushNotificationsView.swift */,
+				D3F4B1772A94D747009106A2 /* UsernameAndPasswordView.swift */,
+				D3F4B1792A94D7B0009106A2 /* VerificationView.swift */,
+				D3F4B17D2A94D8FA009106A2 /* ReportAProblemView.swift */,
+			);
+			path = SettingsViews;
 			sourceTree = "<group>";
 		};
 		D38B48BF2ABC1869002E1333 /* CoreDataStack */ = {
@@ -196,23 +235,13 @@
 		D3F4B1652A9487C4009106A2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D32898BC2ABFDD8200051A43 /* SettingsViews */,
+				D32898BB2ABFDD6D00051A43 /* ProfileViews */,
+				D32898BA2ABFD6C100051A43 /* Components */,
+				D32898B92ABFD68700051A43 /* DiscussionViews */,
 				D38B48C12ABC1964002E1333 /* UserCredentialsViews */,
-				D3F4B18D2A95F18D009106A2 /* CardView.swift */,
 				D3F4B1572A94816D009106A2 /* ContentView.swift */,
-				D3F4B18B2A95E8BF009106A2 /* DiscussionView.swift */,
-				D3F4B1632A948625009106A2 /* FeatureTabView.swift */,
-				D3F4B1952A9631B1009106A2 /* HeadingView.swift */,
-				D3F4B1732A94D70B009106A2 /* MyDiscussionsView.swift */,
 				D3F4B1712A94CCA4009106A2 /* NotificationsView.swift */,
-				D3F4B16B2A94CC5F009106A2 /* ProfileView.swift */,
-				D3107C6E2AB9B4D10063E7BC /* ProfileDetailsView.swift */,
-				D3F4B17B2A94D8DF009106A2 /* PushNotificationsView.swift */,
-				D3F4B17D2A94D8FA009106A2 /* ReportAProblemView.swift */,
-				D3F4B16F2A94CC8C009106A2 /* SettingsView.swift */,
-				D3F4B1692A948917009106A2 /* TrendingDiscussionsView.swift */,
-				D3F4B1772A94D747009106A2 /* UsernameAndPasswordView.swift */,
-				D3F4B1792A94D7B0009106A2 /* VerificationView.swift */,
-				D3F4B16D2A94CC77009106A2 /* WritePostView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -355,7 +384,6 @@
 				D30A30332AB5AED40022C988 /* UniversityData.swift in Sources */,
 				D308110C2AA85ABB00D4751B /* HeadingView.swift in Sources */,
 				D308110B2AA85AB700D4751B /* DiscussionView.swift in Sources */,
-				D308110A2AA85AB400D4751B /* CardView.swift in Sources */,
 				D30811082AA85AAF00D4751B /* Persistence.swift in Sources */,
 				D30811072AA85AAD00D4751B /* Notification.swift in Sources */,
 				D30811062AA85AAB00D4751B /* Reply.swift in Sources */,
