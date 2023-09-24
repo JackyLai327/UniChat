@@ -22,14 +22,14 @@
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="belongsToDiscussion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Discussion" inverseName="hasImages" inverseEntity="Discussion"/>
     </entity>
-    <entity name="Lecturer" representedClassName=".Lecturer" syncable="YES">
+    <entity name="LecturerRating" representedClassName=".LecturerRating" syncable="YES">
         <attribute name="fun" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="overview" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="strictness" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="uni" optional="YES" attributeType="String"/>
         <attribute name="workload" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="uni" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Uni" inverseName="lecturers" inverseEntity="Uni"/>
     </entity>
     <entity name="LikedUser" representedClassName=".Like" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
@@ -56,17 +56,12 @@
         <relationship name="belongsToDiscussion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Discussion" inverseName="hasReplies" inverseEntity="Discussion"/>
         <relationship name="upUser" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="up" inverseEntity="User"/>
     </entity>
-    <entity name="Uni" representedClassName=".Uni" syncable="YES">
-        <attribute name="favicon" optional="YES" attributeType="String"/>
+    <entity name="UniRating" representedClassName=".UniRating" syncable="YES">
         <attribute name="food" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="friendliness" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="overview" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="practicality" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="state" optional="YES" attributeType="String"/>
-        <attribute name="title" optional="YES" attributeType="String"/>
-        <attribute name="url" optional="YES" attributeType="String"/>
-        <relationship name="lecturers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lecturer" inverseName="uni" inverseEntity="Lecturer"/>
     </entity>
     <entity name="User" representedClassName=".User" syncable="YES">
         <attribute name="password" optional="YES" attributeType="String"/>
