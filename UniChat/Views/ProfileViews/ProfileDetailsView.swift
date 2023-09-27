@@ -21,7 +21,7 @@ struct ProfileDetailsView: View {
     var profileType: String = ""
     
     // to display rate functionality
-    @State var ratingExpanded = false
+    @State var ratingExpanded = true
     
     // fetch discussions from core data
     @FetchRequest(
@@ -43,6 +43,12 @@ struct ProfileDetailsView: View {
     
     // to limit the number of characters shown on preview
     let contentPrevCharaters: Int = 100
+    
+    // for lecturer rating
+    @State var lecturerOverviewRating: [String] = ["🌑","🌑","🌑","🌑","🌑"]
+    @State var lecturerWorkloadRating: [String] = ["🌑","🌑","🌑","🌑","🌑"]
+    @State var lecturerStrictnessRating: [String] = ["🌑","🌑","🌑","🌑","🌑"]
+    @State var lecturerFunRating: [String] = ["🌑","🌑","🌑","🌑","🌑"]
     
     var body: some View {
         VStack (spacing: 0) {
@@ -116,6 +122,8 @@ struct ProfileDetailsView: View {
                         Button ("🌕 - rate my uni - 🌕") {
                             ratingExpanded = true
                         }
+                        .font(.headline)
+                        .foregroundColor(UniChatColor.brown)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 7)
                         
@@ -126,6 +134,8 @@ struct ProfileDetailsView: View {
                         Button ("🌕 - rate my uni - 🌕") {
                             ratingExpanded = false
                         }
+                        .font(.headline)
+                        .foregroundColor(UniChatColor.brown)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 7)
                         
@@ -146,6 +156,8 @@ struct ProfileDetailsView: View {
                         Button ("🌕 - rate my lecturer - 🌕") {
                             ratingExpanded = true
                         }
+                        .font(.headline)
+                        .foregroundColor(UniChatColor.brown)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 7)
                         
@@ -156,12 +168,95 @@ struct ProfileDetailsView: View {
                         Button ("🌕 - rate my lecturer - 🌕") {
                             ratingExpanded = false
                         }
+                        .font(.headline)
+                        .foregroundColor(UniChatColor.brown)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 7)
                         
                         // TODO: rating functionality
                         VStack {
-                            Text("implement")
+                            HStack {
+                                VStack {
+                                    Text("overview")
+                                        .font(.headline)
+                                    HStack (spacing: 0) {
+                                        ForEach(0..<lecturerOverviewRating.count, id: \.self) { index in
+                                            Button(lecturerOverviewRating[index])
+                                            {
+                                                lecturerOverviewRating = Helper().ratingToStars(rating: Double(index) + 1).map {String($0)}
+                                            }
+                                        }
+                                    }
+                                    .padding(.leading, -40)
+                                    .padding(.bottom, 10)
+                                    
+                                    Text("strictness")
+                                        .font(.headline)
+                                    HStack (spacing: 0) {
+                                        ForEach(0..<lecturerStrictnessRating.count, id: \.self) { index in
+                                            Button(lecturerStrictnessRating[index])
+                                            {
+                                                lecturerStrictnessRating = Helper().ratingToStars(rating: Double(index) + 1).map {String($0)}
+                                            }
+                                        }
+                                    }
+                                    .padding(.leading, -40)
+                                    .padding(.bottom, 10)
+                                    
+                                }
+                                .padding(.horizontal, 40)
+                                
+                                VStack {
+                                    Text("workload")
+                                        .font(.headline)
+                                    HStack (spacing: 0) {
+                                        ForEach(0..<lecturerWorkloadRating.count, id: \.self) { index in
+                                            Button(lecturerWorkloadRating[index])
+                                            {
+                                                lecturerWorkloadRating = Helper().ratingToStars(rating: Double(index) + 1).map {String($0)}
+                                            }
+                                        }
+                                    }
+                                    .padding(.trailing, -40)
+                                    .padding(.bottom, 10)
+                                    
+                                    Text("fun")
+                                        .font(.headline)
+                                    HStack (spacing: 0) {
+                                        ForEach(0..<lecturerFunRating.count, id: \.self) { index in
+                                            Button(lecturerFunRating[index])
+                                            {
+                                                lecturerFunRating = Helper().ratingToStars(rating: Double(index) + 1).map {String($0)}
+                                            }
+                                        }
+                                    }
+                                    .padding(.trailing, -40)
+                                    .padding(.bottom, 10)
+                                }
+                                .padding(.horizontal, 50)
+                            }
+                            
+                            Button(action: {
+                                if profileType == "lecturer" {
+                                    // convert user input into double
+                                    let overviewRating = Helper().starsToRating(stars: lecturerOverviewRating.joined())
+                                    let strictnessRating = Helper().starsToRating(stars: lecturerStrictnessRating.joined())
+                                    let workloadRating = Helper().starsToRating(stars: lecturerWorkloadRating.joined())
+                                    let funRating = Helper().starsToRating(stars: lecturerFunRating.joined())
+                                    
+                                }
+                            }) {
+                                Text("submit")
+                                    .foregroundColor(UniChatColor.brown)
+                                    .padding(.horizontal, 20)
+                                    .padding(.vertical, 5)
+                                    .background(
+                                        Capsule()
+                                            .strokeBorder(UniChatColor.brown, lineWidth: 2)
+                                            .background(UniChatColor.headerYellow)
+                                    )
+                            }
+                            .padding(.bottom, 10)
                         }
                         
                         Divider()
@@ -170,7 +265,7 @@ struct ProfileDetailsView: View {
                     }
                 }
             }
-            .background(UniChatColor.white)
+            .background(UniChatColor.headerYellow)
             
             // discussions related to this profile
             ScrollView {
@@ -216,6 +311,11 @@ struct ProfileDetailsView: View {
             
         }
     }
+    
+    // rating logic
+//    private func rateCriteira(criteria: String, rating: Double) -> Double {
+//
+//    }
     
     // shown when no discussion related to this profile is found
     var noDiscussions: some View {

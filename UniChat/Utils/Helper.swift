@@ -36,4 +36,17 @@ public class Helper {
         
         return retString
     }
+    
+    // converts from stars to rating
+    public func starsToRating(stars: String) -> Double {
+        var retDouble = 0.0
+        
+        for index in stars.indices {
+            if stars[index] == "🌕" {
+                retDouble += 1.0
+            }
+        }
+        
+        return retDouble
+    }
 }
