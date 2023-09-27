@@ -38,7 +38,6 @@ struct SplashScreenView: View {
                     
                     // redirect user to trending discussion
                     NavigationLink (destination: FeatureTabView(), isActive: $userLoggedIn) {
-                        
                         Text("")
                     }
                 } else {

@@ -40,9 +40,6 @@ struct ProfileView: View {
     @State var uniTabSelected = true
     @State var lecturerTabSelected = false
     
-    // for queueing async requests
-    let group = DispatchGroup()
-    
     var body: some View {
         VStack(spacing: 0) {
             HeadingView(title: "Profiles")
@@ -92,9 +89,7 @@ struct ProfileView: View {
                         .foregroundColor(UniChatColor.lightBrown)
                         .onChange(of: searchKey) { newValue in
                             Task {
-                                group.enter()
                                 try! await searchUnis(query: searchKey) {
-                                    group.leave()
                                 }
                             }
                         }
@@ -131,7 +126,7 @@ struct ProfileView: View {
             if uniTabSelected {
                 ScrollView() {
                     ForEach(unis, id:\.self) { uni in
-                        NavigationLink (destination: ProfileDetailsView(profileID: uni.name)) {
+                        NavigationLink (destination: ProfileDetailsView(profileID: uni.name, profileName: uni.name, uniImage: uniImages[uni.webPages[0]] ?? URL(string: "http://www.rmit.edu.au//etc.clientlibs/rmit/clientlibs/clientlib-site/resources/favicon.png")!, profileType: "uni")) {
                             HStack {
                                 VStack (spacing: 0) {
                                     // uni title
@@ -202,16 +197,14 @@ struct ProfileView: View {
                 }
                 .background(UniChatColor.dimmedYellow)
                 .task {
-                    for uni in unis {
-                        group.enter()
-                        uniImages = await fetchUniImage(dictionary: uniImages, urlString: uni.webPages[0] ) {
-                            group.leave()
-                        }
+                    try? await searchUnis(query: searchKey) {
+                        
                     }
                     
-                    group.enter()
-                    try? await searchUnis(query: searchKey) {
-                        group.leave()
+                    for uni in unis {
+                        uniImages = await fetchUniImage(dictionary: uniImages, urlString: uni.webPages[0] ) {
+                            
+                        }
                     }
                 }
             }
@@ -222,8 +215,10 @@ struct ProfileView: View {
                 if searchKey != "" {
                     ScrollView() {
                         ForEach(lecturerRatings.filter({$0.name.contains(searchKey)}), id:\.self) { lecturer in
-                            NavigationLink (destination: ProfileDetailsView(profileID: "\(lecturer.id)")) {
-                                listOfLecturers(lecturer: lecturer)
+                            if let uni = unis.first(where: {$0.name == lecturer.uni}) {
+                                NavigationLink (destination: ProfileDetailsView(profileID: "\(lecturer.id)", profileName: lecturer.name, uniImage: uniImages[uni.webPages[0]] ?? URL(string: "http://www.rmit.edu.au//etc.clientlibs/rmit/clientlibs/clientlib-site/resources/favicon.png")!, profileType: "lecturer")) {
+                                    listOfLecturers(lecturer: lecturer)
+                                }
                             }
                         }
                     }
@@ -235,8 +230,10 @@ struct ProfileView: View {
                 } else {
                     ScrollView() {
                         ForEach(lecturerRatings, id:\.self) { lecturer in
-                            NavigationLink (destination: ProfileDetailsView(profileID: "\(lecturer.id)")) {
-                                listOfLecturers(lecturer: lecturer)
+                            if let uni = unis.first(where: {$0.name == lecturer.uni}) {
+                                NavigationLink (destination: ProfileDetailsView(profileID: "\(lecturer.id)", profileName: lecturer.name, uniImage: uniImages[uni.webPages[0]] ?? URL(string: "http://www.rmit.edu.au//etc.clientlibs/rmit/clientlibs/clientlib-site/resources/favicon.png")! ,profileType: "lecturer")) {
+                                    listOfLecturers(lecturer: lecturer)
+                                }
                             }
                         }
                     }
@@ -334,7 +331,7 @@ struct ProfileView: View {
                 newRating.friendliness = 0.0
                 newRating.overview = 0.0
                 newRating.practicality = 0.0
-
+                
                 try! context.save()
             }
         }
@@ -353,6 +350,8 @@ struct ProfileView: View {
                 newRating.strictness = 0.0
                 newRating.workload = 0.0
                 newRating.uni = lecturersData.getLecturerByIndex(index: index).uni
+                
+                try! context.save()
             }
         }
     }

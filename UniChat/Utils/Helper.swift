@@ -7,6 +7,7 @@
 
 import Foundation
 
+// this class contains helper functions that can be used in multiple places in the codebase
 public class Helper {
     init() {}
     
