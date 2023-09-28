@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "23F73A73-356A-42DE-A902-28E5A000B1FA"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A3A83949-B4FB-472A-BB5E-796A2FCAA7E0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UniChat/Views/ProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "fetchUniImage(urlString:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A3A83949-B4FB-472A-BB5E-796A2FCAA7E0 - c3cedcef192784fe"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "UniChat.ProfileView.fetchUniImage(urlString: Swift.String) async -&gt; Swift.String"
+                  moduleName = "UniChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jackylai/Desktop/RMIT_work_related/year_3_sem_2/iPhone%20Software%20Engineering/assignmnets/UniChat/UniChat/Views/ProfileView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "226"
+                  endingLineNumber = "226"
+                  offsetFromSymbolStart = "304">
+               </Location>
+               <Location
+                  uuid = "A3A83949-B4FB-472A-BB5E-796A2FCAA7E0 - 6c0b6e83d84dfbeb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for UniChat.ProfileView.fetchUniImage(urlString: Swift.String) async -&gt; Swift.String"
+                  moduleName = "UniChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jackylai/Desktop/RMIT_work_related/year_3_sem_2/iPhone%20Software%20Engineering/assignmnets/UniChat/UniChat/Views/ProfileView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "226"
+                  endingLineNumber = "226"
+                  offsetFromSymbolStart = "124">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

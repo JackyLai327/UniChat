@@ -15,4 +15,5 @@ public class UniRating: NSManagedObject, Identifiable {
     @NSManaged public var practicality: Double
     @NSManaged public var food: Double
     @NSManaged public var friendliness: Double
+    @NSManaged public var numRatings: Int
 }

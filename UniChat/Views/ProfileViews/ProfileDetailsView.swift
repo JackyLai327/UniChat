@@ -21,7 +21,7 @@ struct ProfileDetailsView: View {
     var profileType: String = ""
     
     // to display rate functionality
-    @State var ratingExpanded = true
+    @State var ratingExpanded = false
     
     // fetch discussions from core data
     @FetchRequest(
@@ -50,10 +50,16 @@ struct ProfileDetailsView: View {
     @State var lecturerStrictnessRating: [String] = ["🌑","🌑","🌑","🌑","🌑"]
     @State var lecturerFunRating: [String] = ["🌑","🌑","🌑","🌑","🌑"]
     
+    // for uni rating
+    @State var uniOverviewRating: [String] = ["🌑","🌑","🌑","🌑","🌑"]
+    @State var uniPracticalityRating: [String] = ["🌑","🌑","🌑","🌑","🌑"]
+    @State var uniFriendlinessRating: [String] = ["🌑","🌑","🌑","🌑","🌑"]
+    @State var uniFoodRating: [String] = ["🌑","🌑","🌑","🌑","🌑"]
+    
     var body: some View {
         VStack (spacing: 0) {
             // heading
-            HeadingView(title: profileName)
+            HeadingView(title: "")
             
             // prpfile overview
             VStack (spacing: 0) {
@@ -139,10 +145,110 @@ struct ProfileDetailsView: View {
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 7)
                         
-                        // TODO: rating functionality
                         VStack {
+                            HStack {
+                                VStack {
+                                    Text("overview")
+                                        .font(.headline)
+                                    HStack (spacing: 0) {
+                                        ForEach(0..<uniOverviewRating.count, id: \.self) { index in
+                                            Button(uniOverviewRating[index])
+                                            {
+                                                uniOverviewRating = Helper().ratingToStars(rating: Double(index) + 1).map {String($0)}
+                                            }
+                                        }
+                                    }
+                                    .padding(.leading, -40)
+                                    .padding(.bottom, 10)
+                                    
+                                    Text("food")
+                                        .font(.headline)
+                                    HStack (spacing: 0) {
+                                        ForEach(0..<uniFoodRating.count, id: \.self) { index in
+                                            Button(uniFoodRating[index])
+                                            {
+                                                uniFoodRating = Helper().ratingToStars(rating: Double(index) + 1).map {String($0)}
+                                            }
+                                        }
+                                    }
+                                    .padding(.leading, -40)
+                                    .padding(.bottom, 10)
+                                    
+                                }
+                                .padding(.horizontal, 40)
+                                
+                                VStack {
+                                    Text("practicality")
+                                        .font(.headline)
+                                    HStack (spacing: 0) {
+                                        ForEach(0..<uniPracticalityRating.count, id: \.self) { index in
+                                            Button(uniPracticalityRating[index])
+                                            {
+                                                uniPracticalityRating = Helper().ratingToStars(rating: Double(index) + 1).map {String($0)}
+                                            }
+                                        }
+                                    }
+                                    .padding(.trailing, -40)
+                                    .padding(.bottom, 10)
+                                    
+                                    Text("friendliness")
+                                        .font(.headline)
+                                    HStack (spacing: 0) {
+                                        ForEach(0..<uniFriendlinessRating.count, id: \.self) { index in
+                                            Button(uniFriendlinessRating[index])
+                                            {
+                                                uniFriendlinessRating = Helper().ratingToStars(rating: Double(index) + 1).map {String($0)}
+                                            }
+                                        }
+                                    }
+                                    .padding(.trailing, -40)
+                                    .padding(.bottom, 10)
+                                }
+                                .padding(.horizontal, 50)
+                            }
                             
+                            Button(action: {
+                                if profileType == "uni" {
+                                    // convert user input into double
+                                    let overviewRating = Helper().starsToRating(stars: uniOverviewRating.joined())
+                                    let practicalityRating = Helper().starsToRating(stars: uniPracticalityRating.joined())
+                                    let foodRating = Helper().starsToRating(stars: uniFoodRating.joined())
+                                    let friendlinessRating = Helper().starsToRating(stars: uniFriendlinessRating.joined())
+                                    
+                                    if let averageRating = uniRatings.first(where: {"\($0.id)" == profileID}) {
+                                        if (averageRating.numRatings == 0) {
+                                            averageRating.numRatings += 1
+                                            averageRating.overview = overviewRating
+                                            averageRating.practicality = practicalityRating
+                                            averageRating.food = foodRating
+                                            averageRating.friendliness = friendlinessRating
+                                        } else {
+                                            averageRating.numRatings += 1
+                                            averageRating.overview = Helper().calculateAverage(averageRating: averageRating.overview, newRating: overviewRating, count: averageRating.numRatings)
+                                            averageRating.practicality = Helper().calculateAverage(averageRating: averageRating.practicality, newRating: practicalityRating, count: averageRating.numRatings)
+                                            averageRating.food = Helper().calculateAverage(averageRating: averageRating.food, newRating: foodRating, count: averageRating.numRatings)
+                                            averageRating.friendliness = Helper().calculateAverage(averageRating: averageRating.friendliness, newRating: friendlinessRating, count: averageRating.numRatings)
+                                        }
+                                        
+                                        try! context.save()
+                                        ratingExpanded = false
+                                    }
+                                }
+                                
+                            }) {
+                                Text("submit")
+                                    .foregroundColor(UniChatColor.brown)
+                                    .padding(.horizontal, 20)
+                                    .padding(.vertical, 5)
+                                    .background(
+                                        Capsule()
+                                            .strokeBorder(UniChatColor.brown, lineWidth: 2)
+                                            .background(UniChatColor.headerYellow)
+                                    )
+                            }
+                            .padding(.bottom, 10)
                         }
+
                         
                         Divider()
                             .frame(height: 1)
@@ -173,7 +279,6 @@ struct ProfileDetailsView: View {
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 7)
                         
-                        // TODO: rating functionality
                         VStack {
                             HStack {
                                 VStack {
@@ -244,7 +349,26 @@ struct ProfileDetailsView: View {
                                     let workloadRating = Helper().starsToRating(stars: lecturerWorkloadRating.joined())
                                     let funRating = Helper().starsToRating(stars: lecturerFunRating.joined())
                                     
+                                    if let averageRating = lecturerRatings.first(where: {"\($0.id)" == profileID}) {
+                                        if (averageRating.numRatings == 0) {
+                                            averageRating.numRatings += 1
+                                            averageRating.overview = overviewRating
+                                            averageRating.strictness = strictnessRating
+                                            averageRating.workload = workloadRating
+                                            averageRating.fun = funRating
+                                        } else {
+                                            averageRating.numRatings += 1
+                                            averageRating.overview = Helper().calculateAverage(averageRating: averageRating.overview, newRating: overviewRating, count: averageRating.numRatings)
+                                            averageRating.strictness = Helper().calculateAverage(averageRating: averageRating.strictness, newRating: strictnessRating, count: averageRating.numRatings)
+                                            averageRating.workload = Helper().calculateAverage(averageRating: averageRating.workload, newRating: workloadRating, count: averageRating.numRatings)
+                                            averageRating.fun = Helper().calculateAverage(averageRating: averageRating.fun, newRating: funRating, count: averageRating.numRatings)
+                                        }
+                                        
+                                        try! context.save()
+                                        ratingExpanded = false
+                                    }
                                 }
+                                
                             }) {
                                 Text("submit")
                                     .foregroundColor(UniChatColor.brown)
@@ -303,7 +427,7 @@ struct ProfileDetailsView: View {
             }
             
             ToolbarItem(placement: .principal) {
-                Text("Discussion")
+                Text(profileName)
                     .font(.title2.bold())
                     .background(UniChatColor.headerYellow)
                     .foregroundColor(UniChatColor.brown)
@@ -418,6 +542,6 @@ struct ProfileDetailsView: View {
 
 struct ProfileDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileDetailsView(profileID: "Preview", profileName: "Shekhar Kalra", uniImage: URL(string: "http://www.rmit.edu.au//etc.clientlibs/rmit/clientlibs/clientlib-site/resources/favicon.png")!, profileType: "lecturer")
+        ProfileDetailsView(profileID: "Preview", profileName: "Royal Mlebourne Institute of Technology", uniImage: URL(string: "http://www.rmit.edu.au//etc.clientlibs/rmit/clientlibs/clientlib-site/resources/favicon.png")!, profileType: "uni")
     }
 }

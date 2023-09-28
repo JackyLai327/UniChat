@@ -20,13 +20,13 @@ public class Helper {
         
         // convert both parts to Int type
         let whole = Int(wholeString)
-        let decimal = Int(decimalString)
+        let decimal = Double(decimalString)
         
         for _ in 0..<whole {
             retString += "🌕"
         }
         
-        if decimal != Int(0.0) {
+        if decimal != 0.0 {
             retString += "🌗"
         }
         
@@ -45,6 +45,21 @@ public class Helper {
             if stars[index] == "🌕" {
                 retDouble += 1.0
             }
+        }
+        
+        return retDouble
+    }
+    
+    // calculate new average to store in database
+    public func calculateAverage(averageRating: Double, newRating: Double, count: Int) -> Double {
+        var retDouble: Double = 0.0
+        
+        if count == 0 {
+            retDouble = 0.0
+        } else if count == 1 {
+            retDouble = newRating
+        } else {
+            retDouble = (averageRating * Double(count - 1) + newRating) / Double(count)
         }
         
         return retDouble

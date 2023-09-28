@@ -18,6 +18,7 @@ public class LecturerRating: NSManagedObject, Identifiable {
     @NSManaged public var fun: Double
     @NSManaged public var workload: Double
     @NSManaged public var uni: String
+    @NSManaged public var numRatings: Int
 }
 
 struct Lecturer: Codable {
