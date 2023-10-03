@@ -15,7 +15,10 @@ struct NotificationsView: View {
     @FetchRequest(
         entity: Notification.entity(),
         sortDescriptors: [ NSSortDescriptor(keyPath: \Notification.timestamp, ascending: false) ])
-    var notifications: FetchedResults<Notification>
+    var coreDataNotifications: FetchedResults<Notification>
+    
+    // user defaults
+    let defaults = UserDefaults.standard
     
     var body: some View {
         VStack (spacing: 0) {
@@ -25,7 +28,10 @@ struct NotificationsView: View {
                 // display all notifications sent to the current user
                 // TODO: finish this functionality
                 List {
+                    let notifications = coreDataNotifications.filter({$0.receiver == defaults.string(forKey: "currentUsername")!})
+                    
                     ForEach (notifications) {notification in
+                        Text("\(coreDataNotifications.count)")
                         Text("\(notifications.count)")
                         ZStack {
                             NavigationLink (destination: DiscussionView(discussionID: "\(notification.discussion)")) {

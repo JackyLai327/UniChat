@@ -32,6 +32,9 @@ struct DiscussionView: View {
     // for user to write a new reply
     @State var newReply: String = ""
     
+    // delete a reply option
+    @State var showDelete = false
+    
     // user defaults
     let defaults = UserDefaults.standard
     
@@ -112,9 +115,27 @@ struct DiscussionView: View {
                     
                     Spacer()
                     
-                    Text(discussion.timestamp, style: .date)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
+                    VStack {
+                        if defaults.string(forKey: "currentUsername") == discussion.username {
+                            Text("delete")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .onTapGesture {
+                                    do {
+                                        context.delete(discussion)
+                                        try context.save()
+                                    } catch {
+                                        print(error)
+                                    }
+                                }
+                        }
+                        
+                        Text(discussion.timestamp, style: .date)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                    }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 30)
@@ -227,7 +248,30 @@ struct DiscussionView: View {
                             .padding(.trailing, 20)
                             .offset(y: 5)
                         }
+                        if showDelete {
+                            Text("delete")
+                                .padding(5)
+                                .background(.red)
+                                .foregroundColor(Color.white)
+                                .cornerRadius(25)
+                                .padding(.trailing, 5)
+                                .onTapGesture {
+                                    do {
+                                        context.delete(reply)
+                                        discussions.first(where: {"\($0.id)" == reply.discussion})?.numReplies -= 1
+                                        try context.save()
+                                    } catch {
+                                        print(error)
+                                    }
+                                }
+                        }
                     }
+                    .onTapGesture {
+                        if reply.username == defaults.string(forKey: "currentUsername") {
+                            showDelete = true
+                        }
+                    }
+                    
                     Divider()
                         .overlay(UniChatColor.brown)
                 }
@@ -315,6 +359,14 @@ struct DiscussionView: View {
         reply.username = user
 
         discussion.numReplies += 1
+        
+        let notification = Notification(context: context)
+        notification.id = UUID()
+        notification.discussion = "\(discussion.id)"
+        notification.notificationType = NotificationType.reply
+        notification.receiver = discussion.username
+        notification.sender = defaults.string(forKey: "currentUsername") ?? "unknown"
+        notification.timestamp = Date()
         
         do {
             try context.save()

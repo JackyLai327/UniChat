@@ -140,7 +140,7 @@ struct MyDiscussionsView: View {
             }
             
             ToolbarItem(placement: .principal) {
-                Text("My Discussion")
+                Text("My Discussions")
                     .font(.title2.bold())
                     .background(UniChatColor.headerYellow)
                     .foregroundColor(UniChatColor.brown)
