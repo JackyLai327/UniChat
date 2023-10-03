@@ -107,6 +107,7 @@ struct LogInView: View {
                     
                     // store user in user defaults
                     defaults.set(username, forKey: "currentUsername")
+                    defaults.set(password, forKey: "currentPassword")
                     
                     // redirect user to trending discussion
                     userLoggedIn = true

@@ -26,7 +26,7 @@ struct WritePostView: View {
     var listOfLecturer = ["Shekhar Kalra"]
     
     // temporary logged in user
-    var user = "uniChat"
+    var user = UserDefaults.standard.string(forKey: "currentUsername") ?? "uniChat"
     
     // maximum allowed number of characters in discussion content
     var characterLimit = 500

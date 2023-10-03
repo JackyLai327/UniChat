@@ -8,8 +8,49 @@
 import SwiftUI
 
 struct ReportAProblemView: View {
+    // for dismiss action
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
-        Text("report a problem")
+        VStack (spacing: 0) {
+            HeadingView(title: "")
+            ScrollView {
+                Text("⚠️ 🚧 ⚠️")
+                    .font(.custom("emoji", size: 30))
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.top, 300)
+                Text("This feature is not available yet...")
+                    .font(.headline)
+                    .foregroundColor(UniChatColor.brown)
+            }
+            .background(UniChatColor.dimmedYellow)
+        }
+        // custom navigation back button
+        .navigationBarBackButtonHidden(true)
+        .toolbar{
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    customBackButton
+                }
+            }
+            
+            ToolbarItem(placement: .principal) {
+                Text("Push Notifications")
+                    .font(.title2.bold())
+                    .background(UniChatColor.headerYellow)
+                    .foregroundColor(UniChatColor.brown)
+            }
+            
+        }
+    }
+    
+    // customised back button for application
+    var customBackButton: some View {
+        Image(systemName: "chevron.left")
+            .font(.title.bold())
+            .foregroundColor(UniChatColor.brightYellow)
     }
 }
 

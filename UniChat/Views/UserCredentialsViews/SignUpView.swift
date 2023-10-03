@@ -160,6 +160,7 @@ struct SignUpView: View {
                     
                     // store user in user defaults
                     defaults.set(username, forKey: "currentUsername")
+                    defaults.set(password, forKey: "currentPassword")
                     
                     // store the credential in keychain
                     do {

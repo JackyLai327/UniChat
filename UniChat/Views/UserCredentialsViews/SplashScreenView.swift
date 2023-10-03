@@ -51,6 +51,7 @@ struct SplashScreenView: View {
                 storedCredentials = try keychain.retrieveCredentials()
                 // store user to user defaults
                 defaults.set(storedCredentials.username, forKey: "currentUsername")
+                defaults.set(storedCredentials.password, forKey: "currentPassword")
             } catch {
                 print(error)
             }

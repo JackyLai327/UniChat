@@ -255,7 +255,7 @@ struct DiscussionView: View {
                     .padding(.vertical, 15)
                 Button {
                     if newReply.count > 0 {
-                        let currentUsername = UserDefaults.standard.string(forKey: "currentUsername")
+                        let currentUsername = defaults.string(forKey: "currentUsername")
                         let discussion = discussions.first(where: {"\($0.id)" == discussionID})
                         createReply(content: newReply, discussion: discussion!, user: currentUsername!)
                         newReply = ""
