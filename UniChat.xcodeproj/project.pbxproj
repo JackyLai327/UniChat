@@ -38,6 +38,7 @@
 		D3107C6F2AB9B4D10063E7BC /* ProfileDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3107C6E2AB9B4D10063E7BC /* ProfileDetailsView.swift */; };
 		D32898BE2AC0158200051A43 /* LecturerList.json in Resources */ = {isa = PBXBuildFile; fileRef = D32898BD2AC0158200051A43 /* LecturerList.json */; };
 		D32898C12AC042E200051A43 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32898C02AC042E200051A43 /* Helper.swift */; };
+		D32899032ACD7E4200051A43 /* UpUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32899022ACD7E4200051A43 /* UpUser.swift */; };
 		D38B48BE2ABAE8B1002E1333 /* FaviconFinder in Frameworks */ = {isa = PBXBuildFile; productRef = D38B48BD2ABAE8B1002E1333 /* FaviconFinder */; };
 		D3A8C25D2AA88A6E0024F989 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C25C2AA88A6E0024F989 /* User.swift */; };
 		D3A8C25F2AA99F3E0024F989 /* UniRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C25E2AA99F3E0024F989 /* UniRating.swift */; };
@@ -62,6 +63,7 @@
 		D3107C6E2AB9B4D10063E7BC /* ProfileDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsView.swift; sourceTree = "<group>"; };
 		D32898BD2AC0158200051A43 /* LecturerList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LecturerList.json; sourceTree = "<group>"; };
 		D32898C02AC042E200051A43 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		D32899022ACD7E4200051A43 /* UpUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpUser.swift; sourceTree = "<group>"; };
 		D3A8C25C2AA88A6E0024F989 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D3A8C25E2AA99F3E0024F989 /* UniRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniRating.swift; sourceTree = "<group>"; };
 		D3A8C2602AA99FBD0024F989 /* LecturerRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LecturerRating.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				D3A8C25E2AA99F3E0024F989 /* UniRating.swift */,
 				D3A8C2602AA99FBD0024F989 /* LecturerRating.swift */,
 				D30A30322AB5AED40022C988 /* UniversityData.swift */,
+				D32899022ACD7E4200051A43 /* UpUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				D308117A2AA876AC00D4751B /* LikedUser.swift in Sources */,
 				D3A8C25D2AA88A6E0024F989 /* User.swift in Sources */,
 				D3107C6F2AB9B4D10063E7BC /* ProfileDetailsView.swift in Sources */,
+				D32899032ACD7E4200051A43 /* UpUser.swift in Sources */,
 				D308110D2AA85AD600D4751B /* ContentView.swift in Sources */,
 				D308110E2AA85AD600D4751B /* FeatureTabView.swift in Sources */,
 				D308110F2AA85AD600D4751B /* MyDiscussionsView.swift in Sources */,

@@ -35,7 +35,7 @@ struct MyDiscussionsView: View {
     @State var lecturerTabSelected = false
     
     // to limit the number of characters shown on preview
-    let contentPrevCharaters: Int = 100
+    let contentPrevCharaters: Int = 110
     
     var body: some View {
         VStack(spacing: 0) {
@@ -171,13 +171,21 @@ struct MyDiscussionsView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.leading)
-                    
-                Text(String(content.prefix(contentPrevCharaters)) + "... view more")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .multilineTextAlignment(.leading)
-                    .font(.custom("discusison content", size: 15))
-                    .padding(.bottom, 5)
-                    .foregroundColor(.primary)
+                
+                if content.count <= contentPrevCharaters {
+                    Text(content).frame(maxWidth: .infinity, alignment: .leading)
+                        .multilineTextAlignment(.leading)
+                        .font(.custom("discusison content", size: 15))
+                        .padding(.bottom, 5)
+                        .foregroundColor(.primary)
+                } else {
+                    Text(String(content.prefix(contentPrevCharaters)) + "... view more")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .multilineTextAlignment(.leading)
+                        .font(.custom("discusison content", size: 15))
+                        .padding(.bottom, 5)
+                        .foregroundColor(.primary)
+                }
                 
                 HStack {
                     HStack {

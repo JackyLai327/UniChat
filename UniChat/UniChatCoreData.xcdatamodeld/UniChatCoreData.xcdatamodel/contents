@@ -10,17 +10,16 @@
         <attribute name="targetType" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="username" optional="YES" attributeType="String"/>
-        <relationship name="hasImages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DiscussionImage" inverseName="belongsToDiscussion" inverseEntity="DiscussionImage"/>
-        <relationship name="hasReplies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Reply" inverseName="belongsToDiscussion" inverseEntity="Reply"/>
+        <relationship name="hasReplies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Reply"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DiscussionImage" inverseName="underDiscussion" inverseEntity="DiscussionImage"/>
+        <relationship name="likedUser" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LikedUser" inverseName="discussion" inverseEntity="LikedUser"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="hasDiscussions" inverseEntity="User"/>
-        <relationship name="usersLiked" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LikedUser" inverseName="belongsToDiscussion" inverseEntity="LikedUser"/>
     </entity>
     <entity name="DiscussionImage" representedClassName=".DiscussionImage" syncable="YES">
-        <attribute name="discussion" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="imageURLString" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="belongsToDiscussion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Discussion" inverseName="hasImages" inverseEntity="Discussion"/>
+        <relationship name="underDiscussion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Discussion" inverseName="images" inverseEntity="Discussion"/>
     </entity>
     <entity name="LecturerRating" representedClassName=".LecturerRating" syncable="YES">
         <attribute name="fun" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -32,12 +31,9 @@
         <attribute name="uni" optional="YES" attributeType="String"/>
         <attribute name="workload" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
-    <entity name="LikedUser" representedClassName=".Like" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="receiver" optional="YES" attributeType="String"/>
-        <attribute name="sender" optional="YES" attributeType="String"/>
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="belongsToDiscussion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Discussion" inverseName="usersLiked" inverseEntity="Discussion"/>
+    <entity name="LikedUser" representedClassName=".LikedUser" syncable="YES">
+        <attribute name="username" optional="YES" attributeType="String"/>
+        <relationship name="discussion" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Discussion" inverseName="likedUser" inverseEntity="Discussion"/>
     </entity>
     <entity name="Notification" representedClassName=".Notification" syncable="YES">
         <attribute name="discussion" optional="YES" attributeType="String"/>
@@ -54,8 +50,7 @@
         <attribute name="numUps" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="username" optional="YES" attributeType="String"/>
-        <relationship name="belongsToDiscussion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Discussion" inverseName="hasReplies" inverseEntity="Discussion"/>
-        <relationship name="upUser" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="up" inverseEntity="User"/>
+        <relationship name="upUser" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UpUser" inverseName="reply" inverseEntity="UpUser"/>
     </entity>
     <entity name="UniRating" representedClassName=".UniRating" syncable="YES">
         <attribute name="food" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -65,10 +60,13 @@
         <attribute name="overview" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="practicality" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="UpUser" representedClassName=".UpUser" syncable="YES">
+        <attribute name="username" optional="YES" attributeType="String"/>
+        <relationship name="reply" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Reply" inverseName="upUser" inverseEntity="Reply"/>
+    </entity>
     <entity name="User" representedClassName=".User" syncable="YES">
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="username" optional="YES" attributeType="String"/>
         <relationship name="hasDiscussions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Discussion" inverseName="user" inverseEntity="Discussion"/>
-        <relationship name="up" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Reply" inverseName="upUser" inverseEntity="Reply"/>
     </entity>
 </model>

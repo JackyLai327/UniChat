@@ -26,6 +26,12 @@ struct DiscussionView: View {
         sortDescriptors: [ NSSortDescriptor(keyPath: \User.username, ascending: true) ])
     var users: FetchedResults<User>
     
+    // fetch notifications from core data
+    @FetchRequest(
+        entity: Notification.entity(),
+        sortDescriptors: [ NSSortDescriptor(keyPath: \Notification.timestamp, ascending: false) ])
+    var notifications: FetchedResults<Notification>
+    
     // to load the correct discussion
     var discussionID: String
     
@@ -157,8 +163,18 @@ struct DiscussionView: View {
                         .overlay(UniChatColor.brown)
                     HStack {
                         Button {
-                            // FIXME: like mechanism needs help
-                            print("like +1")
+                            let currentUsername = UserDefaults.standard.string(forKey: "currentUsername")!
+                            
+                            if let user = discussion.likedUserArray.first(where: {$0.username == currentUsername}) {
+                                pressLike(discussion: discussion, user: user, operation: -1)
+                            } else {
+                                let user = LikedUser(context: context)
+                                user.username = currentUsername
+                                
+                                try? context.save()
+                                
+                                pressLike(discussion: discussion, user: user, operation: 1)
+                            }
                         } label: {
                             HStack {
                                 Image(systemName: "heart.fill")
@@ -175,13 +191,13 @@ struct DiscussionView: View {
                             .overlay(UniChatColor.brown)
                         
                         Button {
-                            // FIXME: share mechanism needs to be implemented
-                            print("share +1")
+                            // MARK: share is copying the link to the desktop version of the app on this discussion, which is for another app development
+                            pressShare(discussion: discussion)
                         } label: {
                             HStack {
                                 Image(systemName: "arrowshape.turn.up.right.fill")
                                     .foregroundColor(UniChatColor.brightYellow)
-                                Text("\(discussion.numShares)")
+                                Text("copy link")
                                     .foregroundColor(UniChatColor.brown)
                             }
                             .frame(maxWidth: .infinity, alignment: .center)
@@ -226,13 +242,18 @@ struct DiscussionView: View {
                         
                         Button {
                             // FIXME: up mechanism needs help
-//                            let currentUsername = UserDefaults.standard.string(forKey: "currentUsername")!
-//                            let user = users.first(where: {$0.username == currentUsername})!
-//                            if !reply.upUserArray.contains(user) {
-//                                pressUp(reply: reply, user: user, operation: 1)
-//                            } else {
-//                                pressUp(reply: reply, user: user, operation: -1)
-//                            }
+                            let currentUsername = UserDefaults.standard.string(forKey: "currentUsername")!
+                            
+                            if let user = reply.upUserArray.first(where: {$0.username == currentUsername}) {
+                                pressUp(reply: reply, user: user, operation: -1)
+                            } else {
+                                let user = UpUser(context: context)
+                                user.username = currentUsername
+                                
+                                try? context.save()
+                                
+                                pressUp(reply: reply, user: user, operation: 1)
+                            }
                         } label: {
                             VStack {
                                 Image(systemName: "hand.point.up.fill")
@@ -368,6 +389,8 @@ struct DiscussionView: View {
         notification.sender = defaults.string(forKey: "currentUsername") ?? "unknown"
         notification.timestamp = Date()
         
+        print(notification)
+        
         do {
             try context.save()
         } catch {
@@ -378,7 +401,7 @@ struct DiscussionView: View {
     // adds the user to the upUser array of the dedicated reply (or remove)
     // if operation = 1 => add
     // if operation = -1 => remove
-    func pressUp(reply: Reply, user: User, operation: Int32) {
+    func pressUp(reply: Reply, user: UpUser, operation: Int32) {
         if operation == 1 {
             reply.addToUpUser(user)
         }
@@ -392,6 +415,55 @@ struct DiscussionView: View {
         } catch {
             print(error)
         }
+    }
+    
+    // adds the user to the like user array of the dedicated reply (or remove)
+    // if operation = 1 => add
+    // if operation = -1 => remove
+    // create a notification for liking a discussion
+    func pressLike(discussion: Discussion, user: LikedUser, operation: Int32) {
+        if operation == 1 {
+            discussion.addToLikedUser(user)
+            
+            let notification = Notification(context: context)
+            notification.id = UUID()
+            notification.discussion = "\(discussion.id)"
+            notification.notificationType = NotificationType.like
+            notification.receiver = discussion.username
+            notification.sender = defaults.string(forKey: "currentUsername") ?? "unknown"
+            notification.timestamp = Date()
+        }
+        if operation == -1 {
+            discussion.removeFromLikedUser(user)
+            let username = defaults.string(forKey: "currentUsername")
+            if let notification = notifications.first(where: {$0.sender == username && $0.discussion == "\(discussion.id)"}) {
+                context.delete(notification)
+            }
+        }
+        discussion.numLikes += operation
+        
+        
+        do {
+            try context.save()
+        } catch {
+            print(error)
+        }
+    }
+    
+    // add num of share by 1 and create a notification for it
+    func pressShare(discussion: Discussion) {
+        discussion.numShares += 1
+        
+        let notification = Notification(context: context)
+        notification.id = UUID()
+        notification.discussion = "\(discussion.id)"
+        notification.notificationType = NotificationType.share
+        notification.receiver = discussion.username
+        notification.sender = defaults.string(forKey: "currentUsername") ?? "unknown"
+        notification.timestamp = Date()
+        
+        
+        try! context.save()
     }
 }
 

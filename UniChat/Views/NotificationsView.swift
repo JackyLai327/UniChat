@@ -26,32 +26,25 @@ struct NotificationsView: View {
             
             ScrollView {
                 // display all notifications sent to the current user
-                // TODO: finish this functionality
-                List {
-                    let notifications = coreDataNotifications.filter({$0.receiver == defaults.string(forKey: "currentUsername")!})
-                    
-                    ForEach (notifications) {notification in
-                        Text("\(coreDataNotifications.count)")
-                        Text("\(notifications.count)")
-                        ZStack {
-                            NavigationLink (destination: DiscussionView(discussionID: "\(notification.discussion)")) {
-                                EmptyView()
-                            }
-                            .opacity(0.0)
-                            .buttonStyle(PlainButtonStyle())
-                            
+                let notifications = coreDataNotifications.filter({$0.receiver == defaults.string(forKey: "currentUsername")!})
+                
+                ForEach (notifications, id: \.self) {notification in
+                    NavigationLink (destination: DiscussionView(discussionID: "\(notification.discussion)")) {
+                        VStack {
                             HStack {
                                 // like type notifications layout
                                 if notification.notificationType == .like {
                                     Image(systemName: "heart.fill")
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 20)
+                                        .frame(width: 25)
                                         .padding(5)
                                         .foregroundColor(UniChatColor.brightYellow)
                                     
                                     Text("\(notification.sender) liked your discussion.")
-                                        .font(.caption)
+                                        .font(.custom("", size: 15))
+                                        .foregroundColor(.primary)
+                                        .multilineTextAlignment(.leading)
                                 }
                                 
                                 // reply type notification layout
@@ -59,12 +52,14 @@ struct NotificationsView: View {
                                     Image(systemName: "ellipsis.bubble.fill")
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 20)
+                                        .frame(width: 25)
                                         .padding(5)
                                         .foregroundColor(UniChatColor.brightYellow)
                                     
                                     Text("\(notification.sender) replied to your discussion.")
-                                        .font(.caption)
+                                        .font(.custom("", size: 15))
+                                        .foregroundColor(.primary)
+                                        .multilineTextAlignment(.leading)
                                 }
                                 
                                 // share type notification layout
@@ -72,12 +67,14 @@ struct NotificationsView: View {
                                     Image(systemName: "arrowshape.turn.up.right.fill")
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 20)
+                                        .frame(width: 25)
                                         .padding(5)
                                         .foregroundColor(UniChatColor.brightYellow)
                                     
                                     Text("someone shared your discussion.")
-                                        .font(.caption)
+                                        .font(.custom("", size: 15))
+                                        .foregroundColor(.primary)
+                                        .multilineTextAlignment(.leading)
                                 }
                                 
                                 Spacer()
@@ -87,10 +84,11 @@ struct NotificationsView: View {
                                     .font(.caption2)
                                     .foregroundColor(.secondary)
                             }
+                            .padding()
+                            
+                            Divider()
                         }
                     }
-                        
-                    
                 }
             }
             .background(UniChatColor.dimmedYellow)

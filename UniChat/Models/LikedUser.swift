@@ -8,10 +8,11 @@
 import Foundation
 import CoreData
 
-// FIXME: do i really need this class ?
-public class LikedUser: NSManagedObject, Identifiable {
-    @NSManaged public var sender: String
-    @NSManaged public var receiver: String
-    @NSManaged public var id: UUID
-    @NSManaged public var timestamp: Date
+@objc(LikedUser)
+public class LikedUser: NSManagedObject {
+    @NSManaged public var username: String
+    
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<LikedUser> {
+        return NSFetchRequest<LikedUser>(entityName: "LikedUser")
+    }
 }
