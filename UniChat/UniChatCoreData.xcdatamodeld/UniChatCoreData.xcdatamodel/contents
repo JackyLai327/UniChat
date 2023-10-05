@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F82" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Discussion" representedClassName=".Discussion" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String"/>
+        <attribute name="discussionImage" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="numLikes" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="numReplies" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
@@ -11,15 +12,8 @@
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="username" optional="YES" attributeType="String"/>
         <relationship name="hasReplies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Reply"/>
-        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DiscussionImage" inverseName="underDiscussion" inverseEntity="DiscussionImage"/>
         <relationship name="likedUser" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LikedUser" inverseName="discussion" inverseEntity="LikedUser"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="hasDiscussions" inverseEntity="User"/>
-    </entity>
-    <entity name="DiscussionImage" representedClassName=".DiscussionImage" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="imageURLString" optional="YES" attributeType="String"/>
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="underDiscussion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Discussion" inverseName="images" inverseEntity="Discussion"/>
     </entity>
     <entity name="LecturerRating" representedClassName=".LecturerRating" syncable="YES">
         <attribute name="fun" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -35,6 +29,7 @@
         <attribute name="username" optional="YES" attributeType="String"/>
         <relationship name="discussion" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Discussion" inverseName="likedUser" inverseEntity="Discussion"/>
     </entity>
+    <entity name="Nil" representedClassName=".DiscussionImage" syncable="YES" codeGenerationType="class"/>
     <entity name="Notification" representedClassName=".Notification" syncable="YES">
         <attribute name="discussion" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>

@@ -22,6 +22,7 @@ public class Discussion: NSManagedObject, Identifiable {
     @NSManaged public var username: String
     @NSManaged public var targetType: String
     @NSManaged public var likedUser: NSSet?
+    @NSManaged public var discussionImage: String?
     
     // users that have liked this discussion will be stored in this likedUserArray
     public var likedUserArray: [LikedUser] {

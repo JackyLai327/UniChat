@@ -31,7 +31,6 @@
 		D308111D2AA85B1D00D4751B /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B1932A95F445009106A2 /* Discussion.swift */; };
 		D30811782AA8650D00D4751B /* UniChatCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D30811762AA8650D00D4751B /* UniChatCoreData.xcdatamodeld */; };
 		D308117A2AA876AC00D4751B /* LikedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30811792AA876AC00D4751B /* LikedUser.swift */; };
-		D308117C2AA876F900D4751B /* DiscussionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D308117B2AA876F900D4751B /* DiscussionImage.swift */; };
 		D30A30312AB434820022C988 /* CoreDataModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A30302AB434820022C988 /* CoreDataModelView.swift */; };
 		D30A30332AB5AED40022C988 /* UniversityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A30322AB5AED40022C988 /* UniversityData.swift */; };
 		D30A30A52AB854D50022C988 /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = D30A30A42AB854D50022C988 /* Auth0 */; };
@@ -57,7 +56,6 @@
 		D306C82B2A98878800E6A958 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		D30811772AA8650D00D4751B /* UniChatCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UniChatCoreData.xcdatamodel; sourceTree = "<group>"; };
 		D30811792AA876AC00D4751B /* LikedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUser.swift; sourceTree = "<group>"; };
-		D308117B2AA876F900D4751B /* DiscussionImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionImage.swift; sourceTree = "<group>"; };
 		D30A30302AB434820022C988 /* CoreDataModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModelView.swift; sourceTree = "<group>"; };
 		D30A30322AB5AED40022C988 /* UniversityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityData.swift; sourceTree = "<group>"; };
 		D3107C6E2AB9B4D10063E7BC /* ProfileDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsView.swift; sourceTree = "<group>"; };
@@ -260,7 +258,6 @@
 				D3F4B1822A95C6B6009106A2 /* Notification.swift */,
 				D3F4B1932A95F445009106A2 /* Discussion.swift */,
 				D30811792AA876AC00D4751B /* LikedUser.swift */,
-				D308117B2AA876F900D4751B /* DiscussionImage.swift */,
 				D3A8C25C2AA88A6E0024F989 /* User.swift */,
 				D3A8C25E2AA99F3E0024F989 /* UniRating.swift */,
 				D3A8C2602AA99FBD0024F989 /* LecturerRating.swift */,
@@ -392,7 +389,6 @@
 				D3A8C2AB2AB18F270024F989 /* KeychainManager.swift in Sources */,
 				D32898C12AC042E200051A43 /* Helper.swift in Sources */,
 				D3A8C25F2AA99F3E0024F989 /* UniRating.swift in Sources */,
-				D308117C2AA876F900D4751B /* DiscussionImage.swift in Sources */,
 				D30A30332AB5AED40022C988 /* UniversityData.swift in Sources */,
 				D308110C2AA85ABB00D4751B /* HeadingView.swift in Sources */,
 				D308110B2AA85AB700D4751B /* DiscussionView.swift in Sources */,

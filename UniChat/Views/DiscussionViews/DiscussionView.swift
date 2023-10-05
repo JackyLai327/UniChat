@@ -147,16 +147,31 @@ struct DiscussionView: View {
                 .padding(.horizontal, 30)
                 .padding(.top, 30)
               
-                Text(discussion.content)
-                    .font(.custom("discussion", size: 15))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, 40)
-                    .padding(.vertical, 10)
-                // FIXME: add image stuff in here
-//                Image(uiImage: discussion.images)
-//                    .frame(width: 150, height: 150)
-//                    .border(.black)
-//                    .padding(.bottom, 20)
+                
+                if discussion.discussionImage != nil {
+                    let data = Data(base64Encoded: discussion.discussionImage!)
+                    let uiImage = UIImage(data: data!)
+                    
+                    Text(discussion.content)
+                        .font(.custom("discussion", size: 15))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 40)
+                        .padding(.vertical, 10)
+                    
+                    Image(uiImage: (uiImage ?? UIImage(systemName: "photo.fill"))!)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 200)
+                        .frame(width: 200)
+                        .padding(.bottom, 20)
+                } else {
+                    Text(discussion.content)
+                        .font(.custom("discussion", size: 15))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 40)
+                        .padding(.vertical, 30)
+                }
+                
                 VStack (spacing: 0) {
                     Divider()
                         .frame(height: 1)
@@ -353,7 +368,7 @@ struct DiscussionView: View {
                 .foregroundColor(UniChatColor.brown)
                 .padding(.top, 200)
             Text("🧌")
-                .font(.custom("Troll", size: 200))
+                .font(.custom("Troll", size: 70))
         }
     }
     

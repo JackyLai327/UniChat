@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import _PhotosUI_SwiftUI
 
 struct WritePostView: View {
     
@@ -33,6 +34,11 @@ struct WritePostView: View {
     
     // alert will be shown when true
     @State var showAlert = false
+    
+    // for picking images when posting
+    @State var selectedImageItem: PhotosPickerItem?
+    @State var selectedImage: Image?
+    @State var selectedImageDataString: String?
     
     
     var body: some View {
@@ -72,10 +78,31 @@ struct WritePostView: View {
             }
             .padding(.horizontal, 20)
             
+            VStack {
+                if let selectedImage {
+                    selectedImage
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 300, height: 300)
+
+                }
+            }
+            .onChange(of: selectedImageItem) { _ in
+                    Task {
+                        if let data = try? await selectedImageItem?.loadTransferable(type: Data.self) {
+                            if let uiImage = UIImage(data: data) {
+                                selectedImage = Image(uiImage: uiImage)
+                                selectedImageDataString = uiImage.pngData()?.base64EncodedString()
+                                return
+                            }
+                        }
+
+                        print("Failed")
+                    }
+                }
+            
             HStack {
-                Button {
-                    // TODO: add this functionality for uplaoding images
-                } label: {
+                PhotosPicker(selection: $selectedImageItem, matching: .images) {
                     Image(systemName: "photo.on.rectangle.angled")
                         .resizable()
                         .scaledToFit()
@@ -100,6 +127,9 @@ struct WritePostView: View {
                         // reset the content and target
                         content = ""
                         target = ""
+                        selectedImage = nil
+                        selectedImageItem = nil
+                        selectedImageDataString = ""
                     } else {
                         showAlert = true
                     }
@@ -107,7 +137,7 @@ struct WritePostView: View {
                     Image(systemName: "square.and.arrow.up")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 40)
+                        .frame(width: 30)
                         .foregroundColor(UniChatColor.brightYellow)
                         .padding(30)
                         .frame(maxWidth: .infinity, alignment: .trailing)
@@ -132,6 +162,10 @@ struct WritePostView: View {
         discussion.timestamp = Date()
         discussion.username = user
         discussion.targetType = targetType
+        
+        if (selectedImageDataString != nil) {
+            discussion.discussionImage = selectedImageDataString
+        }
         
         do {
             try context.save()

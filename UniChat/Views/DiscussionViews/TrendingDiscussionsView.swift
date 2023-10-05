@@ -19,13 +19,6 @@ struct TrendingDiscussionsView: View {
         entity: Discussion.entity(),
         sortDescriptors: [ NSSortDescriptor(keyPath: \Discussion.numLikes, ascending: false) ])
     var discussions: FetchedResults<Discussion>
-
-    
-    // fetch images from core data
-    @FetchRequest(
-        entity: DiscussionImage.entity(),
-        sortDescriptors: [ NSSortDescriptor(keyPath: \DiscussionImage.timestamp, ascending: false) ])
-    var images: FetchedResults<DiscussionImage>
     
     // for tab selection
     @State var uniTabSelected = true
@@ -83,7 +76,9 @@ struct TrendingDiscussionsView: View {
                                 numLikes: Int(discussion.numLikes),
                                 numReplies: Int(discussion.numReplies),
                                 numShares: Int(discussion.numShares),
-                                timestamp: discussion.timestamp)
+                                timestamp: discussion.timestamp,
+                                imageDataString: discussion.discussionImage ?? ""
+                            )
                         }
                     }
                 }
@@ -99,7 +94,9 @@ struct TrendingDiscussionsView: View {
                                 numLikes: Int(discussion.numLikes),
                                 numReplies: Int(discussion.numReplies),
                                 numShares: Int(discussion.numShares),
-                                timestamp: discussion.timestamp)
+                                timestamp: discussion.timestamp,
+                                imageDataString: discussion.discussionImage ?? ""
+                            )
                         }
                     }
                 }
@@ -126,7 +123,7 @@ struct TrendingDiscussionsView: View {
     }
     
     // display the each discussion is a preview card mode
-    private func discussionCard(username: String, target: String, content: String, numLikes: Int, numReplies: Int, numShares: Int, timestamp: Date) -> some View {
+    private func discussionCard(username: String, target: String, content: String, numLikes: Int, numReplies: Int, numShares: Int, timestamp: Date, imageDataString: String) -> some View {
         return HStack {
             VStack {
                 Text(username + " • " + target)
@@ -185,7 +182,10 @@ struct TrendingDiscussionsView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
             
-            Image("trendingDiscussions")
+            let data = Data(base64Encoded: imageDataString)
+            let uiImage = UIImage(data: data!)
+            
+            Image(uiImage: (uiImage ?? UIImage(systemName: "photo.fill"))!)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 70)
