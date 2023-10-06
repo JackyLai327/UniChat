@@ -361,14 +361,14 @@ struct DiscussionView: View {
     // displayed when discussion ID is not stored in core data
     var discussionNotFound: some View {
         VStack {
+            Text("🧌")
+                .font(.custom("Troll", size: 70))
+                .padding(.top, 200)
             Text("This discussion is devoured by trolls...")
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity, alignment: .center)
-                .font(.title.bold())
+                .font(.headline.bold())
                 .foregroundColor(UniChatColor.brown)
-                .padding(.top, 200)
-            Text("🧌")
-                .font(.custom("Troll", size: 70))
         }
     }
     

@@ -63,5 +63,10 @@
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="username" optional="YES" attributeType="String"/>
         <relationship name="hasDiscussions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Discussion" inverseName="user" inverseEntity="Discussion"/>
+        <relationship name="verifiedUni" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VerifiedUni" inverseName="user" inverseEntity="VerifiedUni"/>
+    </entity>
+    <entity name="VerifiedUni" representedClassName=".VerifiedUni" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="user" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="verifiedUni" inverseEntity="User"/>
     </entity>
 </model>

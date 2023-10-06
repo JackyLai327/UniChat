@@ -38,6 +38,9 @@
 		D32898BE2AC0158200051A43 /* LecturerList.json in Resources */ = {isa = PBXBuildFile; fileRef = D32898BD2AC0158200051A43 /* LecturerList.json */; };
 		D32898C12AC042E200051A43 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32898C02AC042E200051A43 /* Helper.swift */; };
 		D32899032ACD7E4200051A43 /* UpUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32899022ACD7E4200051A43 /* UpUser.swift */; };
+		D32899052AD0302B00051A43 /* VerifiedUni.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32899042AD0302B00051A43 /* VerifiedUni.swift */; };
+		D32899092AD03BCC00051A43 /* VerificationCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32899082AD03BCC00051A43 /* VerificationCameraView.swift */; };
+		D328990C2AD03DB300051A43 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D328990B2AD03DB300051A43 /* CameraView.swift */; };
 		D38B48BE2ABAE8B1002E1333 /* FaviconFinder in Frameworks */ = {isa = PBXBuildFile; productRef = D38B48BD2ABAE8B1002E1333 /* FaviconFinder */; };
 		D3A8C25D2AA88A6E0024F989 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C25C2AA88A6E0024F989 /* User.swift */; };
 		D3A8C25F2AA99F3E0024F989 /* UniRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C25E2AA99F3E0024F989 /* UniRating.swift */; };
@@ -62,6 +65,9 @@
 		D32898BD2AC0158200051A43 /* LecturerList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LecturerList.json; sourceTree = "<group>"; };
 		D32898C02AC042E200051A43 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		D32899022ACD7E4200051A43 /* UpUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpUser.swift; sourceTree = "<group>"; };
+		D32899042AD0302B00051A43 /* VerifiedUni.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiedUni.swift; sourceTree = "<group>"; };
+		D32899082AD03BCC00051A43 /* VerificationCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCameraView.swift; sourceTree = "<group>"; };
+		D328990B2AD03DB300051A43 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		D3A8C25C2AA88A6E0024F989 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D3A8C25E2AA99F3E0024F989 /* UniRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniRating.swift; sourceTree = "<group>"; };
 		D3A8C2602AA99FBD0024F989 /* LecturerRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LecturerRating.swift; sourceTree = "<group>"; };
@@ -155,6 +161,8 @@
 				D3F4B1772A94D747009106A2 /* UsernameAndPasswordView.swift */,
 				D3F4B1792A94D7B0009106A2 /* VerificationView.swift */,
 				D3F4B17D2A94D8FA009106A2 /* ReportAProblemView.swift */,
+				D32899082AD03BCC00051A43 /* VerificationCameraView.swift */,
+				D328990B2AD03DB300051A43 /* CameraView.swift */,
 			);
 			path = SettingsViews;
 			sourceTree = "<group>";
@@ -263,6 +271,7 @@
 				D3A8C2602AA99FBD0024F989 /* LecturerRating.swift */,
 				D30A30322AB5AED40022C988 /* UniversityData.swift */,
 				D32899022ACD7E4200051A43 /* UpUser.swift */,
+				D32899042AD0302B00051A43 /* VerifiedUni.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -368,8 +377,10 @@
 				D30811782AA8650D00D4751B /* UniChatCoreData.xcdatamodeld in Sources */,
 				D308117A2AA876AC00D4751B /* LikedUser.swift in Sources */,
 				D3A8C25D2AA88A6E0024F989 /* User.swift in Sources */,
+				D32899052AD0302B00051A43 /* VerifiedUni.swift in Sources */,
 				D3107C6F2AB9B4D10063E7BC /* ProfileDetailsView.swift in Sources */,
 				D32899032ACD7E4200051A43 /* UpUser.swift in Sources */,
+				D328990C2AD03DB300051A43 /* CameraView.swift in Sources */,
 				D308110D2AA85AD600D4751B /* ContentView.swift in Sources */,
 				D308110E2AA85AD600D4751B /* FeatureTabView.swift in Sources */,
 				D308110F2AA85AD600D4751B /* MyDiscussionsView.swift in Sources */,
@@ -378,6 +389,7 @@
 				D30811122AA85AD600D4751B /* PushNotificationsView.swift in Sources */,
 				D30811132AA85AD600D4751B /* ReportAProblemView.swift in Sources */,
 				D30811142AA85AD600D4751B /* SettingsView.swift in Sources */,
+				D32899092AD03BCC00051A43 /* VerificationCameraView.swift in Sources */,
 				D30811152AA85AD600D4751B /* TrendingDiscussionsView.swift in Sources */,
 				D30811162AA85AD600D4751B /* UsernameAndPasswordView.swift in Sources */,
 				D30811172AA85AD600D4751B /* VerificationView.swift in Sources */,
@@ -526,6 +538,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UniChat/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "The app needs to save the photo to your library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -555,6 +568,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UniChat/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "The app needs to save the photo to your library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

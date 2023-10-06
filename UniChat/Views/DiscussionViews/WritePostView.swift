@@ -21,7 +21,7 @@ struct WritePostView: View {
     @State private var targetType = ""
     
     // temporary list of unis
-    var listOfUni = ["RMIT University", "Melbourne University"]
+    var listOfUni = ["Royal Melbourne Insitute of Technology", "Melbourne University"]
     
     // temporary list of lecturers
     var listOfLecturer = ["Shekhar Kalra"]
