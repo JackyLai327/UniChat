@@ -41,8 +41,8 @@ struct SettingsView: View {
             NavigationLink("my discussions", destination: MyDiscussionsView())
             NavigationLink("username and password", destination: UsernameAndPasswordView())
             NavigationLink("verification", destination: VerificationView())
-            NavigationLink("push notifications", destination: PushNotificationsView())
-            NavigationLink("report a problem", destination: ReportAProblemView())
+//            NavigationLink("push notifications", destination: PushNotificationsView())
+//            NavigationLink("report a problem", destination: ReportAProblemView())
         }
         .background(UniChatColor.dimmedYellow)
     }

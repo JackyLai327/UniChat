@@ -182,13 +182,15 @@ struct TrendingDiscussionsView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
             
-            let data = Data(base64Encoded: imageDataString)
-            let uiImage = UIImage(data: data!)
+            if imageDataString != "" {
+                let data = Data(base64Encoded: imageDataString)
+                let uiImage = UIImage(data: data!)
             
-            Image(uiImage: (uiImage ?? UIImage(systemName: "photo.fill"))!)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 70)
+                Image(uiImage: (uiImage ?? UIImage(systemName: "photo.fill"))!)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 70)
+            }
         }
         .frame(maxWidth: .infinity)
         .padding(20)

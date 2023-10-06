@@ -215,10 +215,15 @@ struct MyDiscussionsView: View {
             let data = Data(base64Encoded: imageDataString)
             let uiImage = UIImage(data: data!)
             
-            Image(uiImage: (uiImage ?? UIImage(systemName: "photo.fill"))!)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 70)
+            if imageDataString != "" {
+                let data = Data(base64Encoded: imageDataString)
+                let uiImage = UIImage(data: data!)
+            
+                Image(uiImage: (uiImage ?? UIImage(systemName: "photo.fill"))!)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 70)
+            }
         }
         .frame(maxWidth: .infinity)
         .padding(20)
