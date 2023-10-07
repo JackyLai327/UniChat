@@ -41,6 +41,8 @@
 		D32899052AD0302B00051A43 /* VerifiedUni.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32899042AD0302B00051A43 /* VerifiedUni.swift */; };
 		D32899092AD03BCC00051A43 /* VerificationCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32899082AD03BCC00051A43 /* VerificationCameraView.swift */; };
 		D328990C2AD03DB300051A43 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D328990B2AD03DB300051A43 /* CameraView.swift */; };
+		D32899142AD1793A00051A43 /* UniChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32899132AD1793A00051A43 /* UniChatTests.swift */; };
+		D328991D2AD179FE00051A43 /* HelperFunctionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D328991C2AD179FE00051A43 /* HelperFunctionsTest.swift */; };
 		D38B48BE2ABAE8B1002E1333 /* FaviconFinder in Frameworks */ = {isa = PBXBuildFile; productRef = D38B48BD2ABAE8B1002E1333 /* FaviconFinder */; };
 		D3A8C25D2AA88A6E0024F989 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C25C2AA88A6E0024F989 /* User.swift */; };
 		D3A8C25F2AA99F3E0024F989 /* UniRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C25E2AA99F3E0024F989 /* UniRating.swift */; };
@@ -55,6 +57,16 @@
 		D3F4B1982A971878009106A2 /* RepliesData.json in Resources */ = {isa = PBXBuildFile; fileRef = D3F4B1972A971878009106A2 /* RepliesData.json */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D32899152AD1793A00051A43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D3F4B14A2A94816D009106A2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D3F4B1512A94816D009106A2;
+			remoteInfo = UniChat;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		D306C82B2A98878800E6A958 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		D30811772AA8650D00D4751B /* UniChatCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UniChatCoreData.xcdatamodel; sourceTree = "<group>"; };
@@ -68,6 +80,9 @@
 		D32899042AD0302B00051A43 /* VerifiedUni.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiedUni.swift; sourceTree = "<group>"; };
 		D32899082AD03BCC00051A43 /* VerificationCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCameraView.swift; sourceTree = "<group>"; };
 		D328990B2AD03DB300051A43 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		D32899112AD1793A00051A43 /* UniChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UniChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D32899132AD1793A00051A43 /* UniChatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniChatTests.swift; sourceTree = "<group>"; };
+		D328991C2AD179FE00051A43 /* HelperFunctionsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctionsTest.swift; sourceTree = "<group>"; };
 		D3A8C25C2AA88A6E0024F989 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D3A8C25E2AA99F3E0024F989 /* UniRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniRating.swift; sourceTree = "<group>"; };
 		D3A8C2602AA99FBD0024F989 /* LecturerRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LecturerRating.swift; sourceTree = "<group>"; };
@@ -104,6 +119,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D328990E2AD1793A00051A43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D3F4B14F2A94816D009106A2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -167,6 +189,15 @@
 			path = SettingsViews;
 			sourceTree = "<group>";
 		};
+		D32899122AD1793A00051A43 /* UniChatTests */ = {
+			isa = PBXGroup;
+			children = (
+				D32899132AD1793A00051A43 /* UniChatTests.swift */,
+				D328991C2AD179FE00051A43 /* HelperFunctionsTest.swift */,
+			);
+			path = UniChatTests;
+			sourceTree = "<group>";
+		};
 		D38B48BF2ABC1869002E1333 /* CoreDataStack */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +238,7 @@
 			children = (
 				D3C2BC3D2AA7227D00F9A747 /* README.md */,
 				D3F4B1542A94816D009106A2 /* UniChat */,
+				D32899122AD1793A00051A43 /* UniChatTests */,
 				D3F4B1532A94816D009106A2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -215,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				D3F4B1522A94816D009106A2 /* UniChat.app */,
+				D32899112AD1793A00051A43 /* UniChatTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -290,6 +323,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D32899102AD1793A00051A43 /* UniChatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D32899192AD1793B00051A43 /* Build configuration list for PBXNativeTarget "UniChatTests" */;
+			buildPhases = (
+				D328990D2AD1793A00051A43 /* Sources */,
+				D328990E2AD1793A00051A43 /* Frameworks */,
+				D328990F2AD1793A00051A43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D32899162AD1793A00051A43 /* PBXTargetDependency */,
+			);
+			name = UniChatTests;
+			productName = UniChatTests;
+			productReference = D32899112AD1793A00051A43 /* UniChatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D3F4B1512A94816D009106A2 /* UniChat */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3F4B1602A94816F009106A2 /* Build configuration list for PBXNativeTarget "UniChat" */;
@@ -321,6 +372,10 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					D32899102AD1793A00051A43 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = D3F4B1512A94816D009106A2;
+					};
 					D3F4B1512A94816D009106A2 = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
@@ -344,11 +399,19 @@
 			projectRoot = "";
 			targets = (
 				D3F4B1512A94816D009106A2 /* UniChat */,
+				D32899102AD1793A00051A43 /* UniChatTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D328990F2AD1793A00051A43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D3F4B1502A94816D009106A2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -410,9 +473,60 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D328990D2AD1793A00051A43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D32899142AD1793A00051A43 /* UniChatTests.swift in Sources */,
+				D328991D2AD179FE00051A43 /* HelperFunctionsTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D32899162AD1793A00051A43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D3F4B1512A94816D009106A2 /* UniChat */;
+			targetProxy = D32899152AD1793A00051A43 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		D32899172AD1793B00051A43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = None.UniChatTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UniChat.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/UniChat";
+			};
+			name = Debug;
+		};
+		D32899182AD1793B00051A43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = None.UniChatTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UniChat.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/UniChat";
+			};
+			name = Release;
+		};
 		D3F4B15E2A94816F009106A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -590,6 +704,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D32899192AD1793B00051A43 /* Build configuration list for PBXNativeTarget "UniChatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D32899172AD1793B00051A43 /* Debug */,
+				D32899182AD1793B00051A43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D3F4B14D2A94816D009106A2 /* Build configuration list for PBXProject "UniChat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

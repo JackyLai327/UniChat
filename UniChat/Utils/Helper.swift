@@ -15,6 +15,11 @@ public class Helper {
     public func ratingToStars(rating: Double) -> String {
         var retString = ""
         
+        // return with no stars for invalid rating values
+        if rating < 0.0 || rating > 5.0 {
+            return "🌑🌑🌑🌑🌑"
+        }
+        
         // break up whole number and decimal parts
         let (wholeString, decimalString) = modf(rating)
         
@@ -38,8 +43,18 @@ public class Helper {
     }
     
     // converts from stars to rating
+    // 1 full moon = 1 point
+    // 1 half moon = 0.5 point
+    // 1 shaded moon = 0.0 point
+    // @param stars: String => the star string represented by different shades of moons
+    // @return: Double => the rating converted from the stars values
     public func starsToRating(stars: String) -> Double {
         var retDouble = 0.0
+        
+        // return 0.0 for invalid star values
+        if stars.count != 5 {
+            return retDouble
+        }
         
         for index in stars.indices {
             if stars[index] == "🌕" {
@@ -50,7 +65,11 @@ public class Helper {
         return retDouble
     }
     
-    // calculate new average to store in database
+    // calculate new average rating to store in database
+    // @param averageRating: Double => the average rating stored in core data
+    // @param newRating: Double => the new rating provided by user
+    // @param count: Int => the amount of ratings that was stored in the database
+    // @return: Double => the new calculated average
     public func calculateAverage(averageRating: Double, newRating: Double, count: Int) -> Double {
         var retDouble: Double = 0.0
         
