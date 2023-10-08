@@ -415,6 +415,7 @@ struct ProfileDetailsView: View {
             .frame(maxWidth: .infinity)
             .background(UniChatColor.dimmedYellow)
         }
+        
         // custom navigation back button
         .navigationBarBackButtonHidden(true)
         .toolbar{
@@ -435,11 +436,6 @@ struct ProfileDetailsView: View {
             
         }
     }
-    
-    // rating logic
-//    private func rateCriteira(criteria: String, rating: Double) -> Double {
-//
-//    }
     
     // shown when no discussion related to this profile is found
     var noDiscussions: some View {

@@ -147,8 +147,8 @@ struct LogInView: View {
                 VStack {
                     Text("Haven't got an account?")
                     Text("Sign up Here")
+                        .underline()
                 }
-                .underline()
                 .foregroundColor(.secondary)
             }
             .padding(.vertical, 10)

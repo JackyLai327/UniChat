@@ -14,6 +14,10 @@ struct DiscussionView: View {
     // to use the context provided by core data
     @Environment(\.managedObjectContext) var context
     
+    // to show delete reply
+    @State var showDelete = false
+
+    
     // fetch discussions from core data
     @FetchRequest(
         entity: Discussion.entity(),
@@ -37,9 +41,6 @@ struct DiscussionView: View {
     
     // for user to write a new reply
     @State var newReply: String = ""
-    
-    // delete a reply option
-    @State var showDelete = false
     
     // user defaults
     let defaults = UserDefaults.standard
@@ -81,6 +82,7 @@ struct DiscussionView: View {
                 Spacer()
             }
         }
+        
         // custom navigation back button
         .navigationBarBackButtonHidden(true)
         .toolbar{
@@ -112,7 +114,7 @@ struct DiscussionView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.headline)
                             .foregroundColor(UniChatColor.brown)
-                            
+                           
                         Text("🎓 \(discussion.target)")
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.headline)
@@ -210,7 +212,7 @@ struct DiscussionView: View {
                             pressShare(discussion: discussion)
                         } label: {
                             HStack {
-                                Image(systemName: "arrowshape.turn.up.right.fill")
+                                Image(systemName: "link")
                                     .foregroundColor(UniChatColor.brightYellow)
                                 Text("copy link")
                                     .foregroundColor(UniChatColor.brown)
@@ -229,7 +231,8 @@ struct DiscussionView: View {
     
     // contains all the replies for this dedicated discussion
     var repliesSection: some View {
-        VStack {
+        
+        return VStack {
             let replies = replies.filter({$0.discussion == discussionID}).sorted(by: {$0.numUps >= $1.numUps})
             
             if replies.count > 0 {
@@ -252,11 +255,12 @@ struct DiscussionView: View {
                         }
                         .padding(.leading, 20)
                         .padding(.top, 10)
+
                         
                         Spacer()
                         
                         Button {
-                            // FIXME: up mechanism needs help
+                            // up mechanism
                             let currentUsername = UserDefaults.standard.string(forKey: "currentUsername")!
                             
                             if let user = reply.upUserArray.first(where: {$0.username == currentUsername}) {
@@ -284,7 +288,7 @@ struct DiscussionView: View {
                             .padding(.trailing, 20)
                             .offset(y: 5)
                         }
-                        if showDelete {
+                        if $showDelete.wrappedValue && reply.username == defaults.string(forKey: "currentUsername") {
                             Text("delete")
                                 .padding(5)
                                 .background(.red)
@@ -302,11 +306,13 @@ struct DiscussionView: View {
                                 }
                         }
                     }
+                    .contentShape(Rectangle())
                     .onTapGesture {
                         if reply.username == defaults.string(forKey: "currentUsername") {
-                            showDelete = true
+                            showDelete = !showDelete
                         }
                     }
+                    
                     
                     Divider()
                         .overlay(UniChatColor.brown)
@@ -315,6 +321,7 @@ struct DiscussionView: View {
                 noRepliesFound
             }
         }
+
     }
     
     // the input field where people join a discussion (add comments)

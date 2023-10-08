@@ -244,6 +244,7 @@ struct ProfileView: View {
                 }
             }
         }
+        .background(UniChatColor.dimmedYellow)
     }
     
     // list of lectueres based on search queries

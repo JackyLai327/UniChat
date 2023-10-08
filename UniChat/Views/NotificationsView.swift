@@ -91,8 +91,8 @@ struct NotificationsView: View {
                     }
                 }
             }
-            .background(UniChatColor.dimmedYellow)
         }
+        .background(UniChatColor.dimmedYellow)
     }
 }
 

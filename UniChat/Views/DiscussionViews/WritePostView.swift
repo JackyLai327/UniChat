@@ -21,7 +21,7 @@ struct WritePostView: View {
     @State private var targetType = ""
     
     // temporary list of unis
-    var listOfUni = ["Royal Melbourne Insitute of Technology", "Melbourne University"]
+    var listOfUni = ["Royal Melbourne Institute of Technology", "Melbourne University"]
     
     // temporary list of lecturers
     var listOfLecturer = ["Shekhar Kalra"]
@@ -39,6 +39,9 @@ struct WritePostView: View {
     @State var selectedImageItem: PhotosPickerItem?
     @State var selectedImage: Image?
     @State var selectedImageDataString: String?
+    
+    // for redirecting user after posting a discussion
+    @State var discussionSubmitted = false
     
     
     var body: some View {
@@ -130,9 +133,13 @@ struct WritePostView: View {
                         selectedImage = nil
                         selectedImageItem = nil
                         selectedImageDataString = ""
+                        
+                        // redirect user
+                        discussionSubmitted = true
                     } else {
                         showAlert = true
                     }
+                    
                 } label: {
                     Image(systemName: "square.and.arrow.up")
                         .resizable()
@@ -141,6 +148,9 @@ struct WritePostView: View {
                         .foregroundColor(UniChatColor.brightYellow)
                         .padding(30)
                         .frame(maxWidth: .infinity, alignment: .trailing)
+                    
+                    NavigationLink("", destination: FeatureTabView(), isActive: $discussionSubmitted)
+                        .hidden()
                 }
                 .alert(isPresented: $showAlert) {
                     discussionCreationAlert as! Alert
