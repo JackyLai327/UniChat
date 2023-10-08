@@ -24,7 +24,6 @@ struct UsernameAndPasswordView: View {
                 VStack {
                     HStack {
                         Text("Username:")
-                            .frame(maxWidth: .infinity, alignment: .leading)
                         Text("\(defaults.string(forKey: "currentUsername") ?? "username unknown")")
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }

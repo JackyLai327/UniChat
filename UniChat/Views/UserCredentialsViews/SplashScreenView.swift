@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SplashScreenView: View {
+    // current colout scheme
+    @Environment(\.colorScheme) var colorScheme
     
     // for splsh wait time
     @State var timeElapsed = false
@@ -64,9 +66,16 @@ struct SplashScreenView: View {
     
     var logoSplash: some View {
         VStack {
-            Image("logoBrown")
-                .padding(.vertical, 40)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            if colorScheme == .dark {
+                Image("logoBrown")
+                    .padding(.vertical, 40)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                Image("logo")
+                    .padding(.vertical, 40)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+            
         }
         .background(UniChatColor.dimmedYellow)
     }
@@ -173,9 +182,7 @@ struct SplashScreenView: View {
             .background(UniChatColor.babyblue)
             .cornerRadius(20)
             .shadow(radius: 5)
-            .padding(.bottom,30)
-            
-            
+            .padding(.bottom, 80)
             
             NavigationLink (destination: LogInView()) {
                 Text("Log in / Sign up Now")
@@ -188,7 +195,11 @@ struct SplashScreenView: View {
             }
             .padding(.bottom, 40)
             
-            Image("logoBrown")
+            if colorScheme == .dark {
+                Image("logoBrown")
+            } else {
+                Image("logo")
+            }
         }
         .padding(.bottom, 60)
     }

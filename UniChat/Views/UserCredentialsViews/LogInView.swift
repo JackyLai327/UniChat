@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct LogInView: View {
+    // current colout scheme
+    @Environment(\.colorScheme) var colorScheme
+    
     // for custom back button dismiss action
     @Environment(\.dismiss) private var dismiss
     
@@ -18,6 +21,8 @@ struct LogInView: View {
     // user defaults to store user details
     let defaults = UserDefaults.standard
     
+    // keychain manager
+    let keychainManager = KeychainManager()
     
     // read from user entity
     @FetchRequest(
@@ -62,6 +67,7 @@ struct LogInView: View {
                     TextField("Username", text: $username)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 15)
+                        .foregroundColor(UniChatColor.lightBrown)
                 }
                 .padding(.horizontal, 40)
             }
@@ -79,6 +85,7 @@ struct LogInView: View {
                     SecureField("Password", text: $password)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 15)
+                        .foregroundColor(UniChatColor.lightBrown)
                 }
                 .padding(.horizontal, 40)
             }
@@ -108,6 +115,13 @@ struct LogInView: View {
                     // store user in user defaults
                     defaults.set(username, forKey: "currentUsername")
                     defaults.set(password, forKey: "currentPassword")
+                    
+                    // store the credential in keychain
+                    do {
+                        try keychain.addCredential(credential: Credentials(username: username, password: password))
+                    } catch {
+                        print(error)
+                    }
                     
                     // redirect user to trending discussion
                     userLoggedIn = true
@@ -139,8 +153,13 @@ struct LogInView: View {
             }
             .padding(.vertical, 10)
 
-            Image("logo")
-                .padding(.vertical, 40)
+            if colorScheme == .dark {
+                Image("logoBrown")
+                    .padding(.vertical, 40)
+            } else {
+                Image("logo")
+                    .padding(.vertical, 40)
+            }
         }
         .padding()
         .background(UniChatColor.headerYellow)

@@ -118,5 +118,54 @@ class CounterViewModelTest: XCTestCase {
         XCTAssertEqual(expectedResult, actualResult)
     }
     
+    // test new average with valid upper bound new rating value
+    func testCalculateAverageValidUpperBoundNewRating() {
+        // arrange
+        let helper = Helper()
+        let averageRating = 1.0
+        let newRating = 5.0
+        let count = 2
+        
+        let expectedResult = 3.0
+        
+        // act
+        let actualResult = helper.calculateAverage(averageRating: averageRating, newRating: newRating, count: count)
+        
+        // assert
+        XCTAssertEqual(expectedResult, actualResult)
+    }
     
+    // test new average with valid lower bound new rating value
+    func testCalculateAverageValidLowerBoundNewRating() {
+        // arrange
+        let helper = Helper()
+        let averageRating = 5.0
+        let newRating = 0.0
+        let count = 2
+        
+        let expectedResult = 2.5
+        
+        // act
+        let actualResult = helper.calculateAverage(averageRating: averageRating, newRating: newRating, count: count)
+        
+        // assert
+        XCTAssertEqual(expectedResult, actualResult)
+    }
+    
+    // test new average with invlaid (out of bound) value
+    func testCalculateAverageInvalidOutOfBoundNewRating() {
+        // arrange
+        let helper = Helper()
+        let averageRating = 3.5
+        let newRating = 5.1
+        let count = 2
+        
+        let expectedResult = averageRating
+        
+        // act
+        let actualResult = helper.calculateAverage(averageRating: averageRating, newRating: newRating, count: count)
+        
+        // assert
+        XCTAssertEqual(expectedResult, actualResult)
+    }
 }

@@ -65,6 +65,30 @@ class KeychainManager {
         
         return crendentials
     }
+    
+    func deleteCredentials(credential: Credentials) throws {
+        
+        let accountUsername = credential.username
+        let accountPassword = credential.password.data(using: .utf8)!
+        
+        // Create a query dictionary with the attributes of the item to be deleted
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassInternetPassword,
+            kSecAttrAccount as String: accountUsername,
+            kSecAttrServer as String: KeychainManager.server,
+            kSecValueData as String: accountPassword
+        ]
+        
+        // Delete the item from the keychain
+        let status = SecItemDelete(query as CFDictionary)
+        
+        // Check the status of the deletion operation
+        if status != errSecSuccess {
+            print("Failed to delete keychain item. Status: \(status)")
+        } else {
+            print("Keychain item deleted successfully.")
+        }
+    }
 }
 
 

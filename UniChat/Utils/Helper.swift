@@ -12,6 +12,11 @@ public class Helper {
     init() {}
     
     // converts ratings (double type) into a string of moon emojis
+    // each point gets converted to a moon
+    // decimal points get converted into one half moon
+    // fill out the rest of the stars string with shaded moons
+    // @param rating: Double => decimal representation of rating of a uni/lecturer
+    // @return: String => stars representation of a rating
     public func ratingToStars(rating: Double) -> String {
         var retString = ""
         
@@ -72,6 +77,11 @@ public class Helper {
     // @return: Double => the new calculated average
     public func calculateAverage(averageRating: Double, newRating: Double, count: Int) -> Double {
         var retDouble: Double = 0.0
+        
+        // return original average value if invalid inputs are received
+        if newRating < 0.0 || newRating > 5.0 {
+            return averageRating
+        }
         
         if count == 0 {
             retDouble = 0.0

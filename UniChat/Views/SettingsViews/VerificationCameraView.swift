@@ -72,7 +72,7 @@ struct VerificationCameraView: View {
                         }
                     }
                     .padding()
-                    .background(Color.white)
+                    .background(UniChatColor.white)
                     .cornerRadius(25)
                     .padding()
                     
@@ -95,7 +95,7 @@ struct VerificationCameraView: View {
                         }
                     }
                     .padding()
-                    .background(Color.white)
+                    .background(UniChatColor.white)
                     .cornerRadius(25)
                     .padding()
                     

@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SignUpView: View {
+    // current colout scheme
+    @Environment(\.colorScheme) var colorScheme
+    
     // for custom back button dismiss action
     @Environment(\.dismiss) private var dismiss
     
@@ -169,13 +172,13 @@ struct SignUpView: View {
                         print(error)
                     }
                     
+                    // redirect user to trending discussions
+                    userLoggedIn = true
+                    
                     // reset all textfields after account creation
                     username = ""
                     password = ""
                     confirmPassword = ""
-                    
-                    // redirect user to trending discussions
-                    userLoggedIn = true
                     
                 // if any is not right show error
                 } else {
@@ -197,8 +200,13 @@ struct SignUpView: View {
                 userCreationAlert as! Alert
             }
             
-            Image("logo")
-                .padding(.vertical, 40)
+            if colorScheme == .dark {
+                Image("logoBrown")
+                    .padding(.vertical, 40)
+            } else {
+                Image("logo")
+                    .padding(.vertical, 40)
+            }
         }
         .padding()
         .onChange(of: username, perform: { newVal in

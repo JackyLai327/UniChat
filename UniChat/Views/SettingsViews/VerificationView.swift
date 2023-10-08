@@ -38,7 +38,7 @@ struct VerificationView: View {
                     }
                 }
                 .padding()
-                .background(Color.white)
+                .background(UniChatColor.white)
                 .cornerRadius(20)
                 .padding()
             }
