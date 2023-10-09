@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Struct used to store a user's username and password.
 struct Credentials {
     var username: String
     var password: String
@@ -18,9 +19,12 @@ enum KeychainError: Error {
     case unhandledError(status: OSStatus)
 }
 
+/// Manages items in keychian.
 class KeychainManager {
     static let server = ""
     
+    /// Adds a Credential object to keychain.
+    /// - Parameter credential: Username and Password to into keychain.
     func addCredential(credential: Credentials) throws {
         
         let accountUsername = credential.username
@@ -37,6 +41,8 @@ class KeychainManager {
         guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
     }
     
+    /// Reads from the keychain for items.
+    /// - Returns: The Credential object stored as a keychain item.
     func retrieveCredentials() throws -> Credentials {
         
         let query: [String: Any] = [
@@ -66,6 +72,8 @@ class KeychainManager {
         return crendentials
     }
     
+    /// Remove unused/unnecessary Credential objecy from keychian items.
+    /// - Parameter credential: The Credential object with username and password to remove.
     func deleteCredentials(credential: Credentials) throws {
         
         let accountUsername = credential.username

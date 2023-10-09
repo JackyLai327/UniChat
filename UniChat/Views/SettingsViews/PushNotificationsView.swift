@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Displays Push Notification settings (under development)
 struct PushNotificationsView: View {
     // for dismiss action
     @Environment(\.dismiss) private var dismiss

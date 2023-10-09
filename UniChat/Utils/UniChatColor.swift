@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-// custom colours added for application
+/// Custom colours to be used in this project.
 struct UniChatColor {
     static let brightYellow = Color("BrightYellow")
     static let brown = Color("Brown")

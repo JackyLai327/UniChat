@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Displays ratings of profile and discussions targeted to this profile
 struct ProfileDetailsView: View {
     // for dismiss action
     @Environment(\.dismiss) private var dismiss
@@ -408,7 +409,9 @@ struct ProfileDetailsView: View {
                             numLikes: Int(discussion.numLikes),
                             numReplies: Int(discussion.numReplies),
                             numShares: Int(discussion.numShares),
-                            timestamp: discussion.timestamp)
+                            timestamp: discussion.timestamp,
+                            imageDataString: discussion.discussionImage ?? ""
+                        )
                     }
                 }
             }
@@ -449,8 +452,18 @@ struct ProfileDetailsView: View {
         }
     }
     
-    // display the each discussion is a preview card mode
-    private func discussionCard(username: String, target: String, content: String, numLikes: Int, numReplies: Int, numShares: Int, timestamp: Date) -> some View {
+    /// Display the each discussion is a preview card mode
+    /// - Parameters:
+    ///   - username: The username that wrote of the discussion
+    ///   - target: The target this discussion if for
+    ///   - content: The content of this discussion
+    ///   - numLikes: The number of likes under this discussion
+    ///   - numReplies: The number of replies under this discussion
+    ///   - numShares: The number of shares under this discussion
+    ///   - timestamp: The timestamp this discussion was created at
+    ///   - imageDataString: The image data string this (if any) that was attatched to this discussion
+    /// - Returns: A discussion card HStack View
+    private func discussionCard(username: String, target: String, content: String, numLikes: Int, numReplies: Int, numShares: Int, timestamp: Date, imageDataString: String) -> some View {
         return HStack {
             VStack {
                 Text(username + " • " + target)
@@ -501,10 +514,15 @@ struct ProfileDetailsView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
             
-            Image("trendingDiscussions")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 70)
+            if imageDataString != "" {
+                let data = Data(base64Encoded: imageDataString)
+                let uiImage = UIImage(data: data!)
+            
+                Image(uiImage: (uiImage ?? UIImage(systemName: "photo.fill"))!)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 70)
+            }
         }
         .frame(maxWidth: .infinity)
         .padding(20)
@@ -515,7 +533,11 @@ struct ProfileDetailsView: View {
         .shadow(radius: 3)
     }
     
-    // rating criteria
+    /// Rating criteria
+    /// - Parameters:
+    ///   - criteria: The criteria the of the rating for this profile
+    ///   - rating: The rating of that criteria for this profile
+    /// - Returns: A rating criteria HStack View
     func ratingCriteria(criteria: String, rating: Double) -> some View {
         return VStack {
             Text(criteria)

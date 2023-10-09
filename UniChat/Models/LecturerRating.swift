@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 import SwiftUI
 
-// lecturer object from core data
+/// Lecturer object from core data
 public class LecturerRating: NSManagedObject, Identifiable {
     @NSManaged public var id: UUID
     @NSManaged public var name: String

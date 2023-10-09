@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Displays a signup view for user to sign up
 struct SignUpView: View {
     // current colout scheme
     @Environment(\.colorScheme) var colorScheme
@@ -255,7 +256,10 @@ struct SignUpView: View {
             .foregroundColor(UniChatColor.brightYellow)
     }
     
-    // create a user object and save it in core data
+    /// Create a user object and save it in core data
+    /// - Parameters:
+    ///   - username: The username for the user's account being created
+    ///   - password: The password for the user's account being created
     func createUser(username: String, password: String) {
         let user = User(context: context)
         user.username = username

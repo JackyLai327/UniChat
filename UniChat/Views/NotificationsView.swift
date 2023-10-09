@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Displays all notifications for the logged in user
 struct NotificationsView: View {
     // to use the context provided by core data
     @Environment(\.managedObjectContext) var context

@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 
 @objc(LikedUser)
+/// A user that likes a post.
 public class LikedUser: NSManagedObject {
     @NSManaged public var username: String
     

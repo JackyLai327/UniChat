@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Displays a list of setting options.
 struct SettingsView: View {
     // current colout scheme
     @Environment(\.colorScheme) var colorScheme
@@ -51,8 +52,8 @@ struct SettingsView: View {
                 NavigationLink("my discussions", destination: MyDiscussionsView())
                 NavigationLink("username and password", destination: UsernameAndPasswordView())
                 NavigationLink("verification", destination: VerificationView())
-                //            NavigationLink("push notifications", destination: PushNotificationsView())
-                //            NavigationLink("report a problem", destination: ReportAProblemView())
+                            NavigationLink("push notifications", destination: PushNotificationsView())
+                            NavigationLink("report a problem", destination: ReportAProblemView())
                 Button{
                     let credentials = Credentials(username: UserDefaults.standard.string(forKey: "currentUsername")!, password: UserDefaults.standard.string(forKey: "currentPassword")!)
                     UserDefaults.standard.removeObject(forKey: "currentUsername")

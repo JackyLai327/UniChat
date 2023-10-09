@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Displays the splash screen and introduction page if user is not logged in
 struct SplashScreenView: View {
     // current colout scheme
     @Environment(\.colorScheme) var colorScheme

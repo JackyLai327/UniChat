@@ -8,8 +8,8 @@
 import Foundation
 import CoreData
 
-// user who ups a reply
 @objc(UpUser)
+/// User who ups a reply
 public class UpUser: NSManagedObject {
     @NSManaged public var username: String
     

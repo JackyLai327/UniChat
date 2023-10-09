@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-// Reply object from core data
+/// Reply object from core data
 @objc(Reply)
 public class Reply: NSManagedObject, Identifiable {
     @NSManaged public var content: String
@@ -30,15 +30,23 @@ public class Reply: NSManagedObject, Identifiable {
 extension Reply {
 
     @objc(addUpUserObject:)
+    /// Adds an UpUser object to the UpUserArray.
+    /// - Parameter value: The UpUser object to be added to the array.
     @NSManaged public func addToUpUser(_ value: UpUser)
 
     @objc(removeUpUserObject:)
+    /// Removes an UpUser object from the UpUserArray.
+    /// - Parameter value: The UpUser object to tbe removed from the array.
     @NSManaged public func removeFromUpUser(_ value: UpUser)
 
     @objc(addUpUser:)
+    /// Adds an array of UpUser object to the UpUserArray.
+    /// - Parameter values: An NSSet object of UpUsers to be added to the array.
     @NSManaged public func addToUpUser(_ values: NSSet)
 
     @objc(removeUpUser:)
+    /// Removes an array of UpUser object from the UpUserArray.
+    /// - Parameter values: An NSSet object of UpUsers to be removed from the array.
     @NSManaged public func removeFromUpUser(_ values: NSSet)
 
 }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Displays all discussion written by the logged in user
 struct MyDiscussionsView: View {
     // for custom back button dismiss action
     @Environment(\.dismiss) private var dismiss
@@ -153,7 +154,17 @@ struct MyDiscussionsView: View {
             .foregroundColor(UniChatColor.brightYellow)
     }
     
-    // display the each discussion is a preview card mode
+    /// Display the each discussion is a preview card mode
+    /// - Parameters:
+    ///   - username: The username that wrote of the discussion
+    ///   - target: The target this discussion if for
+    ///   - content: The content of this discussion
+    ///   - numLikes: The number of likes under this discussion
+    ///   - numReplies: The number of replies under this discussion
+    ///   - numShares: The number of shares under this discussion
+    ///   - timestamp: The timestamp this discussion was created at
+    ///   - imageDataString: The image data string this (if any) that was attatched to this discussion
+    /// - Returns: A discussion card HStack View
     private func discussionCard(username: String, target: String, content: String, numLikes: Int, numReplies: Int, numShares: Int, timestamp: Date, imageDataString: String) -> some View {
         return HStack {
             VStack {

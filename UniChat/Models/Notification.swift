@@ -8,14 +8,14 @@
 import Foundation
 import CoreData
 
-// three types of notifications
+/// Three types of notifications.
 enum NotificationType: String {
     case like = "like"
     case reply = "reply"
     case share = "share"
 }
 
-// notification object from core data
+/// Notification object from core data.
 public class Notification: NSManagedObject, Identifiable{
     @NSManaged public var discussion: String
     @NSManaged public var id: UUID

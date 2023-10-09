@@ -11,6 +11,7 @@ import UIKit
 import SwiftUI
 
 //to integrate SwiftUI and UIKit
+/// Displays a camera
 struct CameraView: UIViewControllerRepresentable {
     
     /*

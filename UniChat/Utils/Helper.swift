@@ -11,12 +11,12 @@ import Foundation
 public class Helper {
     init() {}
     
-    // converts ratings (double type) into a string of moon emojis
-    // each point gets converted to a moon
-    // decimal points get converted into one half moon
-    // fill out the rest of the stars string with shaded moons
-    // @param rating: Double => decimal representation of rating of a uni/lecturer
-    // @return: String => stars representation of a rating
+    /// Converts ratings (double type) into a string of moon emojis.
+    /// Each point gets converted to a moon.
+    /// Decimal points get converted into one half moon.
+    /// Fill out the rest of the stars string with shaded moons.
+    /// - Parameter rating: The decimal representation of rating of a uni/lecturer
+    /// - Returns: The stars representation of a rating
     public func ratingToStars(rating: Double) -> String {
         var retString = ""
         
@@ -47,12 +47,12 @@ public class Helper {
         return retString
     }
     
-    // converts from stars to rating
-    // 1 full moon = 1 point
-    // 1 half moon = 0.5 point
-    // 1 shaded moon = 0.0 point
-    // @param stars: String => the star string represented by different shades of moons
-    // @return: Double => the rating converted from the stars values
+    /// Converts from stars to rating.
+    /// 1 full moon = 1 point.
+    /// 1 half moon = 0.5 point.
+    /// 1 shaded moon = 0.0 point.
+    /// - Parameter stars: The star string represented by different shades of moons
+    /// - Returns: The rating converted from the stars values
     public func starsToRating(stars: String) -> Double {
         var retDouble = 0.0
         
@@ -70,11 +70,11 @@ public class Helper {
         return retDouble
     }
     
-    // calculate new average rating to store in database
-    // @param averageRating: Double => the average rating stored in core data
-    // @param newRating: Double => the new rating provided by user
-    // @param count: Int => the amount of ratings that was stored in the database
-    // @return: Double => the new calculated average
+    /// Calculates new average rating to store in database.
+    /// - Parameter averageRating: The average rating stored in core data
+    /// - Parameter newRating: The new rating provided by user
+    /// - Parameter count: The amount of ratings that was stored in the database
+    /// - Returns: The new calculated average
     public func calculateAverage(averageRating: Double, newRating: Double, count: Int) -> Double {
         var retDouble: Double = 0.0
         

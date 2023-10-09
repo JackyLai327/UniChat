@@ -8,8 +8,8 @@
 import Foundation
 import CoreData
 
-// user object from core data
 @objc (User)
+/// User object from core data.
 public class User: NSManagedObject {
     @NSManaged public var username: String
     @NSManaged public var password: String
@@ -24,16 +24,24 @@ public class User: NSManagedObject {
 
 // methods of editing the upUserArray
 extension User {
-
+    
+    /// Adds a VerifiedUni object to the VerifiedUniArray.
+    /// - Parameter value: The VerifiedUni object to be added to the array.
     @objc(addVerifiedUniObject:)
     @NSManaged public func addToVerifiedUni(_ value: VerifiedUni)
 
+    /// Removes a VerifiedUni object from the VerifiedUniArray.
+    /// - Parameter value: The VerifiedUni object to be removed from the array.
     @objc(removeVerifiedUniObject:)
     @NSManaged public func removeVerifiedUni(_ value: VerifiedUni)
 
+    /// Adds an NSSet object of VerifiedUni to the array.
+    /// - Parameter value: The NSSet object of VerifiedUni to be added to the array.
     @objc(addVerifiedUni:)
     @NSManaged public func addToVerifiedUni(_ values: NSSet)
 
+    /// Removes an NSSet object of VerifiedUni from the array.
+    /// - Parameter value: The NSset object of VerifiedUni to be removed from the array.
     @objc(removeVerifiedUni:)
     @NSManaged public func removeVerifiedUni(_ values: NSSet)
 

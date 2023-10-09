@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// the heading for each page
+/// The heading for each page
 struct HeadingView: View {
     
     // displayed at the top

@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-// uni object from core data
+/// Uni object from core data
 public class UniRating: NSManagedObject, Identifiable {
     @NSManaged public var id: String
     @NSManaged public var overview: Double

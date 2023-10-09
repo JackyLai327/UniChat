@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Displays a verified unis for logged in user along with an option to get verified for other unis.
 struct VerificationView: View {
     // for dismiss action
     @Environment(\.dismiss) private var dismiss

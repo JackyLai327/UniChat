@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Displays logged in user's username and password
 struct UsernameAndPasswordView: View {
     // for dismiss action
     @Environment(\.dismiss) private var dismiss

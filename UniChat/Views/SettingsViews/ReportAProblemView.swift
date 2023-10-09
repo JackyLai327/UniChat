@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Displays report a problem options (under development)
 struct ReportAProblemView: View {
     // for dismiss action
     @Environment(\.dismiss) private var dismiss

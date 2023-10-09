@@ -8,8 +8,8 @@
 import Foundation
 import CoreData
 
-// verified uni for a user
 @objc(VerifiedUni)
+/// Verified uni for a user
 public class VerifiedUni: NSManagedObject {
     @NSManaged public var name: String
     

@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+/// Displays a discussion along with all the replies.
+/// Allows a user to like this discussion and copy link to website version of this application.
 struct DiscussionView: View {
     // for dismiss action
     @Environment(\.dismiss) private var dismiss
@@ -210,6 +212,7 @@ struct DiscussionView: View {
                         Button {
                             // MARK: share is copying the link to the desktop version of the app on this discussion, which is for another app development
                             pressShare(discussion: discussion)
+                            UIPasteboard.general.string = "https://www.apple.com"
                         } label: {
                             HStack {
                                 Image(systemName: "link")
@@ -391,7 +394,12 @@ struct DiscussionView: View {
         .padding(.vertical, 20)
     }
     
-    // creates a new reply for the dedicated discussion
+    /// Creates a new reply for the dedicated discussion.
+    /// Also creates a notification to notify the user of the discussion.
+    /// - Parameters:
+    ///   - content: The content of the reply
+    ///   - discussion: The Discussion this reply is attatched to
+    ///   - user: The user who wrote this reply
     func createReply(content: String, discussion: Discussion, user: String) {
         let reply = Reply(context: context)
         reply.id = UUID()
@@ -420,9 +428,12 @@ struct DiscussionView: View {
         }
     }
     
-    // adds the user to the upUser array of the dedicated reply (or remove)
-    // if operation = 1 => add
-    // if operation = -1 => remove
+    /// Adds the user to the upUser array of the dedicated reply (or remove).
+    /// If operation = 1 => add.
+    /// - Parameters:
+    ///   - reply: The reply a user is tyring to up
+    ///   - user: The user who ups this reply
+    ///   - operation: If operation = 1 => up, if operation = -1 => de-up.
     func pressUp(reply: Reply, user: UpUser, operation: Int32) {
         if operation == 1 {
             reply.addToUpUser(user)
@@ -472,7 +483,8 @@ struct DiscussionView: View {
         }
     }
     
-    // add num of share by 1 and create a notification for it
+    /// Add num of share by 1 and create a notification for it
+    /// - Parameter discussion: The discussion that is being shared
     func pressShare(discussion: Discussion) {
         discussion.numShares += 1
         

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Displays the page for user to log in with existing account
 struct LogInView: View {
     // current colout scheme
     @Environment(\.colorScheme) var colorScheme

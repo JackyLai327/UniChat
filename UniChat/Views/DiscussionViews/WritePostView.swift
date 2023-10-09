@@ -8,6 +8,7 @@
 import SwiftUI
 import _PhotosUI_SwiftUI
 
+/// A place for user to create a new discussion
 struct WritePostView: View {
     
     // get context to write to coredata
@@ -160,7 +161,12 @@ struct WritePostView: View {
         .background(UniChatColor.dimmedYellow)
     }
     
-    // create a new Discussion object and store it in core data
+    /// Create a new Discussion object and store it in core data
+    /// - Parameters:
+    ///   - content: The content of the new discussion to be created
+    ///   - target: The target this discussion is for
+    ///   - user: The username that writes this discussion
+    ///   - targetType: The type of the target (uni / lecturer)
     func createDiscussion(content: String, target: String, user: String, targetType: String) {
         let discussion = Discussion(context: context)
         discussion.id = UUID()

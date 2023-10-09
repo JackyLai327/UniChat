@@ -8,6 +8,7 @@
 import SwiftUI
 import _PhotosUI_SwiftUI
 
+/// DIsplays options to upload images for verification proccess
 struct VerificationCameraView: View {
     // for dismiss action
     @Environment(\.dismiss) private var dismiss

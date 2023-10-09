@@ -7,7 +7,7 @@
 
 import Foundation
 
-// university data object from API JSON response
+/// University data object from API JSON response
 struct UniversityData: Codable, Hashable {
     var state: String?
     var name: String

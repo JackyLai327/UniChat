@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// The feature bar at the bottom of the application
 struct FeatureTabView: View {
     // for custom back button dismiss action
     @Environment(\.dismiss) private var dismiss
@@ -14,7 +15,6 @@ struct FeatureTabView: View {
     // for switching tabs
     @State private var selectedTab = 0
     
-    // TODO: figure out a way to work around the TabView index reset bug
     var body: some View {
         TabView(selection: $selectedTab) {
             TrendingDiscussionsView()

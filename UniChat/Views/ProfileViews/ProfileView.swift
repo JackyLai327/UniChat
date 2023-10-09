@@ -8,6 +8,7 @@
 import SwiftUI
 import FaviconFinder
 
+/// Displays a list of all uni profiles and lecturer profiles
 struct ProfileView: View {
     // to use the context provided by core data
     @Environment(\.managedObjectContext) var context
@@ -311,7 +312,10 @@ struct ProfileView: View {
         .padding(.horizontal, 10)
     }
     
-    // fetch list of australian university
+    /// Fetch list of australian universities
+    /// - Parameters:
+    ///   - query: The search query by the user
+    ///   - completionHandler: Completion of async function.
     func searchUnis(query: String = "", completionHandler: @escaping () -> Void) async throws {
         let url = URL(string: "http://universities.hipolabs.com/search?country=Australia&name=\(query)")!
 
@@ -339,7 +343,7 @@ struct ProfileView: View {
         completionHandler()
     }
     
-    // stores data into core data if first visit
+    /// Stores data into core data if first visit
     func loadLecturers() {
         if lecturerRatings.count == 0 {
             for index in 0..<lecturersData.count {
@@ -357,7 +361,12 @@ struct ProfileView: View {
         }
     }
     
-    // get a webpage's favicon for university's logo
+    /// Get a webpage's favicon for university's logo
+    /// - Parameters:
+    ///   - dictionary: A dictionary of uni-imageURL value pairs
+    ///   - urlString: The URL to fetch favicon from
+    ///   - completionHandler: Completion of async function.
+    /// - Returns: A completed dictionary of uni-imageURL value pairs
     func fetchUniImage(dictionary: [String: URL], urlString: String, completionHandler: @escaping () -> Void) async -> [String: URL] {
         
         var returnDictionary = dictionary
