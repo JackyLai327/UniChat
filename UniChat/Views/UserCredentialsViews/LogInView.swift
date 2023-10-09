@@ -129,9 +129,6 @@ struct LogInView: View {
                 } else {
                     showAlert = true
                 }
-                fieldNotFilled = false
-                userNotFound = false
-                incorrectPassword = false
             }
             .font(.title2.bold())
             .padding(.horizontal, 40)

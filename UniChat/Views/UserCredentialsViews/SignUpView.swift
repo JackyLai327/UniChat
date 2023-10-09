@@ -276,7 +276,6 @@ struct SignUpView: View {
     var userCreationAlert: Any {
         if usernameExisted {
             return Alert(title: Text("Sorry Mate"), message: Text("This username is already taken 😢, first come first serve!"), dismissButton: .default(Text("Pick a new one")))
-
         } else if passwordsDoNotMatch {
             return Alert(title: Text("Sorry Mate"), message: Text("Your passwords don't match ❌, wanna try again?"), dismissButton: .default(Text("Let's try again")))
         } else if fieldNotFilled {
@@ -284,7 +283,7 @@ struct SignUpView: View {
         } else if passwordNotSecure {
             return Alert(title: Text("Sorry Mate"), message: Text("Password must:\n💬contain at least 8 characters\n💬contain a capital letter\n💬contain a lowercase letter\n💬contain a digit"), dismissButton: .default(Text("Alright boss...")))
         } else {
-            return Alert(title: Text("Sorry Mate"), message: Text("Something went wrong, please try again in a bit..."), dismissButton: .default(Text("Alright")))
+            return Alert(title: Text("Sorry Mate"), message: Text("Password must:\n💬contain at least 8 characters\n💬contain a capital letter\n💬contain a lowercase letter\n💬contain a digit"), dismissButton: .default(Text("Alright boss...")))
         }
     }
 }

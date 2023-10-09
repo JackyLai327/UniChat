@@ -126,11 +126,16 @@ struct DiscussionView: View {
                     Spacer()
                     
                     VStack {
+                        Text(discussion.timestamp, style: .date)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                        
                         if defaults.string(forKey: "currentUsername") == discussion.username {
                             Text("delete")
                                 .font(.caption)
-                                .foregroundColor(.secondary)
                                 .frame(maxWidth: .infinity, alignment: .trailing)
+                                .foregroundColor(.secondary)
                                 .onTapGesture {
                                     do {
                                         context.delete(discussion)
@@ -140,12 +145,8 @@ struct DiscussionView: View {
                                     }
                                 }
                         }
-                        
-                        Text(discussion.timestamp, style: .date)
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
                     }
+                    .frame(width: 95)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 30)

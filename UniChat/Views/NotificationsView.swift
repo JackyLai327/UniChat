@@ -27,7 +27,7 @@ struct NotificationsView: View {
             
             ScrollView {
                 // display all notifications sent to the current user
-                let notifications = coreDataNotifications.filter({$0.receiver == defaults.string(forKey: "currentUsername")!})
+                let notifications = coreDataNotifications.filter({$0.receiver == defaults.string(forKey: "currentUsername") ?? ""})
                 
                 ForEach (notifications, id: \.self) {notification in
                     NavigationLink (destination: DiscussionView(discussionID: "\(notification.discussion)")) {
