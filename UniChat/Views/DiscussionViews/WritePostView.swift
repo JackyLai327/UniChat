@@ -25,7 +25,7 @@ struct WritePostView: View {
     var listOfUni = ["Royal Melbourne Institute of Technology", "Melbourne University"]
     
     // temporary list of lecturers
-    var listOfLecturer = ["Shekhar Kalra"]
+    var listOfLecturer = ["Shekhar Kalra", "Gumble Watterson", "Patrick Bateman"]
     
     // temporary logged in user
     var user = UserDefaults.standard.string(forKey: "currentUsername") ?? "uniChat"

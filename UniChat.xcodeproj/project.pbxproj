@@ -31,7 +31,6 @@
 		D308111D2AA85B1D00D4751B /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B1932A95F445009106A2 /* Discussion.swift */; };
 		D30811782AA8650D00D4751B /* UniChatCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D30811762AA8650D00D4751B /* UniChatCoreData.xcdatamodeld */; };
 		D308117A2AA876AC00D4751B /* LikedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30811792AA876AC00D4751B /* LikedUser.swift */; };
-		D30A30312AB434820022C988 /* CoreDataModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A30302AB434820022C988 /* CoreDataModelView.swift */; };
 		D30A30332AB5AED40022C988 /* UniversityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A30322AB5AED40022C988 /* UniversityData.swift */; };
 		D30A30A52AB854D50022C988 /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = D30A30A42AB854D50022C988 /* Auth0 */; };
 		D3107C6F2AB9B4D10063E7BC /* ProfileDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3107C6E2AB9B4D10063E7BC /* ProfileDetailsView.swift */; };
@@ -50,7 +49,7 @@
 		D3A8C2632AADE48B0024F989 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C2622AADE48B0024F989 /* SplashScreenView.swift */; };
 		D3A8C2AB2AB18F270024F989 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A8C2AA2AB18F270024F989 /* KeychainManager.swift */; };
 		D3C2BC3E2AA7227D00F9A747 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D3C2BC3D2AA7227D00F9A747 /* README.md */; };
-		D3DAE61B2AD3D89F005F42F4 /* UniChatDocumentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = D3DAE61A2AD3D89F005F42F4 /* UniChatDocumentation.docc */; };
+		D3DAE61D2AD691BC005F42F4 /* UniChatCatalog.docc in Sources */ = {isa = PBXBuildFile; fileRef = D3DAE61C2AD691BC005F42F4 /* UniChatCatalog.docc */; };
 		D3F4B15A2A94816F009106A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3F4B1592A94816F009106A2 /* Assets.xcassets */; };
 		D3F4B15D2A94816F009106A2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3F4B15C2A94816F009106A2 /* Preview Assets.xcassets */; };
 		D3F4B18A2A95D273009106A2 /* NotificationsData.json in Resources */ = {isa = PBXBuildFile; fileRef = D3F4B1892A95D273009106A2 /* NotificationsData.json */; };
@@ -72,7 +71,6 @@
 		D306C82B2A98878800E6A958 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		D30811772AA8650D00D4751B /* UniChatCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UniChatCoreData.xcdatamodel; sourceTree = "<group>"; };
 		D30811792AA876AC00D4751B /* LikedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUser.swift; sourceTree = "<group>"; };
-		D30A30302AB434820022C988 /* CoreDataModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModelView.swift; sourceTree = "<group>"; };
 		D30A30322AB5AED40022C988 /* UniversityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityData.swift; sourceTree = "<group>"; };
 		D3107C6E2AB9B4D10063E7BC /* ProfileDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsView.swift; sourceTree = "<group>"; };
 		D32898BD2AC0158200051A43 /* LecturerList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LecturerList.json; sourceTree = "<group>"; };
@@ -91,7 +89,7 @@
 		D3A8C2AA2AB18F270024F989 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		D3C2BC3D2AA7227D00F9A747 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D3C2BC3F2AA722D800F9A747 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		D3DAE61A2AD3D89F005F42F4 /* UniChatDocumentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = UniChatDocumentation.docc; sourceTree = "<group>"; };
+		D3DAE61C2AD691BC005F42F4 /* UniChatCatalog.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = UniChatCatalog.docc; sourceTree = "<group>"; };
 		D3F4B1522A94816D009106A2 /* UniChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F4B1552A94816D009106A2 /* UniChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniChatApp.swift; sourceTree = "<group>"; };
 		D3F4B1572A94816D009106A2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -140,14 +138,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D30A302F2AB434500022C988 /* ModelView */ = {
-			isa = PBXGroup;
-			children = (
-				D30A30302AB434820022C988 /* CoreDataModelView.swift */,
-			);
-			path = ModelView;
-			sourceTree = "<group>";
-		};
 		D32898B92ABFD68700051A43 /* DiscussionViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,10 +225,18 @@
 			path = KeyChain;
 			sourceTree = "<group>";
 		};
+		D3DAE61E2AD693E6005F42F4 /* NotificationViews */ = {
+			isa = PBXGroup;
+			children = (
+				D3F4B1712A94CCA4009106A2 /* NotificationsView.swift */,
+			);
+			path = NotificationViews;
+			sourceTree = "<group>";
+		};
 		D3F4B1492A94816D009106A2 = {
 			isa = PBXGroup;
 			children = (
-				D3DAE61A2AD3D89F005F42F4 /* UniChatDocumentation.docc */,
+				D3DAE61C2AD691BC005F42F4 /* UniChatCatalog.docc */,
 				D3C2BC3D2AA7227D00F9A747 /* README.md */,
 				D3F4B1542A94816D009106A2 /* UniChat */,
 				D32899122AD1793A00051A43 /* UniChatTests */,
@@ -261,7 +259,6 @@
 				D38B48C22ABC197C002E1333 /* KeyChain */,
 				D38B48C02ABC1948002E1333 /* Utils */,
 				D38B48BF2ABC1869002E1333 /* CoreDataStack */,
-				D30A302F2AB434500022C988 /* ModelView */,
 				D3F4B1802A95C40F009106A2 /* Resources */,
 				D3F4B1662A9487C9009106A2 /* Models */,
 				D3F4B1652A9487C4009106A2 /* Views */,
@@ -284,13 +281,13 @@
 		D3F4B1652A9487C4009106A2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D3DAE61E2AD693E6005F42F4 /* NotificationViews */,
 				D32898BC2ABFDD8200051A43 /* SettingsViews */,
 				D32898BB2ABFDD6D00051A43 /* ProfileViews */,
 				D32898BA2ABFD6C100051A43 /* Components */,
 				D32898B92ABFD68700051A43 /* DiscussionViews */,
 				D38B48C12ABC1964002E1333 /* UserCredentialsViews */,
 				D3F4B1572A94816D009106A2 /* ContentView.swift */,
-				D3F4B1712A94CCA4009106A2 /* NotificationsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -437,7 +434,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D308111D2AA85B1D00D4751B /* Discussion.swift in Sources */,
-				D30A30312AB434820022C988 /* CoreDataModelView.swift in Sources */,
 				D308111C2AA85B1A00D4751B /* UniChatColor.swift in Sources */,
 				D308111B2AA85ADB00D4751B /* UniChatApp.swift in Sources */,
 				D30811782AA8650D00D4751B /* UniChatCoreData.xcdatamodeld in Sources */,
@@ -455,6 +451,7 @@
 				D30811122AA85AD600D4751B /* PushNotificationsView.swift in Sources */,
 				D30811132AA85AD600D4751B /* ReportAProblemView.swift in Sources */,
 				D30811142AA85AD600D4751B /* SettingsView.swift in Sources */,
+				D3DAE61D2AD691BC005F42F4 /* UniChatCatalog.docc in Sources */,
 				D32899092AD03BCC00051A43 /* VerificationCameraView.swift in Sources */,
 				D30811152AA85AD600D4751B /* TrendingDiscussionsView.swift in Sources */,
 				D30811162AA85AD600D4751B /* UsernameAndPasswordView.swift in Sources */,
@@ -470,7 +467,6 @@
 				D30A30332AB5AED40022C988 /* UniversityData.swift in Sources */,
 				D308110C2AA85ABB00D4751B /* HeadingView.swift in Sources */,
 				D308110B2AA85AB700D4751B /* DiscussionView.swift in Sources */,
-				D3DAE61B2AD3D89F005F42F4 /* UniChatDocumentation.docc in Sources */,
 				D30811082AA85AAF00D4751B /* Persistence.swift in Sources */,
 				D30811072AA85AAD00D4751B /* Notification.swift in Sources */,
 				D30811062AA85AAB00D4751B /* Reply.swift in Sources */,

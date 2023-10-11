@@ -10,7 +10,7 @@ import CoreData
 import UIKit
 
 @objc(Discussion)
-/// Discussion object from core data.
+/// Discussion object from core data
 public class Discussion: NSManagedObject, Identifiable {
     @NSManaged public var content: String
     @NSManaged public var id: UUID
@@ -34,24 +34,24 @@ public class Discussion: NSManagedObject, Identifiable {
 // methods of editing the likedUserArray
 extension Discussion {
 
+    @objc(addLikedUserObject:)
     /// Adds a LikedUser object to the LikedUserArray.
     /// - Parameter value: The LikedUser object to be added to the array.
-    @objc(addLikedUserObject:)
     @NSManaged public func addToLikedUser(_ value: LikedUser)
 
+    @objc(removeLikedUserObject:)
     /// Removes a LikedUser object from the LikedUserArray.
     /// - Parameter value: The LikedUser object to be removed from the array.
-    @objc(removeLikedUserObject:)
     @NSManaged public func removeFromLikedUser(_ value: LikedUser)
 
+    @objc(addLikedUser:)
     /// Adds an NSSet object of LikedUsers to the array.
     /// - Parameter value: The NSSet object of LikedUser to be added to the array.
-    @objc(addLikedUser:)
     @NSManaged public func addToLikedUser(_ values: NSSet)
 
+    @objc(removeLikedUser:)
     /// Removes an NSSet object of LikedUsers from the array.
     /// - Parameter value: The NSset object of LikedUser to be removed from the array.
-    @objc(removeLikedUser:)
     @NSManaged public func removeFromLikedUser(_ values: NSSet)
 
 }

@@ -26,7 +26,7 @@ struct FeatureTabView: View {
 
             ProfileView()
                 .tabItem{
-                    Label("", systemImage: "studentdesk")}
+                    Label("", systemImage: "graduationcap.fill")}
                 .toolbarBackground(UniChatColor.headerYellow, for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
                 .tag(1)

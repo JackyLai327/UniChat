@@ -68,6 +68,13 @@ struct TrendingDiscussionsView: View {
                 
                 // uni tab
                 if uniTabSelected {
+                    let discussions = discussions.sorted {
+                        if $0.numLikes == $1.numLikes {
+                            return $0.timestamp > $0.timestamp
+                        }
+                        
+                        return $0.numLikes > $1.numLikes
+                    }
                     ForEach (discussions.filter {$0.targetType == "uni"}, id:\.self) {discussion in
                         NavigationLink (destination: DiscussionView(discussionID: String("\(discussion.id)"))) {
                             discussionCard(
@@ -86,6 +93,13 @@ struct TrendingDiscussionsView: View {
                 
                 // lecturer tab
                 if lecturerTabSelected {
+                    let discussions = discussions.sorted {
+                        if $0.numLikes == $1.numLikes {
+                            return $0.timestamp > $0.timestamp
+                        }
+                        
+                        return $0.numLikes > $1.numLikes
+                    }
                     ForEach (discussions.filter {$0.targetType == "lecturer"}, id:\.self) {discussion in
                         NavigationLink (destination: DiscussionView(discussionID: String("\(discussion.id)"))) {
                             discussionCard(
@@ -137,8 +151,8 @@ struct TrendingDiscussionsView: View {
     private func discussionCard(username: String, target: String, content: String, numLikes: Int, numReplies: Int, numShares: Int, timestamp: Date, imageDataString: String) -> some View {
         return HStack {
             VStack {
-                Text(username + " • " + target)
-                    .font(.headline .bold())
+                Text(username + " 💬 " + target)
+                    .font(.custom("user and target", size: 15))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.primary)
@@ -153,6 +167,7 @@ struct TrendingDiscussionsView: View {
                     Text(content).frame(maxWidth: .infinity, alignment: .leading)
                         .multilineTextAlignment(.leading)
                         .font(.custom("discusison content", size: 15))
+                        .padding(.top, 2)
                         .padding(.bottom, 5)
                         .foregroundColor(.primary)
                 } else {
@@ -160,6 +175,7 @@ struct TrendingDiscussionsView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .multilineTextAlignment(.leading)
                         .font(.custom("discusison content", size: 15))
+                        .padding(.top, 2)
                         .padding(.bottom, 5)
                         .foregroundColor(.primary)
                 }
@@ -191,6 +207,7 @@ struct TrendingDiscussionsView: View {
                     .padding(.horizontal, 5)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxHeight: .infinity, alignment: .bottom)
             }
             
             if imageDataString != "" {

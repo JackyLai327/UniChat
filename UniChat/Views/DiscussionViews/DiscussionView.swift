@@ -146,7 +146,7 @@ struct DiscussionView: View {
                                 }
                         }
                     }
-                    .frame(width: 95)
+                    .frame(width: 100)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 30)
@@ -196,14 +196,27 @@ struct DiscussionView: View {
                                 pressLike(discussion: discussion, user: user, operation: 1)
                             }
                         } label: {
-                            HStack {
-                                Image(systemName: "heart.fill")
-                                    .foregroundColor(UniChatColor.brightYellow)
-                                Text("\(discussion.numLikes)")
-                                    .foregroundColor(UniChatColor.brown)
+                            let currentUsername = UserDefaults.standard.string(forKey: "currentUsername")!
+                            
+                            if let user = discussion.likedUserArray.first(where: {$0.username == currentUsername}) {
+                                HStack {
+                                    Image(systemName: "heart.fill")
+                                        .foregroundColor(UniChatColor.brightYellow)
+                                    Text("\(discussion.numLikes)")
+                                        .foregroundColor(UniChatColor.brown)
+                                }
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .padding(.vertical, 5)
+                            } else {
+                                HStack {
+                                    Image(systemName: "heart")
+                                        .foregroundColor(UniChatColor.brightYellow)
+                                    Text("\(discussion.numLikes)")
+                                        .foregroundColor(UniChatColor.brown)
+                                }
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .padding(.vertical, 5)
                             }
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            .padding(.vertical, 5)
                         }
                         
                         Divider()

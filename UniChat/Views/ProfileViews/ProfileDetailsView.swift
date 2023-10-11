@@ -466,8 +466,8 @@ struct ProfileDetailsView: View {
     private func discussionCard(username: String, target: String, content: String, numLikes: Int, numReplies: Int, numShares: Int, timestamp: Date, imageDataString: String) -> some View {
         return HStack {
             VStack {
-                Text(username + " • " + target)
-                    .font(.headline .bold())
+                Text(username + " 💬 " + target)
+                    .font(.custom("user and target", size: 15))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.primary)
@@ -478,12 +478,22 @@ struct ProfileDetailsView: View {
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.leading)
                     
-                Text(String(content.prefix(contentPrevCharaters)) + "... view more")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .multilineTextAlignment(.leading)
-                    .font(.custom("discusison content", size: 15))
-                    .padding(.bottom, 5)
-                    .foregroundColor(.primary)
+                if content.count <= contentPrevCharaters {
+                    Text(content).frame(maxWidth: .infinity, alignment: .leading)
+                        .multilineTextAlignment(.leading)
+                        .font(.custom("discusison content", size: 15))
+                        .padding(.top, 2)
+                        .padding(.bottom, 5)
+                        .foregroundColor(.primary)
+                } else {
+                    Text(String(content.prefix(contentPrevCharaters)) + "... view more")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .multilineTextAlignment(.leading)
+                        .font(.custom("discusison content", size: 15))
+                        .padding(.top, 2)
+                        .padding(.bottom, 5)
+                        .foregroundColor(.primary)
+                }
                 
                 HStack {
                     HStack {
@@ -512,6 +522,7 @@ struct ProfileDetailsView: View {
                     .padding(.horizontal, 5)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxHeight: .infinity, alignment: .bottom)
             }
             
             if imageDataString != "" {

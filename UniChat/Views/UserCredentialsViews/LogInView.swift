@@ -100,7 +100,10 @@ struct LogInView: View {
             Button("Log in") {
                 if let user = users.first(where: {$0.username == username}) {
                     if user.password != password {
+                        print(user.password)
                         incorrectPassword = true
+                    } else {
+                        incorrectPassword = false
                     }
                 } else {
                     userNotFound = true
@@ -126,6 +129,7 @@ struct LogInView: View {
                     
                     // redirect user to trending discussion
                     userLoggedIn = true
+                    
                 } else {
                     showAlert = true
                 }

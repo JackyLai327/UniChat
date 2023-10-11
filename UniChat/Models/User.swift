@@ -25,24 +25,24 @@ public class User: NSManagedObject {
 // methods of editing the upUserArray
 extension User {
     
+    @objc(addVerifiedUniObject:)
     /// Adds a VerifiedUni object to the VerifiedUniArray.
     /// - Parameter value: The VerifiedUni object to be added to the array.
-    @objc(addVerifiedUniObject:)
     @NSManaged public func addToVerifiedUni(_ value: VerifiedUni)
 
+    @objc(removeVerifiedUniObject:)
     /// Removes a VerifiedUni object from the VerifiedUniArray.
     /// - Parameter value: The VerifiedUni object to be removed from the array.
-    @objc(removeVerifiedUniObject:)
     @NSManaged public func removeVerifiedUni(_ value: VerifiedUni)
 
+    @objc(addVerifiedUni:)
     /// Adds an NSSet object of VerifiedUni to the array.
     /// - Parameter value: The NSSet object of VerifiedUni to be added to the array.
-    @objc(addVerifiedUni:)
     @NSManaged public func addToVerifiedUni(_ values: NSSet)
 
+    @objc(removeVerifiedUni:)
     /// Removes an NSSet object of VerifiedUni from the array.
     /// - Parameter value: The NSset object of VerifiedUni to be removed from the array.
-    @objc(removeVerifiedUni:)
     @NSManaged public func removeVerifiedUni(_ values: NSSet)
 
 }

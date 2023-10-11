@@ -130,7 +130,7 @@ struct SignUpView: View {
             .padding(.top, 20)
             
             // user will be redirected once logged in
-            NavigationLink(destination: FeatureTabView(), isActive: $userLoggedIn) {
+            NavigationLink(destination: LogInView(userLoggedIn: true), isActive: $userLoggedIn) {
                 Text("")
             }
             
