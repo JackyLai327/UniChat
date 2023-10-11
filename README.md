@@ -10,5 +10,5 @@
 - KeyChain
 ## REST API used: 
 - [University API (public)](http://universities.hipolabs.com/search?country=Australia)
-## Code Documentation Catalog: UniChatCatalog
-## Full Documentation: UniCharDocumentation.doccarchive
+## Code Documentation Catalog: `UniChatCatalog`
+## Full Documentation: `UniCharDocumentation.doccarchive`
